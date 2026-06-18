@@ -1,0 +1,15 @@
+fastapi
+uvicorn[standard]
+python-dotenv
+pydantic
+httpx
+openai
+chromadb
+websockets
+python-multipart
+jinja2
+aiofiles
+band-sdk[langgraph]
+langchain-openai
+langgraph
+langchain-core
