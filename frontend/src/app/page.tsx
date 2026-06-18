@@ -1,233 +1,122 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { useRouter } from 'next/navigation';
-import { Activity, FileText, Users, Shield } from 'lucide-react';
+import React from 'react';
 import { motion } from 'framer-motion';
+import { Network, Microscope, UserCog, Scale, ArrowRight, ShieldCheck, Database, Layers } from 'lucide-react';
+import Link from 'next/link';
 
-export default function Home() {
-  const router = useRouter();
-  const [description, setDescription] = useState('');
-  const [age, setAge] = useState('');
-  const [sex, setSex] = useState('');
-  const [imageUrl, setImageUrl] = useState('');
-  const [isSubmitting, setIsSubmitting] = useState(false);
-
-  const fillDemoData = () => {
-    setDescription("Patient presented with progressive plum-colored maculopapular and nodular skin lesions spreading to the chest, face, and upper extremities over the past 3 weeks. Severe night sweats, 8 kg weight loss, and left-sided facial nerve palsy (Bell's palsy) developed within the last 48 hours.\n\nLaboratory: Mild pancytopenia. Lactate dehydrogenase (LDH) markedly elevated at 1,200 U/L.\n\nPathology (Skin & Bone Marrow Biopsy): Infiltration of medium-sized atypical mononuclear blastoid cells. Immunohistochemistry (IHC) showed CD4+, CD56+, CD123+, TCL1+, and CD303+, while negative for MPO, CD3, CD20, and CD34. Bone marrow shows 60% involvement by similar blastoid cells.\n\nGenetics: NGS revealed TET2 mutation (VAF 45%), ASXL1 mutation, and a complex karyotype including MYC-BCL2 fusion (t(8;14)).");
-    setAge("21");
-    setSex("male");
-    setImageUrl("https://upload.wikimedia.org/wikipedia/commons/e/ea/Blastic_plasmacytoid_dendritic_cell_neoplasm.jpg");
+export default function LandingPage() {
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.2 }
+    }
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!description || description.length < 20) return;
-    
-    setIsSubmitting(true);
-    try {
-      const res = await fetch('http://localhost:8000/api/cases', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          description,
-          age: age ? parseInt(age) : null,
-          sex: sex || null,
-          image_url: imageUrl || null
-        }),
-      });
-      
-      const data = await res.json();
-      if (data.id) {
-        router.push(`/cases/${data.id}`);
-      }
-    } catch (error) {
-      console.error("Failed to submit case:", error);
-    } finally {
-      setIsSubmitting(false);
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6, ease: "easeOut" }
     }
   };
 
   return (
-    <div className="container mx-auto max-w-6xl px-4 py-8">
-      {/* Hero Section */}
-      <section className="mb-16 flex flex-col items-center justify-center text-center">
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="inline-flex items-center rounded-full border border-primary/30 bg-primary/10 px-3 py-1 text-sm font-medium text-primary mb-6"
-        >
-          <Shield className="mr-2 h-4 w-4" />
-          Track 3: Regulated & High-Stakes Workflows
-        </motion.div>
-        
-        <motion.h1 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-          className="text-4xl font-extrabold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl mb-4"
-        >
-          Virtual Medical Board for <br className="hidden sm:inline" />
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-blue-400">
-            Rare Oncology
-          </span>
-        </motion.h1>
-        
-        <motion.p 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          className="mx-auto max-w-[700px] text-lg text-muted-foreground mb-8"
-        >
-          Submit complex patient cases to an international panel of specialized AI agents. 
-          Powered by Band SDK and Latent Communication Protocols for military-grade privacy.
-        </motion.p>
-      </section>
-
-      <div className="grid gap-8 md:grid-cols-12">
-        {/* Input Form */}
-        <motion.div 
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.5, delay: 0.3 }}
-          className="md:col-span-7 glass-panel rounded-xl p-6"
-        >
-          <div className="mb-6 flex justify-between items-start">
-            <div>
-              <h2 className="text-2xl font-bold flex items-center">
-                <FileText className="mr-2 h-5 w-5 text-primary" />
-                New Patient Case
-              </h2>
-              <p className="text-sm text-muted-foreground mt-1">
-                Enter clinical details for the AI board to review.
-              </p>
-            </div>
-            <button 
-              type="button" 
-              onClick={fillDemoData}
-              className="text-xs bg-primary/20 hover:bg-primary/30 text-primary px-3 py-1 rounded-full transition-colors font-medium border border-primary/30 flex items-center">
-              <span>✨ Fill Demo Patient (BPDCN)</span>
-            </button>
-          </div>
-
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <div className="grid grid-cols-2 gap-4">
-              <div className="space-y-2">
-                <label className="text-sm font-medium">Age</label>
-                <input 
-                  type="number" 
-                  value={age}
-                  onChange={(e) => setAge(e.target.value)}
-                  className="flex h-10 w-full rounded-md border border-input bg-background/50 px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
-                  placeholder="e.g. 62"
-                />
-              </div>
-              <div className="space-y-2">
-                <label className="text-sm font-medium">Sex</label>
-                <select 
-                  value={sex}
-                  onChange={(e) => setSex(e.target.value)}
-                  className="flex h-10 w-full rounded-md border border-input bg-background/50 px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
-                >
-                  <option value="">Select...</option>
-                  <option value="male">Male</option>
-                  <option value="female">Female</option>
-                  <option value="other">Other</option>
-                </select>
-              </div>
-            </div>
-            
-            <div className="space-y-2">
-              <label className="text-sm font-medium">Clinical Description & History <span className="text-destructive">*</span></label>
-              <textarea 
-                required
-                minLength={20}
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
-                className="flex min-h-[200px] w-full rounded-md border border-input bg-background/50 px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary resize-none"
-                placeholder="Patient presented with persistent cytopenias for 6 months. Bone marrow biopsy showed 12% blasts with multilineage dysplasia. Cytogenetics revealed del(5q) and monosomy 7..."
-              />
-            </div>
-            
-            <div className="space-y-2">
-              <label className="text-sm font-medium">Whole Slide Image (WSI) URL <span className="text-muted-foreground font-normal">(Optional)</span></label>
-              <input 
-                type="url" 
-                value={imageUrl}
-                onChange={(e) => setImageUrl(e.target.value)}
-                className="flex h-10 w-full rounded-md border border-input bg-background/50 px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
-                placeholder="https://example.com/microscopy-slide.jpg"
-              />
-            </div>
-            
-            <button 
-              type="submit" 
-              disabled={isSubmitting || description.length < 20}
-              className="inline-flex w-full items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90 disabled:pointer-events-none disabled:opacity-50 h-11"
-            >
-              {isSubmitting ? (
-                <>
-                  <Activity className="mr-2 h-4 w-4 animate-spin" />
-                  Orchestrating Agents...
-                </>
-              ) : (
-                <>
-                  <Users className="mr-2 h-4 w-4" />
-                  Convene Medical Board
-                </>
-              )}
-            </button>
-          </form>
-        </motion.div>
-
-        {/* Info Panel */}
-        <motion.div 
-          initial={{ opacity: 0, x: 20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.5, delay: 0.4 }}
-          className="md:col-span-5 space-y-4"
-        >
-          <div className="glass-panel rounded-xl p-5 border-l-4 border-l-primary">
-            <h3 className="font-semibold mb-2">Agent Workflow</h3>
-            <ul className="space-y-3 text-sm text-muted-foreground">
-              <li className="flex items-start">
-                <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-primary/20 text-primary text-xs font-medium mr-3">1</span>
-                <span><strong>Privacy Agent</strong> strips PII and generates latent vectors.</span>
-              </li>
-              <li className="flex items-start">
-                <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-primary/20 text-primary text-xs font-medium mr-3">2</span>
-                <span><strong>Pathology & Prognostication Agents</strong> analyze the case in parallel via Band rooms.</span>
-              </li>
-              <li className="flex items-start">
-                <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-primary/20 text-primary text-xs font-medium mr-3">3</span>
-                <span><strong>Moderator Agent</strong> enforces the ICE Protocol (Iterative Consensus Ensemble) if conflict arises.</span>
-              </li>
-            </ul>
-          </div>
-          
-          <div className="glass-panel rounded-xl p-5">
-            <h3 className="font-semibold flex items-center mb-4">
-              <Activity className="mr-2 h-4 w-4 text-green-400" /> 
-              System Status
-            </h3>
-            <div className="space-y-2 text-sm">
-              <div className="flex justify-between">
-                <span className="text-muted-foreground">Band Platform</span>
-                <span className="text-green-400 font-medium">Connected</span>
-              </div>
-              <div className="flex justify-between">
-                <span className="text-muted-foreground">Active Agents</span>
-                <span className="font-medium text-foreground">5 / 5</span>
-              </div>
-              <div className="flex justify-between">
-                <span className="text-muted-foreground">Privacy Protocol</span>
-                <span className="font-medium text-foreground">HIPAA Enforced</span>
-              </div>
-            </div>
-          </div>
-        </motion.div>
+    <div className="min-h-[calc(100vh-3.5rem)] flex flex-col items-center justify-center relative overflow-hidden pb-20">
+      {/* Background ambient elements */}
+      <div className="absolute inset-0 z-0 flex items-center justify-center pointer-events-none opacity-40">
+        <div className="absolute w-[800px] h-[800px] border border-primary/10 rounded-full animate-[spin_60s_linear_infinite]" />
+        <div className="absolute w-[600px] h-[600px] border border-primary/20 rounded-full animate-[spin_40s_linear_infinite_reverse]" />
+        <div className="absolute w-[400px] h-[400px] border border-primary/30 rounded-full animate-[spin_20s_linear_infinite]" />
       </div>
+
+      <motion.div 
+        className="z-10 container max-w-6xl px-6 flex flex-col items-center text-center mt-20"
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+      >
+        <motion.div variants={itemVariants} className="inline-flex items-center space-x-2 bg-primary/10 text-primary border border-primary/20 px-4 py-1.5 rounded-full text-sm font-medium mb-8">
+          <ShieldCheck className="w-4 h-4" />
+          <span>Track 3: Regulated & High-Stakes Workflows</span>
+        </motion.div>
+
+        <motion.h1 variants={itemVariants} className="text-5xl md:text-7xl font-extrabold tracking-tight mb-6">
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 via-cyan-400 to-blue-500">
+            AegisMDT
+          </span>
+          <br />
+          <span className="text-foreground">AI Medical Board.</span>
+        </motion.h1>
+
+        <motion.p variants={itemVariants} className="text-xl md:text-2xl text-muted-foreground max-w-3xl mb-10 leading-relaxed">
+          Secure, multi-agent orchestration for rare oncology. Powered by the Iterative Consensus Ensemble (ICE) protocol and Human-in-the-Loop steering.
+        </motion.p>
+
+        <motion.div variants={itemVariants} className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-6 mb-24">
+          <Link href="/dashboard">
+            <button className="group relative inline-flex h-14 items-center justify-center overflow-hidden rounded-full bg-primary px-8 font-medium text-primary-foreground transition-all duration-300 hover:scale-105 hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background">
+              <span className="mr-2 text-lg">Launch Platform</span>
+              <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
+            </button>
+          </Link>
+          
+          <a href="https://github.com/wmaulanaaishq/AegisMDT-AI-Agent" target="_blank" rel="noreferrer">
+            <button className="inline-flex h-14 items-center justify-center rounded-full border border-border bg-background/50 px-8 font-medium text-foreground transition-colors hover:bg-muted focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 focus:ring-offset-background backdrop-blur-sm">
+              View Source Code
+            </button>
+          </a>
+        </motion.div>
+
+        <motion.div variants={itemVariants} className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full text-left">
+          {/* Feature 1 */}
+          <div className="bg-card/50 backdrop-blur-md border border-border rounded-2xl p-8 hover:border-primary/50 transition-colors">
+            <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center text-primary mb-6">
+              <Scale className="w-6 h-6" />
+            </div>
+            <h3 className="text-xl font-bold mb-3 text-foreground">ICE Protocol</h3>
+            <p className="text-muted-foreground leading-relaxed">
+              Agents actively debate conflicting prognoses until a high-confidence consensus is reached, eliminating single-model hallucinations.
+            </p>
+          </div>
+
+          {/* Feature 2 */}
+          <div className="bg-card/50 backdrop-blur-md border border-border rounded-2xl p-8 hover:border-primary/50 transition-colors">
+            <div className="w-12 h-12 bg-teal-500/10 rounded-xl flex items-center justify-center text-teal-400 mb-6">
+              <Microscope className="w-6 h-6" />
+            </div>
+            <h3 className="text-xl font-bold mb-3 text-foreground">Multi-Modal Vision</h3>
+            <p className="text-muted-foreground leading-relaxed">
+              Pathology agents process both unstructured medical texts and complex microscopic imagery to identify rare genomic mutations.
+            </p>
+          </div>
+
+          {/* Feature 3 */}
+          <div className="bg-card/50 backdrop-blur-md border border-border rounded-2xl p-8 hover:border-primary/50 transition-colors">
+            <div className="w-12 h-12 bg-blue-500/10 rounded-xl flex items-center justify-center text-blue-400 mb-6">
+              <UserCog className="w-6 h-6" />
+            </div>
+            <h3 className="text-xl font-bold mb-3 text-foreground">Human-in-the-Loop</h3>
+            <p className="text-muted-foreground leading-relaxed">
+              Doctors retain ultimate control. Intervene mid-debate to steer the AI's clinical direction or request immediate literature revisions.
+            </p>
+          </div>
+        </motion.div>
+
+        {/* Tech Stack Banner */}
+        <motion.div variants={itemVariants} className="mt-24 pt-12 border-t border-border/50 w-full">
+          <p className="text-sm font-medium text-muted-foreground uppercase tracking-widest mb-8 text-center">Powered By</p>
+          <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-70 grayscale hover:grayscale-0 transition-all duration-500">
+            <div className="flex items-center space-x-2"><Network className="w-6 h-6"/> <span className="text-xl font-bold">Band SDK</span></div>
+            <div className="flex items-center space-x-2"><Layers className="w-6 h-6"/> <span className="text-xl font-bold">Featherless AI</span></div>
+            <div className="flex items-center space-x-2"><Database className="w-6 h-6"/> <span className="text-xl font-bold">ChromaDB</span></div>
+            <div className="flex items-center space-x-2 text-xl font-bold">FastAPI & Next.js</div>
+          </div>
+        </motion.div>
+
+      </motion.div>
     </div>
   );
 }

@@ -36,7 +36,7 @@ export default function RootLayout({
               </div>
               <div className="flex flex-1 items-center justify-between space-x-2 md:justify-end">
                 <nav className="flex items-center space-x-6 text-sm font-medium">
-                  <a className="transition-colors hover:text-foreground/80 text-foreground" href="/">Dashboard</a>
+                  <a className="transition-colors hover:text-foreground/80 text-foreground" href="/dashboard">Dashboard</a>
                   <a className="transition-colors hover:text-foreground/80 text-foreground/60" href="/cases">Active Cases</a>
                   <a className="transition-colors hover:text-foreground/80 text-foreground/60" href="/settings">Settings</a>
                 </nav>
