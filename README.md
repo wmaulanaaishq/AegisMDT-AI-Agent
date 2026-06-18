@@ -77,5 +77,3 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 ## 🔒 Security & Privacy Notice
 This is a hackathon prototype. While it features PII stripping mechanisms, do **not** upload real patient data (PHI) to this public iteration. 
 
----
-*Built with ❤️ for the AI Agent Hackathon.*
