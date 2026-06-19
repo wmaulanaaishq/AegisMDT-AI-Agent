@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Network, Microscope, UserCog, Scale, ArrowRight, ShieldCheck, Database, Layers, Lock, Activity, Cpu, Fingerprint, Printer } from 'lucide-react';
+import { Network, Microscope, UserCog, Scale, ArrowRight, ShieldCheck, Database, Layers, Lock, Activity, Cpu, Fingerprint, Printer, Trophy } from 'lucide-react';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
 
@@ -353,6 +353,7 @@ export default function LandingPage() {
             <div className="flex items-center space-x-3 bg-white p-3 border border-slate-200 shadow-sm"><Network className="w-8 h-8 text-black"/> <span className="text-2xl font-serif font-bold text-black">Band SDK</span></div>
             <div className="flex items-center space-x-3 bg-white p-3 border border-slate-200 shadow-sm"><Layers className="w-8 h-8 text-black"/> <span className="text-2xl font-serif font-bold text-black">Featherless AI</span></div>
             <div className="flex items-center space-x-3 bg-white p-3 border border-slate-200 shadow-sm"><Database className="w-8 h-8 text-black"/> <span className="text-2xl font-serif font-bold text-black">ChromaDB</span></div>
+            <div className="flex items-center space-x-3 bg-white p-3 border border-slate-200 shadow-sm"><Trophy className="w-8 h-8 text-black"/> <span className="text-2xl font-serif font-bold text-black">lablab.ai</span></div>
           </div>
         </div>
       </div>
