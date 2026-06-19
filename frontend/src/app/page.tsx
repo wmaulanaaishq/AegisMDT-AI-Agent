@@ -349,11 +349,29 @@ export default function LandingPage() {
               backgroundImage: `url('https://www.transparenttextures.com/patterns/carbon-fibre.png')`,
             }}
           />
-          <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16 relative z-10">
-            <div className="flex items-center space-x-3 bg-white p-3 border border-slate-200 shadow-sm"><Network className="w-8 h-8 text-black"/> <span className="text-2xl font-serif font-bold text-black">Band SDK</span></div>
-            <div className="flex items-center space-x-3 bg-white p-3 border border-slate-200 shadow-sm"><Layers className="w-8 h-8 text-black"/> <span className="text-2xl font-serif font-bold text-black">Featherless AI</span></div>
-            <div className="flex items-center space-x-3 bg-white p-3 border border-slate-200 shadow-sm"><Database className="w-8 h-8 text-black"/> <span className="text-2xl font-serif font-bold text-black">ChromaDB</span></div>
-            <div className="flex items-center space-x-3 bg-white p-3 border border-slate-200 shadow-sm"><Trophy className="w-8 h-8 text-black"/> <span className="text-2xl font-serif font-bold text-black">lablab.ai</span></div>
+          <div className="flex overflow-hidden relative z-10 w-full group">
+            <div className="flex w-max animate-marquee space-x-6 md:space-x-12 items-center px-4">
+              {[...Array(2)].map((_, i) => (
+                <div key={i} className="flex space-x-6 md:space-x-12 items-center">
+                  <div className="flex items-center space-x-4 bg-white px-6 py-4 border border-slate-200 shadow-sm min-w-max">
+                    <img src="https://cryptologos.cc/logos/band-protocol-band-logo.svg?v=032" alt="Band SDK" className="h-10 w-auto" />
+                    <span className="text-2xl font-serif font-bold text-black">Band SDK</span>
+                  </div>
+                  <div className="flex items-center space-x-4 bg-white px-6 py-4 border border-slate-200 shadow-sm min-w-max">
+                    <img src="https://avatars.githubusercontent.com/u/152917711?s=200&v=4" alt="Featherless AI" className="h-10 w-auto rounded-full" />
+                    <span className="text-2xl font-serif font-bold text-black">Featherless AI</span>
+                  </div>
+                  <div className="flex items-center space-x-4 bg-white px-6 py-4 border border-slate-200 shadow-sm min-w-max">
+                    <img src="https://avatars.githubusercontent.com/u/108674504?s=200&v=4" alt="ChromaDB" className="h-10 w-auto rounded-full" />
+                    <span className="text-2xl font-serif font-bold text-black">ChromaDB</span>
+                  </div>
+                  <div className="flex items-center space-x-4 bg-white px-6 py-4 border border-slate-200 shadow-sm min-w-max pr-12 md:pr-0">
+                    <img src="https://avatars.githubusercontent.com/u/104273062?s=200&v=4" alt="lablab.ai" className="h-10 w-auto rounded-full" />
+                    <span className="text-2xl font-serif font-bold text-black">lablab.ai</span>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>
