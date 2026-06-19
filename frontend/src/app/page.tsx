@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { Network, Microscope, UserCog, Scale, ArrowRight, ShieldCheck, Database, Layers, Lock, Activity, Cpu, Fingerprint, Printer } from 'lucide-react';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
@@ -27,8 +27,6 @@ const Marquee = () => (
 );
 
 export default function LandingPage() {
-  const { scrollYProgress } = useScroll();
-
   const [terminalLines, setTerminalLines] = useState<string[]>([]);
   
   useEffect(() => {
@@ -168,7 +166,7 @@ export default function LandingPage() {
 
       <div id="platform" className="w-full bg-transparent py-16 mb-24 relative z-10 overflow-hidden">
         <div 
-          className="absolute inset-0 z-0 pointer-events-none opacity-[0.8]"
+          className="absolute inset-0 z-0 pointer-events-none opacity-80"
           style={{
             backgroundImage: `url('https://www.transparenttextures.com/patterns/diagmonds-light.png')`,
             maskImage: 'linear-gradient(to bottom, black 20%, transparent 100%)',
@@ -222,7 +220,7 @@ export default function LandingPage() {
       {/* Meet The Agents Section */}
       <div id="agents" className="w-full bg-zinc-50 border-y-4 border-black py-24 relative z-10 pt-32 overflow-hidden">
         <div 
-          className="absolute inset-0 z-0 pointer-events-none opacity-[0.15]"
+          className="absolute inset-0 z-0 pointer-events-none opacity-20"
           style={{
             backgroundImage: `url('https://www.transparenttextures.com/patterns/cubes.png')`,
             maskImage: 'linear-gradient(to bottom, black 50%, transparent 100%)',
