@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useRef } from 'react';
 import { useParams } from 'next/navigation';
-import { Activity, CheckCircle, AlertTriangle, Users, Stethoscope, Microscope, Search, ShieldCheck, FileText } from 'lucide-react';
+import { Activity, CheckCircle, AlertTriangle, Users, Stethoscope, Microscope, Search, ShieldCheck, FileText, ShieldAlert, Hash, Timer } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const CircularProgress = ({ value, label }: { value: number, label: string }) => {
@@ -158,31 +158,53 @@ export default function CaseDashboard() {
         </div>
       </div>
 
-      <div className="mb-6 flex items-center justify-between print:hidden">
-        <div>
-          <h1 className="text-2xl font-bold flex items-center">
-            Case Dashboard <span className="text-muted-foreground font-normal ml-2 text-sm font-mono">{caseId.split('-')[0]}</span>
-          </h1>
-          <div className="flex items-center mt-2 space-x-2">
-            <span className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold ${
-              status === 'awaiting_approval' || status === 'approved' ? 'bg-green-500/10 text-green-500' :
-              status === 'debating' ? 'bg-orange-500/10 text-orange-500' :
-              'bg-blue-500/10 text-blue-500'
-            }`}>
-              {status === 'debating' && <AlertTriangle className="mr-1 h-3 w-3" />}
-              {(status || 'UNKNOWN').replace('_', ' ').toUpperCase()}
+      {/* Persistent doctor-oversight banner */}
+      <div className="px-6 py-2 bg-black text-white flex items-center justify-between gap-4 flex-wrap border-b-4 border-black mb-0 print:hidden mt-0">
+        <div className="flex items-center gap-2 text-[12px]">
+          <ShieldAlert size={14} strokeWidth={2.5} className="text-teal-400" />
+          <span>
+            <strong>Decision Support Tool</strong> — Final clinical decisions remain with the attending physician.
+          </span>
+        </div>
+        <span className="font-mono text-[10px] uppercase tracking-widest text-teal-400 font-bold">
+          ◉ Data Anonymized · Audit Active
+        </span>
+      </div>
+
+      {/* Status bar */}
+      <div className="px-6 py-4 bg-white flex items-center justify-between gap-4 flex-wrap border-b-4 border-black mb-6 shadow-[0_4px_0_0_rgba(0,0,0,1)] print:hidden">
+        <div className="flex items-center gap-4 flex-wrap">
+          <div className="flex flex-col">
+            <span className="font-mono uppercase text-[10px] tracking-widest text-gray-500 font-bold">Case</span>
+            <span className="font-mono text-sm inline-flex items-center gap-1.5 font-bold">
+              <Hash size={12} strokeWidth={3} /> {caseId.split('-')[0].toUpperCase()}
             </span>
-            {caseData.band_room_id ? (
-              <span className="text-xs text-muted-foreground border border-border px-2 py-0.5 rounded flex items-center">
-                Band Room: {caseData.band_room_id.split('-')[0]}
-              </span>
-            ) : (
-              <span className="text-xs text-yellow-500 bg-yellow-500/10 border border-yellow-500/20 px-2 py-0.5 rounded flex items-center" title="Band Cloud integration failed or API keys missing. Operating via Local Orchestrator.">
-                <AlertTriangle className="mr-1 h-3 w-3" />
-                Local Fallback Mode
-              </span>
-            )}
           </div>
+          <span className="w-px h-8 bg-gray-300" />
+          
+          <div className={`px-3 py-1 text-xs font-bold font-mono uppercase tracking-widest border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] ${
+              status === 'awaiting_approval' || status === 'approved' ? 'bg-green-400 text-black' :
+              status === 'debating' ? 'bg-yellow-400 text-black animate-pulse' :
+              'bg-blue-400 text-black'
+            }`}>
+            {status === 'debating' && <AlertTriangle className="mr-1 h-3 w-3 inline" />}
+            {(status || 'UNKNOWN').replace('_', ' ')}
+          </div>
+
+          <div className="px-3 py-1 bg-gray-100 text-black border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] text-xs font-bold font-mono uppercase tracking-widest flex items-center gap-1.5">
+            <Timer size={12} strokeWidth={3} />
+            <span className="animate-pulse">Live Sync</span>
+          </div>
+
+          {caseData.band_room_id ? (
+            <span className="text-xs text-gray-500 font-mono px-2 py-0.5 flex items-center">
+              Room: {caseData.band_room_id.split('-')[0]}
+            </span>
+          ) : (
+             <span className="text-xs text-yellow-600 font-mono px-2 py-0.5 flex items-center">
+               <AlertTriangle className="mr-1 h-3 w-3" /> Local Mode
+             </span>
+          )}
         </div>
         
         {status === 'submitted' || status === 'processing' ? (

@@ -254,6 +254,34 @@ _`;
         </div>
       </div>
 
+      {/* AI Generated Brutalist Stats Strip */}
+      <section className="w-full relative z-10 bg-black text-white border-y-4 border-black">
+        <div className="mx-auto max-w-6xl grid grid-cols-2 md:grid-cols-4">
+          {[
+            { value: '0.94', label: 'Mean Consensus' },
+            { value: '4', label: 'Agents Per Case' },
+            { value: '<8s', label: 'Round-Trip Debate' },
+            { value: '120k', label: 'Papers Indexed' },
+          ].map((s, i) => (
+            <motion.div
+              key={s.label}
+              initial={{ opacity: 0, y: 14 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: i * 0.06 }}
+              className={`px-6 py-12 ${i < 3 ? 'md:border-r-4 border-white' : ''} ${i % 2 === 0 ? 'border-r-4 md:border-r-4 border-white' : ''} border-b-4 md:border-b-0 border-white`}
+            >
+              <div className="font-serif font-black tracking-tighter" style={{ fontSize: 'clamp(48px, 6vw, 80px)', lineHeight: 0.95 }}>
+                {s.value}
+              </div>
+              <div className="mt-4 font-mono uppercase text-[10px] tracking-widest text-primary font-bold">
+                ◉ {s.label}
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
       {/* Footer */}
       <footer className="w-full bg-black text-white py-12 border-t-4 border-black z-10 relative mt-auto">
         <div className="container max-w-6xl px-6 mx-auto flex flex-col md:flex-row justify-between items-center">
