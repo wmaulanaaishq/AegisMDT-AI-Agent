@@ -187,7 +187,9 @@ class LoginRequest(BaseModel):
 @app.post("/api/auth/login")
 async def login(req: LoginRequest):
     if req.username not in mock_users_db:
-        mock_users_db[req.username] = {"subscription_active": False, "id": req.username}
+        # Auto-activate subscription for demo accounts
+        is_active = req.username in ["dr.demo@hospital.org", "dr.smith@hospital.org"]
+        mock_users_db[req.username] = {"subscription_active": is_active, "id": req.username}
     return {"token": f"mock_jwt_for_{req.username}", "user": mock_users_db[req.username]}
 
 @app.get("/api/auth/me")

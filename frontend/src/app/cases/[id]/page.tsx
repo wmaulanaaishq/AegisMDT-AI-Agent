@@ -95,6 +95,44 @@ export default function CaseDashboard() {
     }
   };
 
+  const startMockDemo = () => {
+    setStatus('processing');
+    setMessages([]);
+    setConsensus(null);
+    
+    const sequence = [
+      { id: '1', timestamp: new Date().toISOString(), agent_role: 'privacy', agent_handle: 'Privacy Agent', content: 'PII stripped successfully. Generating latent vector hashes for genomic data.', message_type: 'log', confidence: 0.99 },
+      { id: '2', timestamp: new Date().toISOString(), agent_role: 'pathology', agent_handle: 'Pathology Agent', content: 'Analyzing whole slide image. Medium-sized blastoid cells detected. IHC profile: CD4+, CD56+, CD123+.', message_type: 'log', confidence: 0.94 },
+      { id: '3', timestamp: new Date().toISOString(), agent_role: 'prognostication', agent_handle: 'Prognostication Agent', content: 'Initial diagnosis: Blastic plasmacytoid dendritic cell neoplasm (BPDCN). However, MYC-BCL2 fusion suggests aggressive double-hit lymphoma.', message_type: 'debate', confidence: 0.75 },
+      { id: '4', timestamp: new Date().toISOString(), agent_role: 'pathology', agent_handle: 'Pathology Agent', content: 'Disagree. CD123 and CD303 positivity are hallmark for BPDCN. The fusion is secondary.', message_type: 'debate', confidence: 0.96 },
+      { id: '5', timestamp: new Date().toISOString(), agent_role: 'moderator', agent_handle: 'Moderator', content: 'Conflicting diagnoses detected. Invoking Iterative Consensus Ensemble (ICE) protocol. Re-evaluating literature for MYC-BCL2 in BPDCN.', message_type: 'log', confidence: 0.99 },
+      { id: '6', timestamp: new Date().toISOString(), agent_role: 'prognostication', agent_handle: 'Prognostication Agent', content: 'Acknowledged. Literature confirms rare subset of BPDCN with 8q24 abnormalities. Revising risk stratification to ultra-high risk BPDCN.', message_type: 'debate', confidence: 0.92 },
+      { id: '7', timestamp: new Date().toISOString(), agent_role: 'moderator', agent_handle: 'Moderator', content: 'Consensus reached: Ultra-high risk BPDCN with complex karyotype. Generating final report.', message_type: 'log', confidence: 0.99 }
+    ];
+
+    let i = 0;
+    const interval = setInterval(() => {
+      if (i < sequence.length) {
+        if (i === 2 || i === 3 || i === 5) setStatus('debating');
+        else if (i === 4) setStatus('processing');
+        setMessages(prev => [...prev, sequence[i]]);
+        i++;
+      } else {
+        clearInterval(interval);
+        setStatus('awaiting_approval');
+        setConsensus({
+          diagnosis: "Blastic plasmacytoid dendritic cell neoplasm (BPDCN) with MYC-BCL2 rearrangement",
+          confidence: 0.94,
+          reasoning: "Morphology and IHC (CD4+, CD56+, CD123+) confirm BPDCN. Initial conflict regarding MYC-BCL2 resolved via ICE protocol, establishing it as an ultra-high risk variant.",
+          treatment_recommendations: [
+            "Tagraxofusp (CD123-directed cytotoxin) induction",
+            "Prepare for allogeneic hematopoietic stem cell transplantation (allo-HSCT)"
+          ]
+        });
+      }
+    }, 2500);
+  };
+
   const getRoleIcon = (role: string) => {
     switch (role) {
       case 'moderator': return <Users className="h-5 w-5 text-blue-400" />;
@@ -155,6 +193,17 @@ export default function CaseDashboard() {
           </div>
         </div>
         
+        {status === 'submitted' || status === 'processing' || status === 'debating' ? (
+          <div className="flex space-x-3 no-print">
+            <button 
+              onClick={startMockDemo}
+              className="px-6 py-2 bg-primary text-white font-bold uppercase tracking-wider rounded-none border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] transition-all text-sm font-mono flex items-center">
+              <Activity className="mr-2 h-4 w-4 animate-pulse" />
+              Start ICE Demo
+            </button>
+          </div>
+        ) : null}
+
         {status === 'awaiting_approval' && (
           <div className="flex space-x-3 no-print">
             {!showFeedbackInput ? (
