@@ -68,7 +68,20 @@ _`;
   return (
     <div className="min-h-[calc(100vh-4rem)] flex flex-col items-center relative overflow-hidden bg-background">
       <Marquee />
-      <div className="absolute inset-0 z-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-[0.03] pointer-events-none"></div>
+      {/* Brutalist Dot Grid & Giant Typographic Background */}
+      <div className="absolute inset-0 z-0 flex items-center justify-center opacity-5 pointer-events-none overflow-hidden select-none">
+        <span className="text-[35vw] font-black font-serif tracking-tighter leading-none text-transparent" style={{ WebkitTextStroke: '8px black' }}>AEGIS</span>
+      </div>
+      <div 
+        className="absolute inset-0 z-0 pointer-events-none"
+        style={{
+          backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.2) 2px, transparent 2px)',
+          backgroundSize: '32px 32px',
+          backgroundPosition: '0 0',
+          maskImage: 'linear-gradient(to bottom, black 0%, black 70%, transparent 100%)',
+          WebkitMaskImage: 'linear-gradient(to bottom, black 0%, black 70%, transparent 100%)',
+        }}
+      />
 
       {/* Hero Section */}
       <motion.div 
