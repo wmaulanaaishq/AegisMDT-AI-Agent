@@ -338,11 +338,11 @@ export default function LandingPage() {
       </div>
 
       {/* Tech Stack Banner */}
-      <div id="protocol" className="mt-32 w-full max-w-5xl px-6 z-10 relative mb-32 pt-16">
+      <div id="protocol" className="mt-32 w-full z-10 relative mb-32 pt-16">
         <div className="absolute left-1/2 top-10 -translate-x-1/2 bg-black border border-slate-200 px-6 py-2 shadow-sm z-20">
           <p className="text-xs font-bold font-mono text-white uppercase tracking-widest m-0">Powered By</p>
         </div>
-        <div className="border border-slate-200 bg-zinc-900 p-12 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] mt-16 relative overflow-hidden">
+        <div className="w-full border-y-4 border-slate-200 bg-zinc-900 py-12 mt-16 relative overflow-hidden">
           <div 
             className="absolute inset-0 z-0 pointer-events-none opacity-30"
             style={{
@@ -350,24 +350,23 @@ export default function LandingPage() {
             }}
           />
           <div className="flex overflow-hidden relative z-10 w-full group">
-            <div className="flex w-max animate-marquee space-x-6 md:space-x-12 items-center px-4">
-              {[...Array(2)].map((_, i) => (
-                <div key={i} className="flex space-x-6 md:space-x-12 items-center">
-                  <div className="flex items-center space-x-4 bg-white px-6 py-4 border border-slate-200 shadow-sm min-w-max">
-                    <img src="https://cryptologos.cc/logos/band-protocol-band-logo.svg?v=032" alt="Band SDK" className="h-10 w-auto" />
+            <div className="flex w-max animate-marquee space-x-8 md:space-x-16 items-center px-4 md:px-8">
+              {[...Array(3)].map((_, i) => (
+                <div key={i} className="flex space-x-8 md:space-x-16 items-center">
+                  <div className="flex items-center space-x-4 bg-white px-8 py-5 border border-slate-200 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] min-w-max hover:-translate-y-1 hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] transition-all">
+                    <img src="/band.svg" alt="Band SDK" className="h-10 w-auto object-contain" />
                     <span className="text-2xl font-serif font-bold text-black">Band SDK</span>
                   </div>
-                  <div className="flex items-center space-x-4 bg-white px-6 py-4 border border-slate-200 shadow-sm min-w-max">
-                    <img src="https://avatars.githubusercontent.com/u/152917711?s=200&v=4" alt="Featherless AI" className="h-10 w-auto rounded-full" />
+                  <div className="flex items-center space-x-4 bg-white px-8 py-5 border border-slate-200 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] min-w-max hover:-translate-y-1 hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] transition-all">
+                    <img src="/featherless.svg" alt="Featherless AI" className="h-10 w-auto object-contain" />
                     <span className="text-2xl font-serif font-bold text-black">Featherless AI</span>
                   </div>
-                  <div className="flex items-center space-x-4 bg-white px-6 py-4 border border-slate-200 shadow-sm min-w-max">
-                    <img src="https://avatars.githubusercontent.com/u/108674504?s=200&v=4" alt="ChromaDB" className="h-10 w-auto rounded-full" />
+                  <div className="flex items-center space-x-4 bg-white px-8 py-5 border border-slate-200 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] min-w-max hover:-translate-y-1 hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] transition-all">
+                    <img src="/chroma.svg" alt="ChromaDB" className="h-10 w-auto object-contain" />
                     <span className="text-2xl font-serif font-bold text-black">ChromaDB</span>
                   </div>
-                  <div className="flex items-center space-x-4 bg-white px-6 py-4 border border-slate-200 shadow-sm min-w-max pr-12 md:pr-0">
-                    <img src="https://avatars.githubusercontent.com/u/104273062?s=200&v=4" alt="lablab.ai" className="h-10 w-auto rounded-full" />
-                    <span className="text-2xl font-serif font-bold text-black">lablab.ai</span>
+                  <div className="flex items-center space-x-4 bg-white px-8 py-5 border border-slate-200 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] min-w-max pr-12 md:pr-16 hover:-translate-y-1 hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] transition-all">
+                    <img src="/lablab.svg" alt="lablab.ai" className="h-10 w-auto object-contain" />
                   </div>
                 </div>
               ))}
