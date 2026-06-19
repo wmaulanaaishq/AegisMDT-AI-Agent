@@ -301,29 +301,30 @@ export default function CaseDashboard() {
                 transition={{ type: "spring", bounce: 0.4 }}
                 className={`flex flex-col ${msg.agent_role === 'moderator' ? 'items-center' : 'items-start'}`}
               >
-                <div className={`max-w-[90%] rounded-none p-3 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] ${
-                  msg.agent_role === 'moderator' ? 'bg-primary text-white' :
+                <div className={`max-w-[90%] rounded-none p-4 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] ${
+                  msg.agent_role === 'moderator' ? 'bg-black text-white' :
+                  msg.agent_role === 'human' ? 'bg-blue-200 text-black' :
                   msg.message_type === 'debate' ? 'bg-yellow-400 text-black' :
                   'bg-white text-black'
                 }`}>
-                  <div className="flex items-center mb-1">
+                  <div className="flex items-center mb-2 border-b border-current/20 pb-2">
                     {getRoleIcon(msg.agent_role)}
-                    <span className="text-xs font-semibold ml-2 text-foreground/80">{msg.agent_handle}</span>
-                    <span className="text-[10px] text-muted-foreground ml-auto pl-4">
+                    <span className="text-xs font-bold uppercase tracking-wider ml-2 opacity-90">{msg.agent_handle}</span>
+                    <span className="text-[10px] opacity-60 ml-auto font-mono pl-4">
                       {new Date(msg.timestamp).toLocaleTimeString()}
                     </span>
                   </div>
-                  <p className="text-sm text-foreground/90 whitespace-pre-wrap mt-2">{msg.content}</p>
+                  <div className="text-sm font-medium leading-relaxed whitespace-pre-wrap">{msg.content}</div>
                   
                   {msg.confidence !== null && (
-                    <div className="mt-2 flex items-center">
-                      <div className="h-1 flex-1 bg-background/50 rounded overflow-hidden">
+                    <div className="mt-3 flex items-center pt-2 border-t border-current/10">
+                      <div className="h-1.5 flex-1 bg-current/20 rounded-none overflow-hidden border border-black/20">
                         <div 
                           className={`h-full ${msg.confidence > 0.8 ? 'bg-green-500' : msg.confidence > 0.5 ? 'bg-yellow-500' : 'bg-red-500'}`}
                           style={{ width: `${msg.confidence * 100}%` }}
                         />
                       </div>
-                      <span className="text-[10px] ml-2 text-muted-foreground">{(msg.confidence * 100).toFixed(0)}% Conf</span>
+                      <span className="text-[10px] font-mono ml-2 font-bold opacity-80">{(msg.confidence * 100).toFixed(0)}% CONF</span>
                     </div>
                   )}
                 </div>
@@ -354,31 +355,31 @@ export default function CaseDashboard() {
             {consensus ? (
               <div className="space-y-6">
                 <div className="flex justify-between items-start">
-                  <div>
-                    <span className="text-muted-foreground block text-xs uppercase tracking-wider mb-1">Diagnosis</span>
-                    <div className="bg-primary/5 border border-primary/20 rounded p-3 shadow-inner">
-                      <p className="font-semibold text-primary">{consensus.diagnosis.primary_diagnosis}</p>
-                      <p className="text-xs text-muted-foreground mt-1">WHO: {consensus.diagnosis.who_classification || 'N/A'}</p>
+                  <div className="flex-1 mr-4">
+                    <span className="text-black font-bold block text-xs uppercase tracking-wider mb-2">Diagnosis</span>
+                    <div className="bg-orange-50 border-2 border-orange-500 rounded-none p-3 shadow-[2px_2px_0px_0px_#f97316]">
+                      <p className="font-bold text-orange-900 text-lg leading-tight">{consensus.diagnosis.primary_diagnosis}</p>
+                      <p className="text-xs text-orange-800/80 mt-2 font-mono">WHO: {consensus.diagnosis.who_classification || 'N/A'}</p>
                     </div>
                   </div>
-                  <div className="ml-4 shrink-0 bg-background/50 p-2 rounded border border-border">
+                  <div className="shrink-0 bg-white p-2 border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
                     <CircularProgress value={consensus.consensus_confidence} label="Consensus" />
                   </div>
                 </div>
                 
                 <div>
-                  <span className="text-muted-foreground block text-xs uppercase tracking-wider mb-1">Risk Assessment</span>
-                  <div className={`border rounded p-3 ${
-                    consensus.risk_assessment.risk_category.toLowerCase().includes('high') ? 'bg-destructive/10 border-destructive/30 text-destructive-foreground' : 'bg-secondary border-border'
+                  <span className="text-black font-bold block text-xs uppercase tracking-wider mb-2">Risk Assessment</span>
+                  <div className={`border-2 rounded-none p-3 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] ${
+                    consensus.risk_assessment.risk_category.toLowerCase().includes('high') ? 'bg-red-100 border-red-600 text-red-900' : 'bg-white border-black text-black'
                   }`}>
-                    <p className="font-semibold">{consensus.risk_assessment.risk_category}</p>
-                    <p className="text-xs opacity-80 mt-1">Urgency: {consensus.risk_assessment.treatment_urgency}</p>
+                    <p className="font-bold text-lg">{consensus.risk_assessment.risk_category}</p>
+                    <p className="text-xs font-mono font-bold mt-1 uppercase">Urgency: {consensus.risk_assessment.treatment_urgency}</p>
                   </div>
                 </div>
 
                 <div>
-                  <span className="text-muted-foreground block text-xs uppercase tracking-wider mb-1">Treatment Recommendation</span>
-                  <p className="text-sm bg-background/50 p-3 rounded border border-border">
+                  <span className="text-black font-bold block text-xs uppercase tracking-wider mb-2">Treatment Recommendation</span>
+                  <p className="text-sm bg-white p-4 font-medium leading-relaxed rounded-none border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
                     {consensus.treatment_recommendation}
                   </p>
                 </div>
