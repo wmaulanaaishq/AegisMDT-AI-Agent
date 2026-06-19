@@ -121,8 +121,8 @@ export default function Home() {
         
         {/* Platform Metrics (Mock Data for Hackathon "WOW" factor) */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <div className="bg-white border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] rounded-none p-4 flex items-center">
-            <div className="h-10 w-10 bg-primary/20 text-primary border-2 border-black rounded-none flex items-center justify-center mr-4">
+          <div className="bg-white border border-slate-200 shadow-xl shadow-slate-200/50 rounded-2xl p-4 flex items-center">
+            <div className="h-10 w-10 bg-primary/20 text-primary border border-slate-200 rounded-2xl flex items-center justify-center mr-4">
               <Users className="h-5 w-5" />
             </div>
             <div>
@@ -131,8 +131,8 @@ export default function Home() {
             </div>
           </div>
           
-          <div className="bg-white border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] rounded-none p-4 flex items-center">
-            <div className="h-10 w-10 bg-green-500/20 text-green-700 border-2 border-black rounded-none flex items-center justify-center mr-4">
+          <div className="bg-white border border-slate-200 shadow-xl shadow-slate-200/50 rounded-2xl p-4 flex items-center">
+            <div className="h-10 w-10 bg-green-500/20 text-green-700 border border-slate-200 rounded-2xl flex items-center justify-center mr-4">
               <Shield className="h-5 w-5" />
             </div>
             <div>
@@ -141,8 +141,8 @@ export default function Home() {
             </div>
           </div>
           
-          <div className="bg-white border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] rounded-none p-4 flex items-center">
-            <div className="h-10 w-10 bg-primary/20 text-primary border-2 border-black rounded-none flex items-center justify-center mr-4">
+          <div className="bg-white border border-slate-200 shadow-xl shadow-slate-200/50 rounded-2xl p-4 flex items-center">
+            <div className="h-10 w-10 bg-primary/20 text-primary border border-slate-200 rounded-2xl flex items-center justify-center mr-4">
               <Activity className="h-5 w-5" />
             </div>
             <div>
@@ -159,7 +159,7 @@ export default function Home() {
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5, delay: 0.3 }}
-          className="md:col-span-7 bg-white border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] rounded-none p-6"
+          className="md:col-span-7 bg-white border border-slate-200 shadow-xl shadow-slate-200/50 rounded-2xl p-6"
         >
           <div className="mb-6 flex justify-between items-start">
             <div>
@@ -179,16 +179,16 @@ export default function Home() {
             </button>
           </div>
 
-          <div className="mb-6 flex flex-wrap gap-2 border-b-2 border-black pb-4">
-            <button type="button" onClick={() => setActiveTab('manual')} className={`px-4 py-2 font-mono font-bold text-sm border-2 border-black transition-all ${activeTab === 'manual' ? 'bg-primary text-white shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]' : 'bg-white text-black hover:bg-zinc-100'}`}>
+          <div className="mb-6 flex flex-wrap gap-2 border-b border-slate-200 pb-4">
+            <button type="button" onClick={() => setActiveTab('manual')} className={`px-4 py-2 font-mono font-bold text-sm border border-slate-200 transition-all ${activeTab === 'manual' ? 'bg-primary text-white shadow-xl shadow-slate-200/50' : 'bg-white text-black hover:bg-zinc-100'}`}>
               <FileText className="inline w-4 h-4 mr-2" />
               Manual / Dictate
             </button>
-            <button type="button" onClick={() => setActiveTab('upload')} className={`px-4 py-2 font-mono font-bold text-sm border-2 border-black transition-all ${activeTab === 'upload' ? 'bg-primary text-white shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]' : 'bg-white text-black hover:bg-zinc-100'}`}>
+            <button type="button" onClick={() => setActiveTab('upload')} className={`px-4 py-2 font-mono font-bold text-sm border border-slate-200 transition-all ${activeTab === 'upload' ? 'bg-primary text-white shadow-xl shadow-slate-200/50' : 'bg-white text-black hover:bg-zinc-100'}`}>
               <Upload className="inline w-4 h-4 mr-2" />
               Upload PDF
             </button>
-            <button type="button" onClick={() => setActiveTab('emr')} className={`px-4 py-2 font-mono font-bold text-sm border-2 border-black transition-all ${activeTab === 'emr' ? 'bg-primary text-white shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]' : 'bg-white text-black hover:bg-zinc-100'}`}>
+            <button type="button" onClick={() => setActiveTab('emr')} className={`px-4 py-2 font-mono font-bold text-sm border border-slate-200 transition-all ${activeTab === 'emr' ? 'bg-primary text-white shadow-xl shadow-slate-200/50' : 'bg-white text-black hover:bg-zinc-100'}`}>
               <Database className="inline w-4 h-4 mr-2" />
               EMR Sync (FHIR)
             </button>
@@ -196,7 +196,7 @@ export default function Home() {
 
           <form onSubmit={handleSubmit} className="space-y-4">
             {activeTab === 'upload' && (
-              <label className="border-4 border-dashed border-black p-8 text-center bg-zinc-50 flex flex-col items-center justify-center cursor-pointer hover:bg-zinc-100 transition-colors">
+              <label className="border-4 border-dashed border-slate-200 p-8 text-center bg-zinc-50 flex flex-col items-center justify-center cursor-pointer hover:bg-zinc-100 transition-colors">
                 <input type="file" className="hidden" accept=".pdf,.png,.jpg" onChange={handleUpload} />
                 {isUploading ? (
                    <div className="animate-spin mb-4"><Upload className="w-8 h-8 text-primary" /></div>
@@ -209,12 +209,12 @@ export default function Home() {
             )}
 
             {activeTab === 'emr' && (
-              <div className="bg-blue-50 border-2 border-blue-900 p-6 flex flex-col sm:flex-row gap-4 items-center shadow-[4px_4px_0px_0px_rgba(30,58,138,1)]">
+              <div className="bg-blue-50 border-2 border-blue-900 p-6 flex flex-col sm:flex-row gap-4 items-center shadow-lg shadow-blue-900/20">
                 <div className="flex-1 w-full">
                   <label className="text-sm font-bold mb-2 block text-blue-900">Patient MRN (Medical Record Number)</label>
                   <input type="text" value={mrn} onChange={e => setMrn(e.target.value)} placeholder="e.g. MRN-89210-EPIC" className="w-full border-2 border-blue-900 p-2 font-mono text-sm text-black focus:outline-none focus:ring-0" />
                 </div>
-                <button type="button" onClick={handleEMRSync} disabled={isSyncing || !mrn} className="mt-6 bg-blue-900 text-white font-bold px-6 py-2 border-2 border-black hover:bg-blue-800 flex items-center shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] whitespace-nowrap transition-all disabled:opacity-50">
+                <button type="button" onClick={handleEMRSync} disabled={isSyncing || !mrn} className="mt-6 bg-blue-900 text-white font-bold px-6 py-2 border border-slate-200 hover:bg-blue-800 flex items-center shadow-xl shadow-slate-200/50 whitespace-nowrap transition-all disabled:opacity-50">
                   {isSyncing ? "Syncing..." : <><Database className="w-4 h-4 mr-2" /> Fetch Record</>}
                 </button>
               </div>
@@ -227,7 +227,7 @@ export default function Home() {
                   type="number" 
                   value={age}
                   onChange={(e) => setAge(e.target.value)}
-                  className="flex h-10 w-full bg-white border-2 border-black rounded-none px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-0 focus-visible:shadow-[4px_4px_0px_0px_rgba(249,115,22,1)] transition-all font-mono"
+                  className="flex h-10 w-full bg-white border border-slate-200 rounded-2xl px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-0 focus-visible:shadow-[4px_4px_0px_0px_rgba(249,115,22,1)] transition-all font-mono"
                   placeholder="e.g. 62"
                 />
               </div>
@@ -236,7 +236,7 @@ export default function Home() {
                   <select 
                   value={sex}
                   onChange={(e) => setSex(e.target.value)}
-                  className="flex h-10 w-full bg-white border-2 border-black rounded-none px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-0 focus-visible:shadow-[4px_4px_0px_0px_rgba(249,115,22,1)] transition-all font-mono"
+                  className="flex h-10 w-full bg-white border border-slate-200 rounded-2xl px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-0 focus-visible:shadow-[4px_4px_0px_0px_rgba(249,115,22,1)] transition-all font-mono"
                 >
                   <option value="">Select...</option>
                   <option value="male">Male</option>
@@ -250,7 +250,7 @@ export default function Home() {
               <div className="flex justify-between items-end mb-2">
                 <label className="text-sm font-medium">Clinical Description & History <span className="text-destructive">*</span></label>
                 {activeTab === 'manual' && (
-                  <button type="button" onClick={toggleDictation} className={`flex items-center text-xs font-bold px-3 py-1.5 border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] transition-colors ${isDictating ? 'bg-red-500 text-white animate-pulse' : 'bg-white hover:bg-zinc-100 text-black'}`}>
+                  <button type="button" onClick={toggleDictation} className={`flex items-center text-xs font-bold px-3 py-1.5 border border-slate-200 shadow-sm transition-colors ${isDictating ? 'bg-red-500 text-white animate-pulse' : 'bg-white hover:bg-zinc-100 text-black'}`}>
                     <Mic className="w-3 h-3 mr-2" /> {isDictating ? "Listening..." : "Dictate (Voice)"}
                   </button>
                 )}
@@ -260,7 +260,7 @@ export default function Home() {
                 minLength={20}
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
-                className="flex min-h-[200px] w-full bg-white border-2 border-black rounded-none px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-0 focus-visible:shadow-[4px_4px_0px_0px_rgba(249,115,22,1)] transition-all font-mono resize-none"
+                className="flex min-h-[200px] w-full bg-white border border-slate-200 rounded-2xl px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-0 focus-visible:shadow-[4px_4px_0px_0px_rgba(249,115,22,1)] transition-all font-mono resize-none"
                 placeholder="Patient presented with persistent cytopenias for 6 months. Bone marrow biopsy showed 12% blasts with multilineage dysplasia. Cytogenetics revealed del(5q) and monosomy 7..."
               />
             </div>
@@ -271,7 +271,7 @@ export default function Home() {
                 type="url" 
                 value={imageUrl}
                 onChange={(e) => setImageUrl(e.target.value)}
-                className="flex h-10 w-full bg-white border-2 border-black rounded-none px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-0 focus-visible:shadow-[4px_4px_0px_0px_rgba(249,115,22,1)] transition-all font-mono"
+                className="flex h-10 w-full bg-white border border-slate-200 rounded-2xl px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-0 focus-visible:shadow-[4px_4px_0px_0px_rgba(249,115,22,1)] transition-all font-mono"
                 placeholder="https://example.com/microscopy-slide.jpg"
               />
             </div>
@@ -279,7 +279,7 @@ export default function Home() {
             <button
               type="submit"
               disabled={isSubmitting || !description || description.length < 20}
-              className="w-full bg-primary text-white font-bold uppercase tracking-wider rounded-none border-2 border-black px-4 py-3 hover:bg-orange-600 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] transition-all disabled:opacity-50 flex justify-center items-center mt-4"
+              className="w-full bg-primary text-white font-bold uppercase tracking-wider rounded-2xl border border-slate-200 px-4 py-3 hover:bg-orange-600 shadow-xl shadow-slate-200/50 hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-sm transition-all disabled:opacity-50 flex justify-center items-center mt-4"
             >
               {isSubmitting ? (
                 <span className="flex items-center">
@@ -306,25 +306,25 @@ export default function Home() {
           transition={{ duration: 0.5, delay: 0.4 }}
           className="md:col-span-5 space-y-4"
         >
-          <div className="bg-white p-5 border-2 border-black border-l-8 border-l-primary shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] rounded-none">
+          <div className="bg-white p-5 border border-slate-200 border-l-8 border-l-primary shadow-xl shadow-slate-200/50 rounded-2xl">
             <h3 className="font-bold font-serif text-xl mb-4">Agent Workflow</h3>
             <ul className="space-y-4 text-sm font-mono">
               <li className="flex items-start">
-                <span className="flex h-6 w-6 shrink-0 items-center justify-center border-2 border-black bg-primary text-white text-xs font-bold mr-3 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">1</span>
+                <span className="flex h-6 w-6 shrink-0 items-center justify-center border border-slate-200 bg-primary text-white text-xs font-bold mr-3 shadow-sm">1</span>
                 <span><strong>Privacy Agent</strong> strips PII and generates latent vectors.</span>
               </li>
               <li className="flex items-start">
-                <span className="flex h-6 w-6 shrink-0 items-center justify-center border-2 border-black bg-primary text-white text-xs font-bold mr-3 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">2</span>
+                <span className="flex h-6 w-6 shrink-0 items-center justify-center border border-slate-200 bg-primary text-white text-xs font-bold mr-3 shadow-sm">2</span>
                 <span><strong>Pathology & Prognostication Agents</strong> analyze the case in parallel via Band rooms.</span>
               </li>
               <li className="flex items-start">
-                <span className="flex h-6 w-6 shrink-0 items-center justify-center border-2 border-black bg-primary text-white text-xs font-bold mr-3 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">3</span>
+                <span className="flex h-6 w-6 shrink-0 items-center justify-center border border-slate-200 bg-primary text-white text-xs font-bold mr-3 shadow-sm">3</span>
                 <span><strong>Moderator Agent</strong> enforces the ICE Protocol (Iterative Consensus Ensemble) if conflict arises.</span>
               </li>
             </ul>
           </div>
           
-          <div className="bg-white border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] rounded-none p-5">
+          <div className="bg-white border border-slate-200 shadow-xl shadow-slate-200/50 rounded-2xl p-5">
             <h3 className="font-bold font-serif text-xl mb-4 flex items-center">
               <Activity className="mr-2 h-5 w-5 text-green-500" /> 
               System Status
@@ -360,11 +360,11 @@ export default function Home() {
         </h2>
         
         {cases.length === 0 ? (
-          <div className="bg-white p-8 text-center text-black font-bold font-mono border-2 border-dashed border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+          <div className="bg-white p-8 text-center text-black font-bold font-mono border-2 border-dashed border-slate-200 shadow-xl shadow-slate-200/50">
             <p>No historical cases found in the database. Submit a new case to populate the registry.</p>
           </div>
         ) : (
-          <div className="overflow-x-auto glass-panel p-0 border-2 border-black rounded-none shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+          <div className="overflow-x-auto glass-panel p-0 border border-slate-200 rounded-2xl shadow-xl shadow-slate-200/50">
             <table className="w-full text-left text-sm">
               <thead className="bg-black text-white font-mono uppercase">
                 <tr>
@@ -382,7 +382,7 @@ export default function Home() {
                     <td className="px-4 py-3 text-muted-foreground">{new Date(c.created_at).toLocaleDateString()}</td>
                     <td className="px-4 py-3">{c.input_data.age || '?'} / {c.input_data.sex || '?'}</td>
                     <td className="px-4 py-3">
-                      <span className={`inline-flex items-center px-2 py-0.5 text-[10px] font-bold uppercase rounded-none border ${
+                      <span className={`inline-flex items-center px-2 py-0.5 text-[10px] font-bold uppercase rounded-2xl border ${
                         c.status === 'approved' ? 'bg-green-100 text-green-800 border-green-800' : 
                         c.status === 'awaiting_approval' ? 'bg-blue-100 text-blue-800 border-blue-800' :
                         'bg-yellow-100 text-yellow-800 border-yellow-800'

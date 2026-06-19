@@ -68,7 +68,7 @@ export default function LoginPage() {
       
       <div className="relative w-full max-w-md p-8 glass-panel">
         <div className="flex flex-col items-center mb-8">
-          <div className="h-16 w-16 bg-primary rounded-full flex items-center justify-center mb-4 border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+          <div className="h-16 w-16 bg-primary rounded-full flex items-center justify-center mb-4 border border-slate-200 shadow-sm">
             <ShieldAlert className="h-8 w-8 text-white" />
           </div>
           <h1 className="text-4xl font-serif font-bold tracking-tight text-foreground">AegisMDT</h1>
@@ -83,7 +83,7 @@ export default function LoginPage() {
               required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full bg-white border-2 border-black rounded-none px-4 py-3 text-foreground focus:outline-none focus:ring-0 focus:shadow-[4px_4px_0px_0px_rgba(249,115,22,1)] transition-all font-mono text-sm"
+              className="w-full bg-white border border-slate-200 rounded-2xl px-4 py-3 text-foreground focus:outline-none focus:ring-0 focus:shadow-[4px_4px_0px_0px_rgba(249,115,22,1)] transition-all font-mono text-sm"
               placeholder="dr.smith@hospital.org"
             />
           </div>
@@ -94,7 +94,7 @@ export default function LoginPage() {
               required
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full bg-white border-2 border-black rounded-none px-4 py-3 text-foreground focus:outline-none focus:ring-0 focus:shadow-[4px_4px_0px_0px_rgba(249,115,22,1)] transition-all font-mono text-sm"
+              className="w-full bg-white border border-slate-200 rounded-2xl px-4 py-3 text-foreground focus:outline-none focus:ring-0 focus:shadow-[4px_4px_0px_0px_rgba(249,115,22,1)] transition-all font-mono text-sm"
               placeholder="••••••••"
             />
           </div>
@@ -102,7 +102,7 @@ export default function LoginPage() {
           <button 
             type="submit" 
             disabled={isLoading || isGoogleLoading || !email || !password}
-            className="w-full bg-primary text-white font-bold uppercase tracking-wider rounded-none border-2 border-black px-4 py-3 hover:bg-orange-600 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] transition-all disabled:opacity-50 flex items-center justify-center"
+            className="w-full bg-primary text-white font-bold uppercase tracking-wider rounded-2xl border border-slate-200 px-4 py-3 hover:bg-orange-600 shadow-xl shadow-slate-200/50 hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-sm transition-all disabled:opacity-50 flex items-center justify-center"
           >
             {isLoading ? (
               <Activity className="animate-spin h-5 w-5 mr-2" />
@@ -114,7 +114,7 @@ export default function LoginPage() {
         <div className="mt-6">
           <div className="relative">
             <div className="absolute inset-0 flex items-center">
-              <div className="w-full border-t-2 border-black"></div>
+              <div className="w-full border-t-2 border-slate-200"></div>
             </div>
             <div className="relative flex justify-center text-sm">
               <span className="px-4 bg-white text-black font-bold uppercase tracking-widest text-xs">Or continue with</span>
@@ -125,7 +125,7 @@ export default function LoginPage() {
             type="button"
             onClick={handleGoogleLogin}
             disabled={isLoading || isGoogleLoading}
-            className="mt-6 w-full flex items-center justify-center bg-white border-2 border-black rounded-none px-4 py-3 text-black font-bold uppercase hover:bg-slate-100 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] transition-all disabled:opacity-50"
+            className="mt-6 w-full flex items-center justify-center bg-white border border-slate-200 rounded-2xl px-4 py-3 text-black font-bold uppercase hover:bg-slate-100 shadow-xl shadow-slate-200/50 hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-sm transition-all disabled:opacity-50"
           >
             {isGoogleLoading ? (
               <Activity className="animate-spin h-5 w-5 mr-2 text-primary" />

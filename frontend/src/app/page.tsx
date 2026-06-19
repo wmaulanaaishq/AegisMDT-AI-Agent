@@ -9,7 +9,7 @@ import dynamic from 'next/dynamic';
 const Scene3D = dynamic(() => import('./components/Scene3D').then(mod => mod.Scene3D), { ssr: false });
 
 const Marquee = () => (
-  <div className="w-full bg-primary text-black py-4 overflow-hidden border-b-8 border-black flex whitespace-nowrap z-20">
+  <div className="w-full bg-primary text-black py-4 overflow-hidden border-b-8 border-slate-200 flex whitespace-nowrap z-20">
     <motion.div 
       className="flex font-mono font-black uppercase tracking-widest text-sm"
       animate={{ x: ["0%", "-50%"] }}
@@ -94,7 +94,7 @@ export default function LandingPage() {
       <Marquee />
 
       {/* Hero Wrapper (Contains 3D Scene & Grid) */}
-      <div className="relative w-full min-h-[calc(100vh-4rem)] flex flex-col items-center justify-center overflow-hidden border-b-8 border-black">
+      <div className="relative w-full min-h-[calc(100vh-4rem)] flex flex-col items-center justify-center overflow-hidden border-b-8 border-slate-200">
         {/* Interactive 3D Background */}
         <div className="absolute inset-0 z-0 pointer-events-auto opacity-75 mix-blend-multiply">
           <Scene3D />
@@ -118,45 +118,45 @@ export default function LandingPage() {
         initial="hidden"
         animate="visible"
       >
-        <motion.div variants={itemVariants} className="inline-flex items-center space-x-2 bg-primary text-white border-2 border-black px-4 py-1.5 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] text-xs font-bold font-mono uppercase tracking-widest mb-10">
+        <motion.div variants={itemVariants} className="inline-flex items-center space-x-2 bg-primary text-white border border-slate-200 px-4 py-1.5 shadow-sm text-xs font-bold font-mono uppercase tracking-widest mb-10">
           <ShieldCheck className="w-4 h-4" />
           <span>Regulated Deep-Tech</span>
         </motion.div>
 
         <motion.h1 variants={itemVariants} className="text-5xl md:text-7xl lg:text-8xl font-serif font-black tracking-tighter mb-8 leading-tight relative z-10">
-          <span className="bg-white px-8 py-3 border-[6px] border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] inline-block transform -rotate-2 cursor-default hover:scale-105 hover:rotate-0 transition-transform duration-300">
+          <span className="bg-white px-8 py-3 border-[6px] border-slate-200 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] inline-block transform -rotate-2 cursor-default hover:scale-105 hover:rotate-0 transition-transform duration-300">
             AegisMDT
           </span>
           <br />
           <span className="text-foreground mt-8 inline-block">AI Medical Board.</span>
         </motion.h1>
 
-        <motion.p variants={itemVariants} className="text-xl md:text-2xl text-black font-bold max-w-3xl mb-12 leading-relaxed border-4 border-black bg-white px-8 py-4 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] relative z-10">
+        <motion.p variants={itemVariants} className="text-xl md:text-2xl text-black font-bold max-w-3xl mb-12 leading-relaxed border border-slate-200 bg-white px-8 py-4 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] relative z-10">
           Secure, multi-agent orchestration for rare oncology. Powered by the Iterative Consensus Ensemble (ICE) protocol.
         </motion.p>
 
         <motion.div variants={itemVariants} className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-8">
           <Link href="/dashboard">
-            <button className="group relative inline-flex h-14 items-center justify-center bg-primary px-8 font-bold font-mono uppercase tracking-widest text-white border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] transition-all">
+            <button className="group relative inline-flex h-14 items-center justify-center bg-primary px-8 font-bold font-mono uppercase tracking-widest text-white border border-slate-200 shadow-xl shadow-slate-200/50 hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-sm transition-all">
               <span className="mr-3">Launch Platform</span>
               <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
             </button>
           </Link>
           
           <a href="https://github.com/wmaulanaaishq/AegisMDT-AI-Agent" target="_blank" rel="noreferrer">
-            <button className="inline-flex h-14 items-center justify-center bg-white px-8 font-bold font-mono uppercase tracking-widest text-black border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:bg-slate-100 hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] transition-all">
+            <button className="inline-flex h-14 items-center justify-center bg-white px-8 font-bold font-mono uppercase tracking-widest text-black border border-slate-200 shadow-xl shadow-slate-200/50 hover:bg-slate-100 hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-sm transition-all">
               View Source
             </button>
           </a>
         </motion.div>
 
         {/* Live Terminal Demo */}
-        <motion.div variants={itemVariants} className="mt-24 w-full max-w-2xl text-left bg-black text-green-400 font-mono text-sm p-6 border-8 border-black shadow-[16px_16px_0px_0px_rgba(0,0,0,1)] mx-auto relative group hover:translate-x-[-4px] hover:translate-y-[-4px] hover:shadow-[20px_20px_0px_0px_rgba(0,0,0,1)] transition-all duration-300 rounded-none">
-          <div className="absolute -top-5 -right-5 bg-primary text-black border-4 border-black px-4 py-2 text-[12px] font-black tracking-widest shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] group-hover:rotate-6 transition-transform">LIVE STATUS</div>
+        <motion.div variants={itemVariants} className="mt-24 w-full max-w-2xl text-left bg-black text-green-400 font-mono text-sm p-6 border-8 border-slate-200 shadow-[16px_16px_0px_0px_rgba(0,0,0,1)] mx-auto relative group hover:translate-x-[-4px] hover:translate-y-[-4px] hover:shadow-[20px_20px_0px_0px_rgba(0,0,0,1)] transition-all duration-300 rounded-2xl">
+          <div className="absolute -top-5 -right-5 bg-primary text-black border border-slate-200 px-4 py-2 text-[12px] font-black tracking-widest shadow-xl shadow-slate-200/50 group-hover:rotate-6 transition-transform">LIVE STATUS</div>
           <div className="flex space-x-3 mb-6 border-b-4 border-gray-800 pb-4">
-            <div className="w-4 h-4 bg-red-500 rounded-none border-2 border-black"></div>
-            <div className="w-4 h-4 bg-yellow-500 rounded-none border-2 border-black"></div>
-            <div className="w-4 h-4 bg-green-500 rounded-none border-2 border-black"></div>
+            <div className="w-4 h-4 bg-red-500 rounded-2xl border border-slate-200"></div>
+            <div className="w-4 h-4 bg-yellow-500 rounded-2xl border border-slate-200"></div>
+            <div className="w-4 h-4 bg-green-500 rounded-2xl border border-slate-200"></div>
           </div>
           <pre className="whitespace-pre-wrap leading-relaxed min-h-[160px] pt-2 text-base font-bold">{terminalLines.join('\n')}<span className="animate-pulse">_</span></pre>
         </motion.div>
@@ -182,8 +182,8 @@ export default function LandingPage() {
             className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full text-left"
           >
             {/* Feature 1 */}
-            <div className="bg-white p-8 border-4 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[-4px] hover:translate-y-[-4px] hover:shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] transition-all">
-              <div className="w-16 h-16 bg-primary text-black border-4 border-black flex items-center justify-center shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] mb-6">
+            <div className="bg-white p-8 border border-slate-200 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[-4px] hover:translate-y-[-4px] hover:shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] transition-all">
+              <div className="w-16 h-16 bg-primary text-black border border-slate-200 flex items-center justify-center shadow-xl shadow-slate-200/50 mb-6">
                 <Scale className="w-8 h-8" />
               </div>
               <h3 className="text-2xl font-serif font-black mb-3 text-black tracking-tight">ICE Protocol</h3>
@@ -193,8 +193,8 @@ export default function LandingPage() {
             </div>
 
             {/* Feature 2 */}
-            <div className="bg-white p-8 border-4 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[-4px] hover:translate-y-[-4px] hover:shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] transition-all">
-              <div className="w-16 h-16 bg-white text-black border-4 border-black flex items-center justify-center shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] mb-6">
+            <div className="bg-white p-8 border border-slate-200 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[-4px] hover:translate-y-[-4px] hover:shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] transition-all">
+              <div className="w-16 h-16 bg-white text-black border border-slate-200 flex items-center justify-center shadow-xl shadow-slate-200/50 mb-6">
                 <Microscope className="w-8 h-8" />
               </div>
               <h3 className="text-2xl font-serif font-black mb-3 text-black tracking-tight">Multi-Modal Vision</h3>
@@ -204,8 +204,8 @@ export default function LandingPage() {
             </div>
 
             {/* Feature 3 */}
-            <div className="bg-white p-8 border-4 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[-4px] hover:translate-y-[-4px] hover:shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] transition-all">
-              <div className="w-16 h-16 bg-black text-white border-4 border-black flex items-center justify-center shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] mb-6">
+            <div className="bg-white p-8 border border-slate-200 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[-4px] hover:translate-y-[-4px] hover:shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] transition-all">
+              <div className="w-16 h-16 bg-black text-white border border-slate-200 flex items-center justify-center shadow-xl shadow-slate-200/50 mb-6">
                 <UserCog className="w-8 h-8" />
               </div>
               <h3 className="text-2xl font-serif font-black mb-3 text-black tracking-tight">Human-in-the-Loop</h3>
@@ -218,7 +218,7 @@ export default function LandingPage() {
       </div>
 
       {/* Meet The Agents Section */}
-      <div id="agents" className="w-full bg-zinc-50 border-y-4 border-black py-24 relative z-10 pt-32 overflow-hidden">
+      <div id="agents" className="w-full bg-zinc-50 border-y-4 border-slate-200 py-24 relative z-10 pt-32 overflow-hidden">
         <div 
           className="absolute inset-0 z-0 pointer-events-none opacity-20"
           style={{
@@ -248,8 +248,8 @@ export default function LandingPage() {
               { role: "Prognosis", icon: <Activity />, desc: "Calculates IPSS-R & risk stratification.", color: "bg-black text-white" },
               { role: "Moderator", icon: <Scale />, desc: "Enforces ICE debate protocol & consensus.", color: "bg-black text-white" }
             ].map((agent, i) => (
-              <motion.div key={i} variants={itemVariants} className="border-2 border-black bg-white p-6 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-2 hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] transition-all duration-300">
-                <div className={`w-12 h-12 ${agent.color} border-2 border-black flex items-center justify-center mb-6 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]`}>
+              <motion.div key={i} variants={itemVariants} className="border border-slate-200 bg-white p-6 shadow-xl shadow-slate-200/50 hover:-translate-y-2 hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] transition-all duration-300">
+                <div className={`w-12 h-12 ${agent.color} border border-slate-200 flex items-center justify-center mb-6 shadow-sm`}>
                   {agent.icon}
                 </div>
                 <h4 className="text-xl font-bold font-serif mb-2 text-black">{agent.role} Agent</h4>
@@ -270,30 +270,30 @@ export default function LandingPage() {
         >
           <div className="mb-12">
             <h2 className="text-5xl md:text-6xl font-serif font-black mb-4 tracking-tight">Built for Production.</h2>
-            <p className="text-xl font-bold text-black/80 max-w-2xl bg-white border-4 border-black p-4 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]">
+            <p className="text-xl font-bold text-black/80 max-w-2xl bg-white border border-slate-200 p-4 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]">
               Not just a prototype. We implemented rigorous data integrity and monetization channels.
             </p>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <motion.div variants={itemVariants} className="bg-white p-6 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-1 transition-transform">
-              <div className="bg-black text-white font-bold font-mono text-xs uppercase tracking-widest px-3 py-1 border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] mb-4 inline-flex items-center"><Cpu className="w-4 h-4 mr-2"/> Agentic RAG</div>
+            <motion.div variants={itemVariants} className="bg-white p-6 border border-slate-200 shadow-xl shadow-slate-200/50 hover:-translate-y-1 transition-transform">
+              <div className="bg-black text-white font-bold font-mono text-xs uppercase tracking-widest px-3 py-1 border border-slate-200 shadow-sm mb-4 inline-flex items-center"><Cpu className="w-4 h-4 mr-2"/> Agentic RAG</div>
               <h4 className="text-xl font-bold font-serif mb-2 text-black">Semantic Scholar APIs</h4>
               <p className="text-sm font-medium opacity-80 leading-relaxed text-black">
                 Agents don&apos;t hallucinate treatments. They fetch real-time clinical trials and oncology literature from PubMed/Semantic Scholar via ChromaDB vector retrieval to ground their debates.
               </p>
             </motion.div>
             
-            <motion.div variants={itemVariants} className="bg-white p-6 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-1 transition-transform">
-              <div className="bg-black text-white font-bold font-mono text-xs uppercase tracking-widest px-3 py-1 border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] mb-4 inline-flex items-center"><Fingerprint className="w-4 h-4 mr-2"/> Monetization</div>
+            <motion.div variants={itemVariants} className="bg-white p-6 border border-slate-200 shadow-xl shadow-slate-200/50 hover:-translate-y-1 transition-transform">
+              <div className="bg-black text-white font-bold font-mono text-xs uppercase tracking-widest px-3 py-1 border border-slate-200 shadow-sm mb-4 inline-flex items-center"><Fingerprint className="w-4 h-4 mr-2"/> Monetization</div>
               <h4 className="text-xl font-bold font-serif mb-2 text-black">DOKU Payment Gateway</h4>
               <p className="text-sm font-medium opacity-80 leading-relaxed text-black">
                 Integrated with DOKU for seamless hospital subscriptions. Guest doctors hit a paywall, while VIP/Regulated accounts bypass it seamlessly. Real business viability.
               </p>
             </motion.div>
             
-            <motion.div variants={itemVariants} className="bg-white p-6 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-1 transition-transform">
-              <div className="bg-black text-white font-bold font-mono text-xs uppercase tracking-widest px-3 py-1 border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] mb-4 inline-flex items-center"><Printer className="w-4 h-4 mr-2"/> Enterprise Grade</div>
+            <motion.div variants={itemVariants} className="bg-white p-6 border border-slate-200 shadow-xl shadow-slate-200/50 hover:-translate-y-1 transition-transform">
+              <div className="bg-black text-white font-bold font-mono text-xs uppercase tracking-widest px-3 py-1 border border-slate-200 shadow-sm mb-4 inline-flex items-center"><Printer className="w-4 h-4 mr-2"/> Enterprise Grade</div>
               <h4 className="text-xl font-bold font-serif mb-2 text-black">Print-Ready EMR</h4>
               <p className="text-sm font-medium opacity-80 leading-relaxed text-black">
                 The final consensus isn&apos;t just a UI component. It exports into a formal, print-ready Electronic Medical Record (PDF) with strict clinical formatting for hospital archives.
@@ -305,10 +305,10 @@ export default function LandingPage() {
 
       {/* Tech Stack Banner */}
       <div id="protocol" className="mt-32 w-full max-w-5xl px-6 z-10 relative mb-32 pt-16">
-        <div className="absolute left-1/2 top-10 -translate-x-1/2 bg-black border-2 border-black px-6 py-2 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] z-20">
+        <div className="absolute left-1/2 top-10 -translate-x-1/2 bg-black border border-slate-200 px-6 py-2 shadow-sm z-20">
           <p className="text-xs font-bold font-mono text-white uppercase tracking-widest m-0">Powered By</p>
         </div>
-        <div className="border-2 border-black bg-zinc-900 p-12 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] mt-16 relative overflow-hidden">
+        <div className="border border-slate-200 bg-zinc-900 p-12 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] mt-16 relative overflow-hidden">
           <div 
             className="absolute inset-0 z-0 pointer-events-none opacity-30"
             style={{
@@ -316,15 +316,15 @@ export default function LandingPage() {
             }}
           />
           <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16 relative z-10">
-            <div className="flex items-center space-x-3 bg-white p-3 border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]"><Network className="w-8 h-8 text-black"/> <span className="text-2xl font-serif font-bold text-black">Band SDK</span></div>
-            <div className="flex items-center space-x-3 bg-white p-3 border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]"><Layers className="w-8 h-8 text-black"/> <span className="text-2xl font-serif font-bold text-black">Featherless AI</span></div>
-            <div className="flex items-center space-x-3 bg-white p-3 border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]"><Database className="w-8 h-8 text-black"/> <span className="text-2xl font-serif font-bold text-black">ChromaDB</span></div>
+            <div className="flex items-center space-x-3 bg-white p-3 border border-slate-200 shadow-sm"><Network className="w-8 h-8 text-black"/> <span className="text-2xl font-serif font-bold text-black">Band SDK</span></div>
+            <div className="flex items-center space-x-3 bg-white p-3 border border-slate-200 shadow-sm"><Layers className="w-8 h-8 text-black"/> <span className="text-2xl font-serif font-bold text-black">Featherless AI</span></div>
+            <div className="flex items-center space-x-3 bg-white p-3 border border-slate-200 shadow-sm"><Database className="w-8 h-8 text-black"/> <span className="text-2xl font-serif font-bold text-black">ChromaDB</span></div>
           </div>
         </div>
       </div>
 
       {/* AI Generated Brutalist Stats Strip */}
-      <section className="w-full relative z-10 bg-black text-white border-y-4 border-black">
+      <section className="w-full relative z-10 bg-black text-white border-y-4 border-slate-200">
         <div className="mx-auto max-w-6xl grid grid-cols-2 md:grid-cols-4">
           {[
             { value: '0.94', label: 'Mean Consensus' },
@@ -352,7 +352,7 @@ export default function LandingPage() {
       </section>
 
       {/* Footer */}
-      <footer className="w-full bg-black text-white py-12 border-t-4 border-black z-10 relative mt-auto">
+      <footer className="w-full bg-black text-white py-12 border-t-4 border-slate-200 z-10 relative mt-auto">
         <div className="container max-w-6xl px-6 mx-auto flex flex-col md:flex-row justify-between items-center">
           <div className="mb-6 md:mb-0 text-center md:text-left">
             <h2 className="text-3xl font-serif font-black mb-2 text-white">AegisMDT.</h2>

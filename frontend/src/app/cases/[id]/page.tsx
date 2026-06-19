@@ -143,7 +143,7 @@ export default function CaseDashboard() {
       {/* Print-Only Official EMR Report */}
       <div className="hidden print:block text-black bg-white">
         {/* Letterhead */}
-        <div className="flex justify-between items-end border-b-2 border-black pb-6 mb-6">
+        <div className="flex justify-between items-end border-b border-slate-200 pb-6 mb-6">
           <div>
             <h1 className="text-4xl font-serif font-black tracking-tight uppercase">AegisMDT</h1>
             <p className="font-mono text-sm uppercase tracking-widest text-gray-500 mt-1">Multi-Disciplinary Tumor Board</p>
@@ -213,13 +213,13 @@ export default function CaseDashboard() {
         <div className="mt-20 pt-8 border-t border-gray-300 grid grid-cols-2 gap-8 text-sm break-inside-avoid">
           <div>
             <p className="mb-12 font-bold text-gray-600 uppercase tracking-widest">Attending Physician</p>
-            <div className="border-b border-black w-64 mb-2"></div>
+            <div className="border-b border-slate-200 w-64 mb-2"></div>
             <p>Signature & Date</p>
             <p className="mt-2 text-xs text-gray-500 italic">This document represents a computational decision-support consensus and must be validated by a licensed medical professional.</p>
           </div>
           <div>
             <p className="mb-12 font-bold text-gray-600 uppercase tracking-widest">AegisMDT Orchestrator</p>
-            <div className="border-b border-black w-64 mb-2"></div>
+            <div className="border-b border-slate-200 w-64 mb-2"></div>
             <p>Digital Audit Trail</p>
             <p className="mt-2 font-mono text-[10px] text-gray-500 break-all">Hash ID: {caseData.id}</p>
           </div>
@@ -227,7 +227,7 @@ export default function CaseDashboard() {
       </div>
 
       {/* Persistent doctor-oversight banner */}
-      <div className="px-6 py-2 bg-black text-white flex items-center justify-between gap-4 flex-wrap border-b-4 border-black mb-0 print:hidden mt-0">
+      <div className="px-6 py-2 bg-black text-white flex items-center justify-between gap-4 flex-wrap border-b border-slate-200 mb-0 print:hidden mt-0">
         <div className="flex items-center gap-2 text-[12px]">
           <ShieldAlert size={14} strokeWidth={2.5} className="text-teal-400" />
           <span>
@@ -240,7 +240,7 @@ export default function CaseDashboard() {
       </div>
 
       {/* Status bar */}
-      <div className="px-6 py-4 bg-white flex items-center justify-between gap-4 flex-wrap border-b-4 border-black mb-6 shadow-[0_4px_0_0_rgba(0,0,0,1)] print:hidden">
+      <div className="px-6 py-4 bg-white flex items-center justify-between gap-4 flex-wrap border-b border-slate-200 mb-6 shadow-md shadow-slate-200/50 print:hidden">
         <div className="flex items-center gap-4 flex-wrap">
           <div className="flex flex-col">
             <span className="font-mono uppercase text-[10px] tracking-widest text-gray-500 font-bold">Case</span>
@@ -250,7 +250,7 @@ export default function CaseDashboard() {
           </div>
           <span className="w-px h-8 bg-gray-300" />
           
-          <div className={`px-3 py-1 text-xs font-bold font-mono uppercase tracking-widest border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] ${
+          <div className={`px-3 py-1 text-xs font-bold font-mono uppercase tracking-widest border border-slate-200 shadow-sm ${
               status === 'awaiting_approval' || status === 'approved' ? 'bg-green-400 text-black' :
               status === 'debating' ? 'bg-yellow-400 text-black animate-pulse' :
               'bg-blue-400 text-black'
@@ -259,7 +259,7 @@ export default function CaseDashboard() {
             {(status || 'UNKNOWN').replace('_', ' ')}
           </div>
 
-          <div className="px-3 py-1 bg-gray-100 text-black border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] text-xs font-bold font-mono uppercase tracking-widest flex items-center gap-1.5">
+          <div className="px-3 py-1 bg-slate-50/50 text-black border border-slate-200 shadow-sm text-xs font-bold font-mono uppercase tracking-widest flex items-center gap-1.5">
             <Timer size={12} strokeWidth={3} />
             <span className="animate-pulse">Live Sync</span>
           </div>
@@ -277,7 +277,7 @@ export default function CaseDashboard() {
         
         {status === 'submitted' || status === 'processing' ? (
           <div className="flex space-x-3 no-print">
-            <div className={`px-4 py-2 flex items-center font-mono text-sm font-bold border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] ${
+            <div className={`px-4 py-2 flex items-center font-mono text-sm font-bold border border-slate-200 shadow-xl shadow-slate-200/50 ${
               wsStatus === 'connected' ? 'bg-green-400' :
               wsStatus === 'error' ? 'bg-red-400' : 'bg-yellow-400'
             }`}>
@@ -347,8 +347,8 @@ export default function CaseDashboard() {
         
         {/* Left Panel: Patient Data (Brutalist style) */}
         <div className="lg:col-span-3 flex flex-col space-y-4">
-          <div className="bg-white border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] rounded-none flex-1 overflow-y-auto">
-            <div className="bg-gray-100 px-5 py-4 border-b-2 border-black">
+          <div className="bg-white border border-slate-200 shadow-xl shadow-slate-200/50 rounded-2xl flex-1 overflow-y-auto">
+            <div className="bg-slate-50/50 px-5 py-4 border-b border-slate-200">
               <div className="flex items-center gap-2 mb-2">
                 <Stethoscope size={16} strokeWidth={2.5} />
                 <span className="font-mono uppercase text-[11px] tracking-[0.22em] font-bold">Patient Profile</span>
@@ -358,11 +358,11 @@ export default function CaseDashboard() {
               </h2>
               <div className="flex gap-2 flex-wrap mt-3">
                 <span className="bg-black text-white text-[10px] font-mono uppercase tracking-widest px-2 py-1 font-bold">ID · {caseData.id.substring(0,4).toUpperCase()}</span>
-                <span className="bg-orange-400 text-black border border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] text-[10px] font-mono uppercase tracking-widest px-2 py-1 font-bold">HIPAA Audited</span>
+                <span className="bg-orange-400 text-black border border-slate-200 shadow-sm text-[10px] font-mono uppercase tracking-widest px-2 py-1 font-bold">HIPAA Audited</span>
               </div>
             </div>
 
-            <div className="px-5 py-4 border-b-2 border-black">
+            <div className="px-5 py-4 border-b border-slate-200">
                <div className="font-mono uppercase text-[10px] tracking-[0.22em] text-gray-500 font-bold mb-3">
                  § Clinical Summary
                </div>
@@ -381,15 +381,15 @@ export default function CaseDashboard() {
         </div>
 
         {/* Center Panel: Agent Debate Room (WebSocket Stream) */}
-        <div className="lg:col-span-5 flex flex-col bg-white border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] rounded-none overflow-hidden">
-          <div className="p-4 border-b-2 border-black bg-gray-100 flex justify-between items-center">
+        <div className="lg:col-span-5 flex flex-col bg-white border border-slate-200 shadow-xl shadow-slate-200/50 rounded-2xl overflow-hidden">
+          <div className="p-4 border-b border-slate-200 bg-slate-50/50 flex justify-between items-center">
             <h3 className="font-bold font-serif uppercase tracking-widest flex items-center text-sm">
               <Activity className="mr-2 h-4 w-4 text-black" />
               Live Agent Swarm
             </h3>
             <div className="flex items-center gap-2">
               {['MO', 'PA', 'PR', 'PV', 'TR'].map(agent => (
-                <div key={agent} className={`w-8 h-8 border-2 border-black font-mono text-[10px] font-bold flex items-center justify-center ${status === 'debating' && (agent === 'PA' || agent === 'PR' || agent === 'MO') ? 'bg-yellow-400 text-black animate-pulse shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]' : 'bg-white text-gray-400'}`} title={`Agent: ${agent}`}>
+                <div key={agent} className={`w-8 h-8 border border-slate-200 font-mono text-[10px] font-bold flex items-center justify-center ${status === 'debating' && (agent === 'PA' || agent === 'PR' || agent === 'MO') ? 'bg-yellow-400 text-black animate-pulse shadow-sm' : 'bg-white text-gray-400'}`} title={`Agent: ${agent}`}>
                   {agent}
                 </div>
               ))}
@@ -436,7 +436,7 @@ export default function CaseDashboard() {
 
                   {msg.confidence !== null && (
                     <div className="mt-3 flex items-center pt-2 border-t border-current/10">
-                      <div className="h-1.5 flex-1 bg-current/20 rounded-none overflow-hidden border border-black/20">
+                      <div className="h-1.5 flex-1 bg-current/20 rounded-2xl overflow-hidden border border-slate-200/20">
                         <div 
                           className={`h-full ${msg.confidence > 0.8 ? 'bg-green-500' : msg.confidence > 0.5 ? 'bg-yellow-500' : 'bg-red-500'}`}
                           style={{ width: `${msg.confidence * 100}%` }}
@@ -475,20 +475,20 @@ export default function CaseDashboard() {
                 <div className="flex justify-between items-start">
                   <div className="flex-1 mr-4">
                     <span className="text-black font-bold block text-xs uppercase tracking-wider mb-2">Diagnosis</span>
-                    <div className="bg-orange-50 border-2 border-orange-500 rounded-none p-3 shadow-[2px_2px_0px_0px_#f97316]">
+                    <div className="bg-orange-50 border-2 border-orange-500 rounded-2xl p-3 shadow-sm shadow-orange-500/20">
                       <p className="font-bold text-orange-900 text-lg leading-tight">{consensus.diagnosis.primary_diagnosis}</p>
                       <p className="text-xs text-orange-800/80 mt-2 font-mono">WHO: {consensus.diagnosis.who_classification || 'N/A'}</p>
                     </div>
                   </div>
-                  <div className="shrink-0 bg-white p-2 border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+                  <div className="shrink-0 bg-white p-2 border border-slate-200 shadow-sm">
                     <CircularProgress value={consensus.consensus_confidence} label="Consensus" />
                   </div>
                 </div>
                 
                 <div>
                   <span className="text-black font-bold block text-xs uppercase tracking-wider mb-2">Risk Assessment</span>
-                  <div className={`border-2 rounded-none p-3 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] ${
-                    consensus.risk_assessment.risk_category.toLowerCase().includes('high') ? 'bg-red-100 border-red-600 text-red-900' : 'bg-white border-black text-black'
+                  <div className={`border-2 rounded-2xl p-3 shadow-sm ${
+                    consensus.risk_assessment.risk_category.toLowerCase().includes('high') ? 'bg-red-100 border-red-600 text-red-900' : 'bg-white border-slate-200 text-black'
                   }`}>
                     <p className="font-bold text-lg">{consensus.risk_assessment.risk_category}</p>
                     <p className="text-xs font-mono font-bold mt-1 uppercase">Urgency: {consensus.risk_assessment.treatment_urgency}</p>
@@ -497,7 +497,7 @@ export default function CaseDashboard() {
 
                 <div>
                   <span className="text-black font-bold block text-xs uppercase tracking-wider mb-2">Treatment Recommendation</span>
-                  <p className="text-sm bg-white p-4 font-medium leading-relaxed rounded-none border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+                  <p className="text-sm bg-white p-4 font-medium leading-relaxed rounded-2xl border border-slate-200 shadow-sm">
                     {consensus.treatment_recommendation}
                   </p>
                 </div>
