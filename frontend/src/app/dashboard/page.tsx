@@ -2,9 +2,20 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { Activity, FileText, Users, Shield, Mic, Upload, Database, CheckCircle2 } from 'lucide-react';
+import { Activity, FileText, Users, Shield, Mic, Upload, Database } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useAuth } from '@/components/AuthProvider';
+
+interface CaseSummary {
+  id: string;
+  status: string;
+  input_data: {
+    age?: string | number;
+    sex?: string;
+    description?: string;
+  };
+  created_at?: string;
+}
 
 export default function Home() {
   const router = useRouter();
@@ -14,7 +25,7 @@ export default function Home() {
   const [sex, setSex] = useState('');
   const [imageUrl, setImageUrl] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [cases, setCases] = useState<any[]>([]);
+  const [cases, setCases] = useState<CaseSummary[]>([]);
   const [activeTab, setActiveTab] = useState<'manual' | 'upload' | 'emr'>('manual');
   const [isDictating, setIsDictating] = useState(false);
   const [isUploading, setIsUploading] = useState(false);

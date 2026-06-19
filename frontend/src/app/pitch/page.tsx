@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Play, Square, FastForward, Rewind, Maximize, Mic } from 'lucide-react';
+import { Play, Square, FastForward, Rewind, Mic } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const SCRIPT = [

@@ -6,10 +6,21 @@ import { useRouter } from 'next/navigation';
 import { Activity, CheckCircle, AlertTriangle, Clock, ArrowRight } from 'lucide-react';
 import { useAuth } from '@/components/AuthProvider';
 
+interface CaseSummary {
+  id: string;
+  status: string;
+  input_data: {
+    age?: string | number;
+    sex?: string;
+    description?: string;
+  };
+  created_at?: string;
+}
+
 export default function ActiveCasesPage() {
   const router = useRouter();
   const { user, isLoading: authLoading } = useAuth();
-  const [cases, setCases] = useState<any[]>([]);
+  const [cases, setCases] = useState<CaseSummary[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
