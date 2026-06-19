@@ -151,6 +151,32 @@ async def process_revision_bg(case: PatientCase, feedback: str, message_callback
     prog_result = case.consensus_result.risk_assessment.model_dump() if case.consensus_result else {}
     trials_result = [t.model_dump() for t in case.consensus_result.clinical_trials] if case.consensus_result else []
     
+    # ─── ADDED: Trigger a new debate round based on doctor's feedback ───
+    case.status = CaseStatus.DEBATING
+    topic = f"Doctor requested a revision. Feedback: {feedback}. Please debate and adjust your clinical assessments accordingly."
+    
+    resolution, debate_msgs = await mediate_debate(
+        json.dumps(path_result), 
+        json.dumps(prog_result), 
+        topic
+    )
+    
+    rev_round = (case.consensus_result.debate_rounds if case.consensus_result else 1) + 1
+    
+    for d_msg in debate_msgs:
+        d_msg.debate_round = rev_round
+        await emit_message(d_msg)
+        debate_history.append(d_msg.content)
+        
+        # Dispatch to Band Protocol SDK if available
+        if case.band_room_id:
+            api_key = settings.moderator.api_key
+            if d_msg.agent_role == "pathology":
+                api_key = settings.pathology.api_key
+            elif d_msg.agent_role == "prognostication":
+                api_key = settings.prognostication.api_key
+            await send_agent_message(case.band_room_id, api_key, d_msg.content)
+
     # Re-synthesize
     synth_result, synth_msg = await synthesize_consensus(
         case.anonymized_summary or "", 
@@ -159,6 +185,7 @@ async def process_revision_bg(case: PatientCase, feedback: str, message_callback
         trials_result, 
         debate_history
     )
+    synth_msg.debate_round = rev_round
     await emit_message(synth_msg)
     if case.band_room_id:
         await send_agent_message(case.band_room_id, settings.moderator.api_key, synth_msg.content)
