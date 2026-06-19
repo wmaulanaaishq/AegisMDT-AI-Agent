@@ -65,7 +65,6 @@ cp .env.example .env
 # Run the Server
 uvicorn main:app --reload --port 8000
 ```
-
 ### 2. Frontend Setup
 ```bash
 cd frontend
