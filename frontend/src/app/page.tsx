@@ -217,6 +217,40 @@ export default function LandingPage() {
         </div>
       </div>
 
+      {/* How It Works / User Flow Section */}
+      <div id="how-it-works" className="w-full bg-white border-y border-slate-200 py-24 relative z-10 overflow-hidden">
+        <div className="container max-w-6xl px-6 mx-auto relative z-10">
+          <div className="mb-16 text-center">
+            <h2 className="text-4xl md:text-5xl font-serif font-black mb-6 text-slate-900">How AegisMDT Works</h2>
+            <p className="text-lg font-medium text-slate-600 max-w-2xl mx-auto">
+              A seamless end-to-end clinical workflow designed for speed, accuracy, and total transparency.
+            </p>
+          </div>
+
+          <div className="relative">
+            {/* Connecting line */}
+            <div className="hidden md:block absolute top-12 left-[10%] w-[80%] h-1 bg-slate-100 z-0"></div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-8 relative z-10">
+              {[
+                { step: "01", title: "Data Ingestion", desc: "Upload PDFs, dictate clinical notes, or sync via EMR (FHIR) instantly." },
+                { step: "02", title: "Live Agent Swarm", desc: "Watch autonomous AI specialists debate the case and cite literature in real-time." },
+                { step: "03", title: "Human-in-the-Loop", desc: "Intervene mid-debate, correct references, and approve the final consensus." },
+                { step: "04", title: "EMR Export", desc: "Generate an official, hospital-ready PDF document for medical records." }
+              ].map((flow, i) => (
+                <div key={i} className="flex flex-col items-center text-center group">
+                  <div className="w-24 h-24 rounded-full bg-white border-2 border-slate-200 flex items-center justify-center text-3xl font-black font-mono text-primary shadow-xl shadow-slate-200/50 mb-6 group-hover:-translate-y-2 transition-transform">
+                    {flow.step}
+                  </div>
+                  <h3 className="text-xl font-bold mb-3 text-slate-900">{flow.title}</h3>
+                  <p className="text-sm font-medium text-slate-500 leading-relaxed px-2">{flow.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* Meet The Agents Section */}
       <div id="agents" className="w-full bg-zinc-50 border-y-4 border-slate-200 py-24 relative z-10 pt-32 overflow-hidden">
         <div 
