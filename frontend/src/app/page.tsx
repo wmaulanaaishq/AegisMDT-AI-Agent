@@ -68,9 +68,17 @@ _`;
   return (
     <div className="min-h-[calc(100vh-4rem)] flex flex-col items-center relative overflow-hidden bg-background">
       <Marquee />
-      {/* Brutalist Dot Grid & Giant Typographic Background */}
+      {/* Brutalist Medical Background (ECG & Cross) */}
       <div className="absolute inset-0 z-0 flex items-center justify-center opacity-5 pointer-events-none overflow-hidden select-none">
-        <span className="text-[35vw] font-black font-serif tracking-tighter leading-none text-transparent" style={{ WebkitTextStroke: '8px black' }}>AEGIS</span>
+        {/* Giant Medical Cross */}
+        <span className="text-[40vw] font-black font-serif leading-none text-transparent" style={{ WebkitTextStroke: '12px black' }}>+</span>
+      </div>
+      
+      {/* Brutalist ECG Line SVG */}
+      <div className="absolute inset-0 z-0 flex items-center justify-center opacity-10 pointer-events-none overflow-hidden">
+        <svg width="200%" height="100%" viewBox="0 0 1000 200" preserveAspectRatio="none" className="absolute top-1/2 -translate-y-1/2">
+          <polyline points="0,100 200,100 220,100 240,60 260,140 280,40 300,160 320,100 360,100 500,100 520,100 540,60 560,140 580,40 600,160 620,100 660,100 800,100 820,100 840,60 860,140 880,40 900,160 920,100 1000,100" fill="none" stroke="black" strokeWidth="4" strokeLinejoin="miter" />
+        </svg>
       </div>
       <div 
         className="absolute inset-0 z-0 pointer-events-none"
