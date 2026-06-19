@@ -1,7 +1,11 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 100">
-  <g transform="translate(10, 10)">
-    <circle cx="40" cy="40" r="35" fill="#8B5CF6" />
-    <path d="M 25 50 Q 40 20 55 30 Q 50 60 25 50 Z" fill="#FFFFFF" />
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 350 80">
+  <text x="10" y="55" font-family="Helvetica, Arial, sans-serif" font-weight="600" font-size="46" fill="#000000" letter-spacing="-1">Featherless</text>
+  <g transform="translate(265, 25)">
+    <!-- Top bar -->
+    <polygon points="0,0 30,-15 30,-5 0,10" fill="#000000"/>
+    <!-- Middle bar -->
+    <polygon points="0,15 20,5 20,15 0,25" fill="#000000"/>
+    <!-- Bottom bar (stem base) -->
+    <polygon points="0,30 10,25 10,35 0,40" fill="#000000"/>
   </g>
-  <text x="100" y="68" font-family="sans-serif" font-weight="900" font-size="56" fill="#000000" letter-spacing="-1.5">Featherless</text>
 </svg>
