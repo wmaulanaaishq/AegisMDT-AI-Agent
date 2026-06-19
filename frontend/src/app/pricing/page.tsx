@@ -1,12 +1,12 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useAuth } from "@/components/AuthProvider";
 import { CheckCircle2, Shield, Activity } from "lucide-react";
 import Link from "next/link";
 
-export default function PricingPage() {
+function PricingContent() {
   const [isLoading, setIsLoading] = useState(false);
   const [isActivating, setIsActivating] = useState(false);
   const router = useRouter();
@@ -152,5 +152,13 @@ export default function PricingPage() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function PricingPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-zinc-50 flex flex-col items-center justify-center pt-16"><Activity className="h-12 w-12 text-primary animate-spin mb-4" /></div>}>
+      <PricingContent />
+    </Suspense>
   );
 }
