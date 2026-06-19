@@ -167,11 +167,13 @@ export default function LandingPage() {
         </motion.div>
       </div> {/* End Hero Wrapper */}
 
-      <div id="platform" className="w-full bg-zinc-900 border-y-4 border-black py-24 mb-32 relative z-10 overflow-hidden">
+      <div id="platform" className="w-full bg-transparent py-16 mb-24 relative z-10 overflow-hidden">
         <div 
-          className="absolute inset-0 z-0 pointer-events-none opacity-30"
+          className="absolute inset-0 z-0 pointer-events-none opacity-[0.8]"
           style={{
-            backgroundImage: `url('https://www.transparenttextures.com/patterns/carbon-fibre.png')`,
+            backgroundImage: `url('https://www.transparenttextures.com/patterns/diagmonds-light.png')`,
+            maskImage: 'linear-gradient(to bottom, black 20%, transparent 100%)',
+            WebkitMaskImage: 'linear-gradient(to bottom, black 20%, transparent 100%)',
           }}
         />
         <div className="w-full max-w-6xl px-6 mx-auto relative z-10">
