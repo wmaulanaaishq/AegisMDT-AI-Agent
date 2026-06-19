@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { Activity, FileText, Users, Shield } from 'lucide-react';
+import { Activity, FileText, Users, Shield, Mic, Upload, Database, CheckCircle2 } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useAuth } from '@/components/AuthProvider';
 
@@ -15,6 +15,49 @@ export default function Home() {
   const [imageUrl, setImageUrl] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [cases, setCases] = useState<any[]>([]);
+  const [activeTab, setActiveTab] = useState<'manual' | 'upload' | 'emr'>('manual');
+  const [isDictating, setIsDictating] = useState(false);
+  const [isUploading, setIsUploading] = useState(false);
+  const [isSyncing, setIsSyncing] = useState(false);
+  const [mrn, setMrn] = useState('');
+
+  const toggleDictation = () => {
+    if (isDictating) {
+      setIsDictating(false);
+      return;
+    }
+    setIsDictating(true);
+    setDescription("");
+    const mockDictation = "Patient is a 62-year-old male presenting with severe bone pain and fatigue. Labs show monoclonal protein spike. Suspecting multiple myeloma. Please analyze full pathology report.";
+    let i = 0;
+    const interval = setInterval(() => {
+      setDescription(prev => prev + mockDictation.charAt(i));
+      i++;
+      if (i >= mockDictation.length) {
+        clearInterval(interval);
+        setIsDictating(false);
+      }
+    }, 50);
+  };
+
+  const handleUpload = () => {
+    setIsUploading(true);
+    setTimeout(() => {
+      setDescription("FILE PARSED: PATHOLOGY_REPORT.PDF\n\nMicroscopic Description:\nSections show a hypercellular bone marrow (90% cellularity) with extensive infiltration by plasma cells (approx 70%). Plasma cells are CD138+, CD56+, Kappa light chain restricted. \n\nDiagnosis: Plasma Cell Myeloma.");
+      setIsUploading(false);
+    }, 2000);
+  };
+
+  const handleEMRSync = () => {
+    if (!mrn) return;
+    setIsSyncing(true);
+    setTimeout(() => {
+      setAge("62");
+      setSex("male");
+      setDescription("EMR SYNC SUCCESSFUL (EPIC FHIR)\n\nChief Complaint: Severe bone pain.\nHistory: 62yo male. X-rays show lytic bone lesions.\nLabs: Elevated serum calcium, creatinine 2.1 mg/dL. Serum protein electrophoresis shows M-spike.\nNotes: Pending bone marrow biopsy results.");
+      setIsSyncing(false);
+    }, 1500);
+  };
 
   useEffect(() => {
     if (!authLoading) {
@@ -136,8 +179,47 @@ export default function Home() {
             </button>
           </div>
 
+          <div className="mb-6 flex flex-wrap gap-2 border-b-2 border-black pb-4">
+            <button type="button" onClick={() => setActiveTab('manual')} className={`px-4 py-2 font-mono font-bold text-sm border-2 border-black transition-all ${activeTab === 'manual' ? 'bg-primary text-white shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]' : 'bg-white text-black hover:bg-zinc-100'}`}>
+              <FileText className="inline w-4 h-4 mr-2" />
+              Manual / Dictate
+            </button>
+            <button type="button" onClick={() => setActiveTab('upload')} className={`px-4 py-2 font-mono font-bold text-sm border-2 border-black transition-all ${activeTab === 'upload' ? 'bg-primary text-white shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]' : 'bg-white text-black hover:bg-zinc-100'}`}>
+              <Upload className="inline w-4 h-4 mr-2" />
+              Upload PDF
+            </button>
+            <button type="button" onClick={() => setActiveTab('emr')} className={`px-4 py-2 font-mono font-bold text-sm border-2 border-black transition-all ${activeTab === 'emr' ? 'bg-primary text-white shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]' : 'bg-white text-black hover:bg-zinc-100'}`}>
+              <Database className="inline w-4 h-4 mr-2" />
+              EMR Sync (FHIR)
+            </button>
+          </div>
+
           <form onSubmit={handleSubmit} className="space-y-4">
-            <div className="grid grid-cols-2 gap-4">
+            {activeTab === 'upload' && (
+              <div className="border-4 border-dashed border-black p-8 text-center bg-zinc-50 flex flex-col items-center justify-center cursor-pointer hover:bg-zinc-100 transition-colors" onClick={handleUpload}>
+                {isUploading ? (
+                   <div className="animate-spin mb-4"><Upload className="w-8 h-8 text-primary" /></div>
+                ) : (
+                   <Upload className="w-8 h-8 text-zinc-400 mb-4" />
+                )}
+                <p className="font-mono text-sm font-bold text-black">{isUploading ? "Parsing PDF via OCR..." : "Drag & Drop Pathology PDF or Click to Upload"}</p>
+                <p className="text-xs text-muted-foreground mt-2">Auto-extracts clinical history securely</p>
+              </div>
+            )}
+
+            {activeTab === 'emr' && (
+              <div className="bg-blue-50 border-2 border-blue-900 p-6 flex flex-col sm:flex-row gap-4 items-center shadow-[4px_4px_0px_0px_rgba(30,58,138,1)]">
+                <div className="flex-1 w-full">
+                  <label className="text-sm font-bold mb-2 block text-blue-900">Patient MRN (Medical Record Number)</label>
+                  <input type="text" value={mrn} onChange={e => setMrn(e.target.value)} placeholder="e.g. MRN-89210-EPIC" className="w-full border-2 border-blue-900 p-2 font-mono text-sm text-black focus:outline-none focus:ring-0" />
+                </div>
+                <button type="button" onClick={handleEMRSync} disabled={isSyncing || !mrn} className="mt-6 bg-blue-900 text-white font-bold px-6 py-2 border-2 border-black hover:bg-blue-800 flex items-center shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] whitespace-nowrap transition-all disabled:opacity-50">
+                  {isSyncing ? "Syncing..." : <><Database className="w-4 h-4 mr-2" /> Fetch Record</>}
+                </button>
+              </div>
+            )}
+
+            <div className="grid grid-cols-2 gap-4 mt-4">
               <div className="space-y-2">
                 <label className="text-sm font-medium">Age</label>
                 <input 
@@ -163,8 +245,15 @@ export default function Home() {
               </div>
             </div>
             
-            <div className="space-y-2">
-              <label className="text-sm font-medium">Clinical Description & History <span className="text-destructive">*</span></label>
+            <div className="space-y-2 relative">
+              <div className="flex justify-between items-end mb-2">
+                <label className="text-sm font-medium">Clinical Description & History <span className="text-destructive">*</span></label>
+                {activeTab === 'manual' && (
+                  <button type="button" onClick={toggleDictation} className={`flex items-center text-xs font-bold px-3 py-1.5 border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] transition-colors ${isDictating ? 'bg-red-500 text-white animate-pulse' : 'bg-white hover:bg-zinc-100 text-black'}`}>
+                    <Mic className="w-3 h-3 mr-2" /> {isDictating ? "Listening..." : "Dictate (Voice)"}
+                  </button>
+                )}
+              </div>
               <textarea 
                 required
                 minLength={20}
