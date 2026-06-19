@@ -4,6 +4,9 @@ import React, { useState, useEffect } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { Network, Microscope, UserCog, Scale, ArrowRight, ShieldCheck, Database, Layers, Lock, Activity, Cpu, Fingerprint, Printer } from 'lucide-react';
 import Link from 'next/link';
+import dynamic from 'next/dynamic';
+
+const Scene3D = dynamic(() => import('./components/Scene3D').then(mod => mod.Scene3D), { ssr: false });
 
 const Marquee = () => (
   <div className="w-full bg-primary text-black py-4 overflow-hidden border-b-8 border-black flex whitespace-nowrap z-20">
@@ -92,22 +95,15 @@ export default function LandingPage() {
   return (
     <div className="min-h-[calc(100vh-4rem)] flex flex-col items-center relative overflow-hidden bg-background">
       <Marquee />
-      {/* Brutalist Medical Background (ECG & Cross) */}
-      <div className="absolute inset-0 z-0 flex items-center justify-center opacity-5 pointer-events-none overflow-hidden select-none">
-        {/* Giant Medical Cross */}
-        <span className="text-[40vw] font-black font-serif leading-none text-transparent" style={{ WebkitTextStroke: '12px black' }}>+</span>
+      {/* Interactive 3D Background */}
+      <div className="absolute inset-0 z-0 pointer-events-auto opacity-75 mix-blend-multiply">
+        <Scene3D />
       </div>
-      
-      {/* Brutalist ECG Line SVG */}
-      <div className="absolute inset-0 z-0 flex items-center justify-center opacity-10 pointer-events-none overflow-hidden">
-        <svg width="200%" height="100%" viewBox="0 0 1000 200" preserveAspectRatio="none" className="absolute top-1/2 -translate-y-1/2">
-          <polyline points="0,100 200,100 220,100 240,60 260,140 280,40 300,160 320,100 360,100 500,100 520,100 540,60 560,140 580,40 600,160 620,100 660,100 800,100 820,100 840,60 860,140 880,40 900,160 920,100 1000,100" fill="none" stroke="black" strokeWidth="4" strokeLinejoin="miter" />
-        </svg>
-      </div>
+
       <div 
         className="absolute inset-0 z-0 pointer-events-none"
         style={{
-          backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.2) 2px, transparent 2px)',
+          backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.1) 2px, transparent 2px)',
           backgroundSize: '32px 32px',
           backgroundPosition: '0 0',
           maskImage: 'linear-gradient(to bottom, black 0%, black 70%, transparent 100%)',

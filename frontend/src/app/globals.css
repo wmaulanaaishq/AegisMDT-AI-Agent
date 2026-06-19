@@ -48,6 +48,12 @@
     --border: 0 0% 10%;
     --input: 0 0% 10%;
     --ring: 25 95% 53%;
+
+    /* 3D Agent Colors */
+    --brand-teal: #00e0c7;
+    --brand-acid: #e0ff00;
+    --brand-orange: #ff5b1f;
+    --brand-yellow: #ffb800;
   }
 }
 
