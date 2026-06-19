@@ -27,25 +27,49 @@ export default function LandingPage() {
   const { scrollYProgress } = useScroll();
   const y = useTransform(scrollYProgress, [0, 1], [0, -50]);
 
-  const [terminalText, setTerminalText] = useState<string>('');
-  const fullText = `> INITIATING AEGISMDT KERNEL...
-> CONNECTING TO BAND SDK NETWORK...
-> SYNCING SPECIALIST AGENTS:
-  [OK] Privacy Agent
-  [OK] Pathology Agent 
-  [OK] Prognostication Agent
-  [OK] Moderator Agent
-> WAITING FOR PATIENT CASE INPUT...
-_`;
-
+  const [terminalLines, setTerminalLines] = useState<string[]>([]);
+  
   useEffect(() => {
+    const startupLines = [
+      "> INITIATING AEGISMDT KERNEL...",
+      "> CONNECTING TO BAND SDK NETWORK...",
+      "> SYNCING SPECIALIST AGENTS:",
+      "  [OK] Privacy Agent",
+      "  [OK] Pathology Agent", 
+      "  [OK] Prognostication Agent",
+      "  [OK] Moderator Agent",
+      "> WAITING FOR PATIENT CASE INPUT..."
+    ];
+    const infiniteLogs = [
+      "> PINGING CHROMA DB... [OK]",
+      "> MEMORY UTILIZATION: 14%",
+      "> ICE PROTOCOL READY...",
+      "> SECURE CONNECTION ESTABLISHED",
+      "> WAITING FOR NEW CASE INPUT...",
+      "> RUNNING BACKGROUND HEALTH CHECK... [PASS]"
+    ];
+
     let i = 0;
-    const intervalId = setInterval(() => {
-      setTerminalText(fullText.slice(0, i));
+    
+    const initialInterval = setInterval(() => {
+      setTerminalLines(prev => [...prev, startupLines[i]]);
       i++;
-      if (i > fullText.length) clearInterval(intervalId);
-    }, 40);
-    return () => clearInterval(intervalId);
+      if (i >= startupLines.length) {
+        clearInterval(initialInterval);
+        
+        // Start infinite random logs
+        setInterval(() => {
+           const randomLog = infiniteLogs[Math.floor(Math.random() * infiniteLogs.length)];
+           setTerminalLines(prev => {
+             const newLines = [...prev, randomLog];
+             if (newLines.length > 8) return newLines.slice(newLines.length - 8);
+             return newLines;
+           });
+        }, 1500);
+      }
+    }, 400);
+
+    return () => clearInterval(initialInterval);
   }, []);
 
   const containerVariants = {
@@ -103,8 +127,8 @@ _`;
           <span>Regulated Deep-Tech</span>
         </motion.div>
 
-        <motion.h1 variants={itemVariants} className="text-7xl md:text-9xl font-serif font-black tracking-tighter mb-8 leading-tight relative z-10">
-          <span className="bg-white px-8 py-3 border-8 border-black shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] inline-block transform -rotate-2 cursor-default hover:scale-105 hover:rotate-0 transition-transform duration-300">
+        <motion.h1 variants={itemVariants} className="text-5xl md:text-7xl lg:text-8xl font-serif font-black tracking-tighter mb-8 leading-tight relative z-10">
+          <span className="bg-white px-8 py-3 border-[6px] border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] inline-block transform -rotate-2 cursor-default hover:scale-105 hover:rotate-0 transition-transform duration-300">
             AegisMDT
           </span>
           <br />
@@ -138,7 +162,7 @@ _`;
             <div className="w-4 h-4 bg-yellow-500 rounded-none border-2 border-black"></div>
             <div className="w-4 h-4 bg-green-500 rounded-none border-2 border-black"></div>
           </div>
-          <pre className="whitespace-pre-wrap leading-relaxed min-h-[160px] pt-2 text-base font-bold">{terminalText}</pre>
+          <pre className="whitespace-pre-wrap leading-relaxed min-h-[160px] pt-2 text-base font-bold">{terminalLines.join('\n')}<span className="animate-pulse">_</span></pre>
         </motion.div>
 
       </motion.div>
