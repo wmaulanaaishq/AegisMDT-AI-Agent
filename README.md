@@ -12,7 +12,8 @@
   [![ChromaDB](https://img.shields.io/badge/Chroma-Vector_DB-yellow.svg)](https://trychroma.com)
   [![DOKU](https://img.shields.io/badge/DOKU-Payment_Gateway-red.svg)](https://doku.com)
 
-  *Track 3: Regulated & High-Stakes Workflows - Hackathon lablab.ai*
+  *Track 3: Regulated & High-Stakes Workflows - Band of Agents Hackathon
+Build enterprise multi-agent systems with Band and Codeband*
 </div>
 
 <div align="center">
