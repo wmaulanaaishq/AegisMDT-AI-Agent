@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { Network, Microscope, UserCog, Scale, ArrowRight, ShieldCheck, Database, Layers, Lock, Activity } from 'lucide-react';
+import { Network, Microscope, UserCog, Scale, ArrowRight, ShieldCheck, Database, Layers, Lock, Activity, Cpu, Fingerprint, Printer } from 'lucide-react';
 import Link from 'next/link';
 
 const Marquee = () => (
@@ -82,8 +82,12 @@ _`;
           <span>Regulated Deep-Tech</span>
         </motion.div>
 
-        <motion.h1 variants={itemVariants} className="text-6xl md:text-8xl font-serif font-black tracking-tighter mb-8 leading-tight">
-          <span className="bg-white px-8 py-3 border-4 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] inline-block transform -rotate-1">
+        <motion.h1 variants={itemVariants} className="text-6xl md:text-8xl font-serif font-black tracking-tighter mb-8 leading-tight relative">
+          <div className="absolute -top-32 left-1/2 -translate-x-1/2 w-96 h-96 opacity-10 pointer-events-none mix-blend-multiply filter grayscale contrast-150 -z-10">
+            {/* Public Domain DNA microscope image from Wikimedia Commons */}
+            <img src="https://upload.wikimedia.org/wikipedia/commons/9/91/HD.17.022_%2811949587665%29.jpg" alt="Abstract DNA Microscope" className="w-full h-full object-cover rounded-full" />
+          </div>
+          <span className="bg-white px-8 py-3 border-4 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] inline-block transform -rotate-1 animate-glitch cursor-default">
             AegisMDT
           </span>
           <br />
@@ -214,7 +218,7 @@ _`;
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <motion.div variants={itemVariants} className="bg-white p-6 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-1 transition-transform">
-              <div className="text-primary font-bold font-mono text-sm uppercase tracking-widest mb-4 flex items-center"><Database className="w-4 h-4 mr-2"/> Agentic RAG</div>
+              <div className="text-primary font-bold font-mono text-sm uppercase tracking-widest mb-4 flex items-center"><Cpu className="w-5 h-5 mr-2"/> Agentic RAG</div>
               <h4 className="text-xl font-bold font-serif mb-2">Semantic Scholar APIs</h4>
               <p className="text-sm font-medium opacity-80 leading-relaxed">
                 Agents don't hallucinate treatments. They fetch real-time clinical trials and oncology literature from PubMed/Semantic Scholar via ChromaDB vector retrieval to ground their debates.
@@ -222,15 +226,15 @@ _`;
             </motion.div>
             
             <motion.div variants={itemVariants} className="bg-white p-6 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-1 transition-transform">
-              <div className="text-primary font-bold font-mono text-sm uppercase tracking-widest mb-4 flex items-center"><Lock className="w-4 h-4 mr-2"/> Monetization</div>
+              <div className="text-primary font-bold font-mono text-sm uppercase tracking-widest mb-4 flex items-center"><Fingerprint className="w-5 h-5 mr-2"/> Monetization</div>
               <h4 className="text-xl font-bold font-serif mb-2">DOKU Payment Gateway</h4>
               <p className="text-sm font-medium opacity-80 leading-relaxed">
-                Integrated with DOKU for seamless hospital subscriptions. Guest doctors hit a paywall, while VIP VIP/Regulated accounts bypass it seamlessly. Real business viability.
+                Integrated with DOKU for seamless hospital subscriptions. Guest doctors hit a paywall, while VIP/Regulated accounts bypass it seamlessly. Real business viability.
               </p>
             </motion.div>
             
             <motion.div variants={itemVariants} className="bg-white p-6 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-1 transition-transform">
-              <div className="text-primary font-bold font-mono text-sm uppercase tracking-widest mb-4 flex items-center"><ShieldCheck className="w-4 h-4 mr-2"/> Enterprise Grade</div>
+              <div className="text-primary font-bold font-mono text-sm uppercase tracking-widest mb-4 flex items-center"><Printer className="w-5 h-5 mr-2"/> Enterprise Grade</div>
               <h4 className="text-xl font-bold font-serif mb-2">Print-Ready EMR</h4>
               <p className="text-sm font-medium opacity-80 leading-relaxed">
                 The final consensus isn't just a UI component. It exports into a formal, print-ready Electronic Medical Record (PDF) with strict clinical formatting for hospital archives.
