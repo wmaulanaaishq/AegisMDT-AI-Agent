@@ -29,6 +29,16 @@ Each object should have:
 }
 """
     
+    from pubmed_client import fetch_literature_context
+    logger.info("Fetching real clinical trial literature from Semantic Scholar...")
+    literature_context = "No specific literature found."
+    try:
+        # We search for the specific disease to find real clinical trials in literature
+        search_query = f"{prognosis_result.get('risk_category', 'high risk')} {pathology_result.get('primary_diagnosis', 'oncology')} clinical trial phase"
+        literature_context = await fetch_literature_context(search_query, limit=3)
+    except Exception as e:
+        logger.error(f"Failed to fetch trial literature: {e}")
+
     user_message = f"""
 Case Description:
 {anonymized_case}
@@ -38,6 +48,10 @@ Pathology Findings:
 
 Prognostication:
 {json.dumps(prognosis_result, indent=2)}
+
+REAL MEDICAL LITERATURE (RAG CONTEXT):
+Use the following real clinical trial papers to extract authentic trial identifiers, phases, and interventions. Do NOT hallucinate.
+{literature_context}
 """
     
     try:
