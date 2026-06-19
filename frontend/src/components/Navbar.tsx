@@ -34,6 +34,9 @@ export default function Navbar() {
               <Link className="transition-colors hover:text-primary text-foreground" href="#protocol">
                 Protocol
               </Link>
+              <Link className="transition-colors hover:text-primary text-foreground" href="#pricing">
+                Pricing
+              </Link>
             </nav>
           ) : (
             <nav className="flex items-center space-x-6 text-sm font-bold uppercase tracking-widest font-mono">
