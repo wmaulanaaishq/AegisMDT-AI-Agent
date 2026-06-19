@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="https://upload.wikimedia.org/wikipedia/commons/e/ea/Blastic_plasmacytoid_dendritic_cell_neoplasm.jpg" width="120" alt="AegisMDT Logo" style="border-radius: 50%" />
+  <img src="frontend/public/logo.jpeg" width="120" alt="AegisMDT Logo" style="border-radius: 20%" />
   
   # AegisMDT AI Agent
   **Secure Multi-Agent Orchestration for Rare Oncology**
