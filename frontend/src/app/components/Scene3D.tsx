@@ -100,63 +100,69 @@ export function Scene3D() {
       const color = readVar(def.cssVar, '#00e0c7');
       const g = new THREE.Group();
 
-      // head
-      const head = new THREE.Mesh(
-        new THREE.BoxGeometry(0.8, 0.65, 0.6),
-        new THREE.MeshStandardMaterial({ color: 0xffffff, flatShading: true, roughness: 0.5 }),
-      );
-      head.add(
-        new THREE.LineSegments(
-          new THREE.EdgesGeometry(head.geometry),
-          new THREE.LineBasicMaterial({ color: INK }),
-        ),
-      );
-      g.add(head);
-
-      // visor
-      const visor = new THREE.Mesh(
-        new THREE.BoxGeometry(0.55, 0.18, 0.02),
-        new THREE.MeshStandardMaterial({ color, emissive: color, emissiveIntensity: 0.55, roughness: 0.3 }),
-      );
-      visor.position.set(0, 0.05, 0.31);
-      g.add(visor);
-
-      // antenna
-      const antennaRod = new THREE.Mesh(
-        new THREE.CylinderGeometry(0.02, 0.02, 0.18, 8),
-        new THREE.MeshStandardMaterial({ color: INK }),
-      );
-      antennaRod.position.set(0, 0.45, 0);
-      g.add(antennaRod);
-
-      const antennaTip = new THREE.Mesh(
-        new THREE.SphereGeometry(0.07, 12, 12),
-        new THREE.MeshStandardMaterial({ color, emissive: color, emissiveIntensity: 0.9 }),
-      );
-      antennaTip.position.set(0, 0.58, 0);
-      g.add(antennaTip);
-
-      // body
+      // Main spherical body (matte dark metal)
       const body = new THREE.Mesh(
-        new THREE.BoxGeometry(0.7, 0.55, 0.45),
-        new THREE.MeshStandardMaterial({ color: INK, flatShading: true }),
+        new THREE.SphereGeometry(0.5, 32, 32),
+        new THREE.MeshStandardMaterial({ color: INK, roughness: 0.3, metalness: 0.8 }),
       );
-      body.position.set(0, -0.6, 0);
+      // Wireframe overlay for high-tech look
       body.add(
         new THREE.LineSegments(
-          new THREE.EdgesGeometry(body.geometry),
-          new THREE.LineBasicMaterial({ color: 0xffffff }),
-        ),
+          new THREE.WireframeGeometry(new THREE.SphereGeometry(0.51, 12, 12)),
+          new THREE.LineBasicMaterial({ color: 0x444444, transparent: true, opacity: 0.3 }),
+        )
       );
       g.add(body);
 
-      // chest indicator
-      const chest = new THREE.Mesh(
-        new THREE.BoxGeometry(0.18, 0.18, 0.02),
-        new THREE.MeshStandardMaterial({ color, emissive: color, emissiveIntensity: 0.8 }),
+      // Glowing Visor / Eye
+      const visorGroup = new THREE.Group();
+      const visor = new THREE.Mesh(
+        new THREE.CylinderGeometry(0.52, 0.52, 0.25, 32, 1, false, -Math.PI / 2.5, (Math.PI * 2) / 2.5),
+        new THREE.MeshStandardMaterial({ color, emissive: color, emissiveIntensity: 0.8, roughness: 0.1 }),
       );
-      chest.position.set(0, -0.6, 0.23);
-      g.add(chest);
+      visorGroup.add(visor);
+      visorGroup.rotation.x = Math.PI / 16; 
+      g.add(visorGroup);
+
+      // Glowing core (bottom thruster)
+      const coreLight = new THREE.Mesh(
+        new THREE.SphereGeometry(0.18, 16, 16),
+        new THREE.MeshStandardMaterial({ color: 0xffffff, emissive: color, emissiveIntensity: 1.0 }),
+      );
+      coreLight.position.set(0, -0.4, 0);
+      g.add(coreLight);
+
+      // Outer rings (halo/propulsion)
+      const ring1 = new THREE.Mesh(
+        new THREE.TorusGeometry(0.7, 0.02, 16, 64),
+        new THREE.MeshStandardMaterial({ color: 0xffffff, emissive: color, emissiveIntensity: 0.5 })
+      );
+      ring1.rotation.x = Math.PI / 2;
+      ring1.position.set(0, -0.2, 0);
+      g.add(ring1);
+      
+      const ring2 = new THREE.Mesh(
+        new THREE.TorusGeometry(0.85, 0.01, 16, 64),
+        new THREE.MeshStandardMaterial({ color: 0xaaaaaa, metalness: 0.9 })
+      );
+      ring2.rotation.x = Math.PI / 2;
+      ring2.position.set(0, -0.3, 0);
+      g.add(ring2);
+
+      // Antenna
+      const antenna = new THREE.Mesh(
+        new THREE.CylinderGeometry(0.015, 0.015, 0.3, 8),
+        new THREE.MeshStandardMaterial({ color: 0xaaaaaa, metalness: 0.9 })
+      );
+      antenna.position.set(0, 0.6, 0);
+      g.add(antenna);
+      
+      const tip = new THREE.Mesh(
+        new THREE.SphereGeometry(0.06, 16, 16),
+        new THREE.MeshStandardMaterial({ color, emissive: color, emissiveIntensity: 1 })
+      );
+      tip.position.set(0, 0.75, 0);
+      g.add(tip);
 
       // attach userData for raycasting + drive
       g.userData = { id: def.id, label: def.label, color, angle: def.angle, picked: false, hover: false };
@@ -331,7 +337,7 @@ export function Scene3D() {
       coreGroup.position.y = Math.sin(t * 0.8) * 0.15;
 
       // agents orbit
-      const radius = 4.2;
+      const radius = 5.2;
       for (const a of agents) {
         const ang = t * 0.25 + (a.userData.angle as number);
         a.position.x = Math.cos(ang) * radius;
@@ -340,7 +346,7 @@ export function Scene3D() {
         a.rotation.y = -ang + Math.PI / 2;
         const isHover = hoveredId === a.userData.id;
         const isPicked = pickedId === a.userData.id;
-        const target = isPicked ? 1.28 + Math.sin(t * 6) * 0.05 : isHover ? 1.15 : 1;
+        const target = isPicked ? 0.75 + Math.sin(t * 6) * 0.05 : isHover ? 0.65 : 0.55;
         const cur = a.scale.x;
         a.scale.setScalar(cur + (target - cur) * 0.18);
       }
