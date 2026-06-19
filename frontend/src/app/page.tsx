@@ -6,17 +6,17 @@ import { Network, Microscope, UserCog, Scale, ArrowRight, ShieldCheck, Database,
 import Link from 'next/link';
 
 const Marquee = () => (
-  <div className="w-full bg-black text-white py-3 overflow-hidden border-b-2 border-black flex whitespace-nowrap z-20">
+  <div className="w-full bg-primary text-black py-4 overflow-hidden border-b-8 border-black flex whitespace-nowrap z-20">
     <motion.div 
-      className="flex font-mono font-bold uppercase tracking-widest text-sm"
+      className="flex font-mono font-black uppercase tracking-widest text-sm"
       animate={{ x: ["0%", "-50%"] }}
       transition={{ repeat: Infinity, ease: "linear", duration: 30 }}
     >
       {[...Array(10)].map((_, i) => (
         <span key={i} className="mx-4 flex items-center">
-          <span className="text-primary mx-4">■</span> [ INITIATING ICE PROTOCOL ] 
-          <span className="text-primary mx-4">■</span> [ SYNCING 4 SPECIALIST AGENTS ] 
-          <span className="text-primary mx-4">■</span> [ MULTI-MODAL ANALYSIS ACTIVE ]
+          <span className="text-black mx-4">■</span> [ INITIATING ICE PROTOCOL ] 
+          <span className="text-black mx-4">■</span> [ SYNCING 4 SPECIALIST AGENTS ] 
+          <span className="text-black mx-4">■</span> [ MULTI-MODAL ANALYSIS ACTIVE ]
         </span>
       ))}
     </motion.div>
@@ -103,8 +103,8 @@ _`;
           <span>Regulated Deep-Tech</span>
         </motion.div>
 
-        <motion.h1 variants={itemVariants} className="text-6xl md:text-8xl font-serif font-black tracking-tighter mb-8 leading-tight relative z-10">
-          <span className="bg-white px-8 py-3 border-4 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] inline-block transform -rotate-1 cursor-default hover:scale-105 transition-transform duration-300">
+        <motion.h1 variants={itemVariants} className="text-7xl md:text-9xl font-serif font-black tracking-tighter mb-8 leading-tight relative z-10">
+          <span className="bg-white px-8 py-3 border-8 border-black shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] inline-block transform -rotate-2 cursor-default hover:scale-105 hover:rotate-0 transition-transform duration-300">
             AegisMDT
           </span>
           <br />
@@ -131,14 +131,14 @@ _`;
         </motion.div>
 
         {/* Live Terminal Demo */}
-        <motion.div variants={itemVariants} className="mt-20 w-full max-w-2xl text-left bg-black text-green-400 font-mono text-sm p-6 border-4 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] mx-auto relative group hover:scale-[1.02] transition-transform duration-300">
-          <div className="absolute -top-3 -right-3 bg-primary text-white border-2 border-black px-2 py-1 text-[10px] font-bold tracking-widest shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] group-hover:rotate-6 transition-transform">LIVE STATUS</div>
-          <div className="flex space-x-2 mb-4 border-b border-gray-800 pb-3">
-            <div className="w-3 h-3 bg-red-500 rounded-full border border-black"></div>
-            <div className="w-3 h-3 bg-yellow-500 rounded-full border border-black"></div>
-            <div className="w-3 h-3 bg-green-500 rounded-full border border-black"></div>
+        <motion.div variants={itemVariants} className="mt-24 w-full max-w-2xl text-left bg-black text-green-400 font-mono text-sm p-6 border-8 border-black shadow-[16px_16px_0px_0px_rgba(0,0,0,1)] mx-auto relative group hover:translate-x-[-4px] hover:translate-y-[-4px] hover:shadow-[20px_20px_0px_0px_rgba(0,0,0,1)] transition-all duration-300 rounded-none">
+          <div className="absolute -top-5 -right-5 bg-primary text-black border-4 border-black px-4 py-2 text-[12px] font-black tracking-widest shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] group-hover:rotate-6 transition-transform">LIVE STATUS</div>
+          <div className="flex space-x-3 mb-6 border-b-4 border-gray-800 pb-4">
+            <div className="w-4 h-4 bg-red-500 rounded-none border-2 border-black"></div>
+            <div className="w-4 h-4 bg-yellow-500 rounded-none border-2 border-black"></div>
+            <div className="w-4 h-4 bg-green-500 rounded-none border-2 border-black"></div>
           </div>
-          <pre className="whitespace-pre-wrap leading-relaxed min-h-[140px] pt-2">{terminalText}</pre>
+          <pre className="whitespace-pre-wrap leading-relaxed min-h-[160px] pt-2 text-base font-bold">{terminalText}</pre>
         </motion.div>
 
       </motion.div>
