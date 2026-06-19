@@ -2,8 +2,9 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Network, Microscope, UserCog, Scale, ArrowRight, ShieldCheck, Database, Layers, Lock, Activity, Cpu, Fingerprint, Printer, Trophy, CheckCircle2 } from 'lucide-react';
+import { Microscope, UserCog, Scale, ArrowRight, ShieldCheck, Lock, Activity, Cpu, Fingerprint, Printer } from 'lucide-react';
 import Link from 'next/link';
+import Image from 'next/image';
 import dynamic from 'next/dynamic';
 
 const Scene3D = dynamic(() => import('./components/Scene3D').then(mod => mod.Scene3D), { ssr: false });
@@ -354,19 +355,19 @@ export default function LandingPage() {
               {[...Array(3)].map((_, i) => (
                 <div key={i} className="flex space-x-8 md:space-x-16 items-center">
                   <div className="flex items-center justify-center bg-white px-8 py-4 border border-slate-200 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] min-w-[250px] hover:-translate-y-1 hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] transition-all">
-                    <img src="/band.svg" alt="Band SDK" className="h-14 w-auto object-contain" />
+                    <Image src="/band.svg" alt="Band SDK" width={180} height={56} className="h-14 w-auto object-contain" />
                   </div>
                   <div className="flex items-center justify-center bg-white px-8 py-4 border border-slate-200 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] min-w-[250px] hover:-translate-y-1 hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] transition-all">
-                    <img src="/featherless.svg" alt="Featherless AI" className="h-14 w-auto object-contain" />
+                    <Image src="/featherless.svg" alt="Featherless AI" width={220} height={56} className="h-14 w-auto object-contain" />
                   </div>
                   <div className="flex items-center justify-center bg-white px-8 py-4 border border-slate-200 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] min-w-[250px] hover:-translate-y-1 hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] transition-all">
-                    <img src="/chroma.svg" alt="ChromaDB" className="h-14 w-auto object-contain" />
+                    <Image src="/chroma.svg" alt="ChromaDB" width={200} height={56} className="h-14 w-auto object-contain" />
                   </div>
                   <div className="flex items-center justify-center bg-white px-8 py-4 border border-slate-200 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] min-w-[200px] hover:-translate-y-1 hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] transition-all">
-                    <img src="/lablab.svg" alt="lablab.ai" className="h-14 w-auto object-contain" />
+                    <Image src="/lablab.svg" alt="lablab.ai" width={150} height={56} className="h-14 w-auto object-contain" />
                   </div>
                   <div className="flex items-center justify-center bg-white px-8 py-4 border border-slate-200 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] min-w-[250px] hover:-translate-y-1 hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] transition-all gap-4 pr-12 md:pr-16">
-                    <img src="/aimlapi.png" alt="AI/ML API" className="h-10 w-10 object-contain rounded-md" />
+                    <Image src="/aimlapi.png" alt="AI/ML API" width={40} height={40} className="h-10 w-10 object-contain rounded-md" />
                     <span className="text-2xl font-serif font-bold text-black whitespace-nowrap">AI/ML API</span>
                   </div>
                 </div>

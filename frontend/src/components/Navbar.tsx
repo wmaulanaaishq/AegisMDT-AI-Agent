@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useAuth } from "./AuthProvider";
 import { LogOut, User } from "lucide-react";
 import { usePathname } from "next/navigation";
@@ -16,7 +17,7 @@ export default function Navbar() {
       <div className="container flex h-16 max-w-screen-2xl items-center px-8">
         <div className="mr-4 flex">
           <Link className="mr-6 flex items-center space-x-3" href="/">
-            <img src="/logo.jpeg" alt="AegisMDT Logo" className="h-10 w-auto rounded-lg shadow-sm" />
+            <Image src="/logo.jpeg" alt="AegisMDT Logo" width={40} height={40} className="h-10 w-auto rounded-lg shadow-sm" />
             <span className="hidden font-serif text-2xl font-bold sm:inline-block text-foreground tracking-tight">AegisMDT</span>
           </Link>
         </div>

@@ -26,15 +26,49 @@ const CircularProgress = ({ value, label }: { value: number, label: string }) =>
   );
 };
 
+interface TrialMatch {
+  trial_id: string;
+  eligibility_match_score: number;
+}
+
+interface ConsensusData {
+  diagnosis: string;
+  prognostic_score: number;
+  treatment_recommendation: string;
+  clinical_trials?: TrialMatch[];
+}
+
+interface MessageData {
+  agent: string;
+  action: string;
+  content: string;
+  citations?: string[];
+  confidence?: number;
+  timestamp?: string;
+}
+
+interface CaseDetails {
+  id: string;
+  status: string;
+  input_data: {
+    age?: string | number;
+    sex?: string;
+    description?: string;
+  };
+  timeline?: MessageData[];
+  consensus_result?: ConsensusData;
+  wsi_path?: string;
+}
+
 type CaseStatus = 'submitted' | 'processing' | 'debating' | 'consensus_reached' | 'awaiting_approval' | 'approved' | 'revised';
 
 export default function CaseDashboard() {
   const params = useParams();
   const caseId = params.id as string;
-  const [caseData, setCaseData] = useState<any>(null);
-  const [messages, setMessages] = useState<any[]>([]);
+  const [caseData, setCaseData] = useState<CaseDetails | null>(null);
+  const [messages, setMessages] = useState<MessageData[]>([]);
   const [status, setStatus] = useState<CaseStatus>('submitted');
-  const [consensus, setConsensus] = useState<any>(null);
+  const [consensus, setConsensus] = useState<ConsensusData | null>(null);
   const [feedback, setFeedback] = useState('');
   const [showFeedbackInput, setShowFeedbackInput] = useState(false);
   const [wsStatus, setWsStatus] = useState<'connecting' | 'connected' | 'disconnected' | 'error'>('connecting');
@@ -506,7 +540,7 @@ export default function CaseDashboard() {
                   <div>
                     <span className="text-muted-foreground block text-xs uppercase tracking-wider mb-1">Top Clinical Trials</span>
                     <div className="space-y-2">
-                      {consensus.clinical_trials.slice(0, 2).map((trial: any, i: number) => (
+                      {consensus.clinical_trials.slice(0, 2).map((trial: TrialMatch, i: number) => (
                         <div key={i} className="text-xs bg-secondary/40 p-2 rounded border border-border flex justify-between items-center">
                           <span className="font-medium">{trial.trial_id}</span>
                           <span className="text-teal-400">{(trial.eligibility_match_score * 100).toFixed(0)}% Match</span>

@@ -20,6 +20,7 @@ function PricingContent() {
     if (paymentStatus === "success" && urlUsername) {
       activateSubscription(urlUsername);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [paymentStatus, urlUsername]);
 
   const activateSubscription = async (username: string) => {
@@ -125,7 +126,7 @@ function PricingContent() {
               <li className="flex items-start"><CheckCircle2 className="w-5 h-5 text-green-500 mr-2 shrink-0" /> 50 Case Analyses per month</li>
               <li className="flex items-start"><CheckCircle2 className="w-5 h-5 text-green-500 mr-2 shrink-0" /> Full ICE Protocol (All 4 Clinical Agents)</li>
               <li className="flex items-start"><CheckCircle2 className="w-5 h-5 text-green-500 mr-2 shrink-0" /> Deep PubMed & Clinical Trial Graph API</li>
-              <li className="flex items-start"><CheckCircle2 className="w-5 h-5 text-green-500 mr-2 shrink-0" /> Doctor "Human-in-the-Loop" Intervention</li>
+              <li className="flex items-start"><CheckCircle2 className="w-5 h-5 text-green-500 mr-2 shrink-0" /> Doctor &quot;Human-in-the-Loop&quot; Intervention</li>
               <li className="flex items-start"><CheckCircle2 className="w-5 h-5 text-green-500 mr-2 shrink-0" /> Formal White-label EMR PDF Export</li>
             </ul>
           </div>
