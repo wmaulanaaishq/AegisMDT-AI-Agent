@@ -211,13 +211,14 @@ export default function LandingPage() {
       </div>
 
       {/* Meet The Agents Section */}
-      <div id="agents" className="w-full bg-white border-y-4 border-black py-24 relative z-10 pt-32 overflow-hidden">
+      <div id="agents" className="w-full bg-zinc-50 border-y-4 border-black py-24 relative z-10 pt-32 overflow-hidden">
         <div 
-          className="absolute inset-0 z-0 pointer-events-none opacity-40"
+          className="absolute inset-0 z-0 pointer-events-none opacity-60"
           style={{
-            backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.1) 2px, transparent 2px)',
-            backgroundSize: '32px 32px',
-            backgroundPosition: '0 0',
+            backgroundImage: `linear-gradient(to right, rgba(0,0,0,0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(0,0,0,0.05) 1px, transparent 1px)`,
+            backgroundSize: '40px 40px',
+            maskImage: 'linear-gradient(to bottom, black 50%, transparent 100%)',
+            WebkitMaskImage: 'linear-gradient(to bottom, black 50%, transparent 100%)',
           }}
         />
         <div className="container max-w-6xl px-6 mx-auto relative z-10">
@@ -298,22 +299,21 @@ export default function LandingPage() {
 
       {/* Tech Stack Banner */}
       <div id="protocol" className="mt-32 w-full max-w-5xl px-6 z-10 relative mb-32 pt-16">
-        <div className="absolute left-1/2 top-10 -translate-x-1/2 bg-white border-2 border-black px-6 py-2 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] z-20">
-          <p className="text-xs font-bold font-mono text-black uppercase tracking-widest m-0">Powered By</p>
+        <div className="absolute left-1/2 top-10 -translate-x-1/2 bg-black border-2 border-black px-6 py-2 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] z-20">
+          <p className="text-xs font-bold font-mono text-white uppercase tracking-widest m-0">Powered By</p>
         </div>
-        <div className="border-2 border-black bg-white p-12 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] mt-16 relative overflow-hidden">
+        <div className="border-2 border-black bg-zinc-900 p-12 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] mt-16 relative overflow-hidden">
           <div 
-            className="absolute inset-0 z-0 pointer-events-none opacity-30"
+            className="absolute inset-0 z-0 pointer-events-none opacity-10"
             style={{
-              backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.1) 2px, transparent 2px)',
+              backgroundImage: `linear-gradient(to right, rgba(255,255,255,1) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,1) 1px, transparent 1px)`,
               backgroundSize: '32px 32px',
-              backgroundPosition: '0 0',
             }}
           />
           <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16 relative z-10">
-            <div className="flex items-center space-x-3 bg-white p-3 border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]"><Network className="w-8 h-8"/> <span className="text-2xl font-serif font-bold">Band SDK</span></div>
-            <div className="flex items-center space-x-3 bg-white p-3 border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]"><Layers className="w-8 h-8"/> <span className="text-2xl font-serif font-bold">Featherless AI</span></div>
-            <div className="flex items-center space-x-3 bg-white p-3 border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]"><Database className="w-8 h-8"/> <span className="text-2xl font-serif font-bold">ChromaDB</span></div>
+            <div className="flex items-center space-x-3 bg-white p-3 border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]"><Network className="w-8 h-8 text-black"/> <span className="text-2xl font-serif font-bold text-black">Band SDK</span></div>
+            <div className="flex items-center space-x-3 bg-white p-3 border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]"><Layers className="w-8 h-8 text-black"/> <span className="text-2xl font-serif font-bold text-black">Featherless AI</span></div>
+            <div className="flex items-center space-x-3 bg-white p-3 border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]"><Database className="w-8 h-8 text-black"/> <span className="text-2xl font-serif font-bold text-black">ChromaDB</span></div>
           </div>
         </div>
       </div>
