@@ -140,20 +140,88 @@ export default function CaseDashboard() {
   return (
     <div className="container mx-auto max-w-[1400px] px-4 py-6">
       
-      {/* Print-Only Hospital Letterhead */}
-      <div className="hidden print:block mb-8 border-b-4 border-black pb-4">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center">
-            <ShieldCheck className="h-12 w-12 text-black mr-4" />
-            <div>
-              <h1 className="text-3xl font-serif font-bold text-black uppercase tracking-widest">AegisMDT</h1>
-              <p className="text-sm font-mono text-gray-600">Virtual Medical Board Orchestration Protocol</p>
-            </div>
+      {/* Print-Only Official EMR Report */}
+      <div className="hidden print:block text-black bg-white">
+        {/* Letterhead */}
+        <div className="flex justify-between items-end border-b-2 border-black pb-6 mb-6">
+          <div>
+            <h1 className="text-4xl font-serif font-black tracking-tight uppercase">AegisMDT</h1>
+            <p className="font-mono text-sm uppercase tracking-widest text-gray-500 mt-1">Multi-Disciplinary Tumor Board</p>
+            <p className="font-sans text-xs mt-1 text-gray-600">Department of Precision Oncology</p>
           </div>
-          <div className="text-right text-sm font-mono text-gray-500">
-            <p className="font-bold">CONFIDENTIAL EMR EXPORT</p>
-            <p>Generated: {new Date().toLocaleDateString()}</p>
-            <p>Case ID: {caseId.split('-')[0].toUpperCase()}</p>
+          <div className="text-right text-sm">
+            <p className="font-bold uppercase tracking-widest text-xs mb-1">Official EMR Export</p>
+            <p><span className="font-bold">Date:</span> {new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+            <p><span className="font-bold">Case ID:</span> {caseId.split('-')[0].toUpperCase()}</p>
+          </div>
+        </div>
+
+        {/* Patient Demographics */}
+        <div className="mb-6">
+          <h2 className="font-serif text-xl font-bold border-b border-gray-300 pb-2 mb-3 uppercase tracking-wider">Patient Demographics</h2>
+          <div className="grid grid-cols-2 gap-4 text-sm font-sans">
+            <div><span className="font-bold text-gray-600">Age:</span> {caseData.input_data.age || 'Not specified'} years</div>
+            <div><span className="font-bold text-gray-600">Sex:</span> <span className="capitalize">{caseData.input_data.sex || 'Not specified'}</span></div>
+            <div><span className="font-bold text-gray-600">MRN Hash:</span> <span className="font-mono text-xs">0x{caseData.id.replace(/-/g, '').substring(0,16)}...</span></div>
+            <div><span className="font-bold text-gray-600">Status:</span> HIPAA Compliant / Anonymized</div>
+          </div>
+        </div>
+
+        {/* Clinical Summary */}
+        <div className="mb-6">
+          <h2 className="font-serif text-xl font-bold border-b border-gray-300 pb-2 mb-3 uppercase tracking-wider">Clinical Summary</h2>
+          <div className="text-sm font-sans leading-relaxed text-justify whitespace-pre-wrap">
+            {caseData.anonymized_summary || caseData.input_data.description}
+          </div>
+        </div>
+
+        {/* Consensus Result */}
+        {consensus && (
+          <div className="mb-6">
+            <h2 className="font-serif text-xl font-bold border-b border-gray-300 pb-2 mb-3 uppercase tracking-wider">MDT Consensus & Recommendations</h2>
+            
+            <div className="mb-4">
+              <h3 className="font-bold text-sm text-gray-700 uppercase tracking-widest mb-1">Primary Diagnosis</h3>
+              <p className="text-lg font-serif font-bold">{consensus.diagnosis.primary_diagnosis}</p>
+              <p className="text-sm text-gray-600 italic">WHO Classification: {consensus.diagnosis.who_classification}</p>
+            </div>
+
+            <div className="mb-4">
+              <h3 className="font-bold text-sm text-gray-700 uppercase tracking-widest mb-1">Risk Assessment</h3>
+              <p className="text-md"><span className="font-bold">{consensus.risk_assessment.risk_category} Risk</span> (Urgency: <span className="uppercase">{consensus.risk_assessment.treatment_urgency}</span>)</p>
+            </div>
+
+            <div className="mb-4">
+              <h3 className="font-bold text-sm text-gray-700 uppercase tracking-widest mb-1">Treatment Plan</h3>
+              <p className="text-sm font-sans leading-relaxed text-justify whitespace-pre-wrap">{consensus.treatment_recommendation}</p>
+            </div>
+            
+            {consensus.references && consensus.references.length > 0 && (
+              <div className="mb-4">
+                <h3 className="font-bold text-sm text-gray-700 uppercase tracking-widest mb-1">Clinical Guidelines Referenced</h3>
+                <ul className="list-disc list-inside text-xs font-serif italic space-y-1">
+                  {consensus.references.map((ref: string, idx: number) => (
+                    <li key={idx}>{ref}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </div>
+        )}
+
+        {/* Signature Block */}
+        <div className="mt-20 pt-8 border-t border-gray-300 grid grid-cols-2 gap-8 text-sm break-inside-avoid">
+          <div>
+            <p className="mb-12 font-bold text-gray-600 uppercase tracking-widest">Attending Physician</p>
+            <div className="border-b border-black w-64 mb-2"></div>
+            <p>Signature & Date</p>
+            <p className="mt-2 text-xs text-gray-500 italic">This document represents a computational decision-support consensus and must be validated by a licensed medical professional.</p>
+          </div>
+          <div>
+            <p className="mb-12 font-bold text-gray-600 uppercase tracking-widest">AegisMDT Orchestrator</p>
+            <div className="border-b border-black w-64 mb-2"></div>
+            <p>Digital Audit Trail</p>
+            <p className="mt-2 font-mono text-[10px] text-gray-500 break-all">Hash ID: {caseData.id}</p>
           </div>
         </div>
       </div>
@@ -275,7 +343,7 @@ export default function CaseDashboard() {
         )}
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 h-[calc(100vh-140px)]">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 h-[calc(100vh-140px)] print:hidden">
         
         {/* Left Panel: Patient Data (Brutalist style) */}
         <div className="lg:col-span-3 flex flex-col space-y-4">
