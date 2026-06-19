@@ -82,12 +82,8 @@ _`;
           <span>Regulated Deep-Tech</span>
         </motion.div>
 
-        <motion.h1 variants={itemVariants} className="text-6xl md:text-8xl font-serif font-black tracking-tighter mb-8 leading-tight relative">
-          <div className="absolute -top-32 left-1/2 -translate-x-1/2 w-96 h-96 opacity-10 pointer-events-none mix-blend-multiply filter grayscale contrast-150 -z-10">
-            {/* Public Domain DNA microscope image from Wikimedia Commons */}
-            <img src="https://upload.wikimedia.org/wikipedia/commons/9/91/HD.17.022_%2811949587665%29.jpg" alt="Abstract DNA Microscope" className="w-full h-full object-cover rounded-full" />
-          </div>
-          <span className="bg-white px-8 py-3 border-4 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] inline-block transform -rotate-1 animate-glitch cursor-default">
+        <motion.h1 variants={itemVariants} className="text-6xl md:text-8xl font-serif font-black tracking-tighter mb-8 leading-tight relative z-10">
+          <span className="bg-white px-8 py-3 border-4 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] inline-block transform -rotate-1 cursor-default hover:scale-105 transition-transform duration-300">
             AegisMDT
           </span>
           <br />
