@@ -277,40 +277,55 @@ export default function CaseDashboard() {
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 h-[calc(100vh-140px)]">
         
-        {/* Left Panel: Patient Data */}
+        {/* Left Panel: Patient Data (Brutalist style) */}
         <div className="lg:col-span-3 flex flex-col space-y-4">
-          <div className="glass-panel p-5 flex-1 overflow-y-auto">
-            <h3 className="font-semibold mb-4 border-b border-border/50 pb-2">Anonymized Profile</h3>
-            <div className="space-y-4 text-sm">
-              <div>
-                <span className="text-muted-foreground block text-xs uppercase tracking-wider">Age / Sex</span>
-                <p className="font-medium">{caseData.input_data.age || 'Unknown'} / {caseData.input_data.sex || 'Unknown'}</p>
+          <div className="bg-white border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] rounded-none flex-1 overflow-y-auto">
+            <div className="bg-gray-100 px-5 py-4 border-b-2 border-black">
+              <div className="flex items-center gap-2 mb-2">
+                <Stethoscope size={16} strokeWidth={2.5} />
+                <span className="font-mono uppercase text-[11px] tracking-[0.22em] font-bold">Patient Profile</span>
               </div>
-              <div>
-                <span className="text-muted-foreground block text-xs uppercase tracking-wider">Latent Vector Hash</span>
-                <p className="font-mono text-[10px] text-green-400 break-all">
+              <h2 className="text-2xl font-black font-serif tracking-tighter leading-none mb-2 capitalize">
+                {caseData.input_data.sex || 'Unknown'}, {caseData.input_data.age || '?'} yrs
+              </h2>
+              <div className="flex gap-2 flex-wrap mt-3">
+                <span className="bg-black text-white text-[10px] font-mono uppercase tracking-widest px-2 py-1 font-bold">ID · {caseData.id.substring(0,4).toUpperCase()}</span>
+                <span className="bg-orange-400 text-black border border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] text-[10px] font-mono uppercase tracking-widest px-2 py-1 font-bold">HIPAA Audited</span>
+              </div>
+            </div>
+
+            <div className="px-5 py-4 border-b-2 border-black">
+               <div className="font-mono uppercase text-[10px] tracking-[0.22em] text-gray-500 font-bold mb-3">
+                 § Clinical Summary
+               </div>
+               <p className="text-sm font-medium leading-relaxed whitespace-pre-wrap">{caseData.anonymized_summary || caseData.input_data.description}</p>
+            </div>
+
+            <div className="px-5 py-4">
+               <div className="font-mono uppercase text-[10px] tracking-[0.22em] text-gray-500 font-bold mb-3">
+                 § Latent Vector Hash
+               </div>
+               <p className="font-mono text-[10px] text-green-600 font-bold break-all bg-green-50 p-2 border border-green-200">
                   0x{caseData.id.replace(/-/g, '')}a9f2c...
-                </p>
-              </div>
-              <div>
-                <span className="text-muted-foreground block text-xs uppercase tracking-wider">Clinical Description</span>
-                <p className="text-foreground/90 whitespace-pre-wrap">{caseData.anonymized_summary || caseData.input_data.description}</p>
-              </div>
+               </p>
             </div>
           </div>
         </div>
 
         {/* Center Panel: Agent Debate Room (WebSocket Stream) */}
-        <div className="lg:col-span-5 flex flex-col glass-panel overflow-hidden">
-          <div className="p-4 border-b border-border/50 bg-background/50 flex justify-between items-center">
-            <h3 className="font-semibold flex items-center">
-              <Activity className="mr-2 h-4 w-4 text-primary" />
-              Live Agent Collaboration
+        <div className="lg:col-span-5 flex flex-col bg-white border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] rounded-none overflow-hidden">
+          <div className="p-4 border-b-2 border-black bg-gray-100 flex justify-between items-center">
+            <h3 className="font-bold font-serif uppercase tracking-widest flex items-center text-sm">
+              <Activity className="mr-2 h-4 w-4 text-black" />
+              Live Agent Swarm
             </h3>
-            <span className="flex h-2 w-2 relative">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
-            </span>
+            <div className="flex items-center gap-2">
+              {['MO', 'PA', 'PR', 'PV', 'TR'].map(agent => (
+                <div key={agent} className={`w-8 h-8 border-2 border-black font-mono text-[10px] font-bold flex items-center justify-center ${status === 'debating' && (agent === 'PA' || agent === 'PR' || agent === 'MO') ? 'bg-yellow-400 text-black animate-pulse shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]' : 'bg-white text-gray-400'}`} title={`Agent: ${agent}`}>
+                  {agent}
+                </div>
+              ))}
+            </div>
           </div>
           
           <div className="flex-1 overflow-y-auto p-4 space-y-4">
