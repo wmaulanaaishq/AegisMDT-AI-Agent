@@ -93,26 +93,29 @@ export default function LandingPage() {
   };
 
   return (
-    <div className="min-h-[calc(100vh-4rem)] flex flex-col items-center relative overflow-hidden bg-background">
+    <div className="flex flex-col items-center bg-background">
       <Marquee />
-      {/* Interactive 3D Background */}
-      <div className="absolute inset-0 z-0 pointer-events-auto opacity-75 mix-blend-multiply">
-        <Scene3D />
-      </div>
 
-      <div 
-        className="absolute inset-0 z-0 pointer-events-none"
-        style={{
-          backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.1) 2px, transparent 2px)',
-          backgroundSize: '32px 32px',
-          backgroundPosition: '0 0',
-          maskImage: 'linear-gradient(to bottom, black 0%, black 70%, transparent 100%)',
-          WebkitMaskImage: 'linear-gradient(to bottom, black 0%, black 70%, transparent 100%)',
-        }}
-      />
+      {/* Hero Wrapper (Contains 3D Scene & Grid) */}
+      <div className="relative w-full min-h-[calc(100vh-4rem)] flex flex-col items-center justify-center overflow-hidden border-b-8 border-black">
+        {/* Interactive 3D Background */}
+        <div className="absolute inset-0 z-0 pointer-events-auto opacity-75 mix-blend-multiply">
+          <Scene3D />
+        </div>
 
-      {/* Hero Section */}
-      <motion.div 
+        <div 
+          className="absolute inset-0 z-0 pointer-events-none"
+          style={{
+            backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.1) 2px, transparent 2px)',
+            backgroundSize: '32px 32px',
+            backgroundPosition: '0 0',
+            maskImage: 'linear-gradient(to bottom, black 0%, black 70%, transparent 100%)',
+            WebkitMaskImage: 'linear-gradient(to bottom, black 0%, black 70%, transparent 100%)',
+          }}
+        />
+
+        {/* Hero Content */}
+        <motion.div 
         className="z-10 container max-w-5xl px-6 flex flex-col items-center justify-center mt-28 mb-32 text-center"
         variants={containerVariants}
         initial="hidden"
@@ -161,9 +164,10 @@ export default function LandingPage() {
           <pre className="whitespace-pre-wrap leading-relaxed min-h-[160px] pt-2 text-base font-bold">{terminalLines.join('\n')}<span className="animate-pulse">_</span></pre>
         </motion.div>
 
-      </motion.div>
+        </motion.div>
+      </div> {/* End Hero Wrapper */}
 
-      <div id="platform" className="w-full max-w-6xl px-6 mb-32 z-10 pt-16">
+      <div id="platform" className="w-full max-w-6xl px-6 mb-32 z-10 pt-24">
         <motion.div 
           initial="hidden"
           whileInView="visible"
@@ -172,34 +176,34 @@ export default function LandingPage() {
           className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full text-left"
         >
           {/* Feature 1 */}
-          <div className="glass-panel p-8">
-            <div className="w-14 h-14 bg-primary text-white border-2 border-black flex items-center justify-center shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] mb-6">
-              <Scale className="w-7 h-7" />
+          <div className="bg-white p-8 border-4 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[-4px] hover:translate-y-[-4px] hover:shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] transition-all">
+            <div className="w-16 h-16 bg-primary text-black border-4 border-black flex items-center justify-center shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] mb-6">
+              <Scale className="w-8 h-8" />
             </div>
-            <h3 className="text-2xl font-serif font-bold mb-3 text-foreground">ICE Protocol</h3>
-            <p className="text-foreground/80 font-medium leading-relaxed">
+            <h3 className="text-2xl font-serif font-black mb-3 text-black tracking-tight">ICE Protocol</h3>
+            <p className="text-black/80 font-bold leading-relaxed text-sm">
               Agents actively debate conflicting prognoses until a high-confidence consensus is reached, eliminating single-model hallucinations.
             </p>
           </div>
 
           {/* Feature 2 */}
-          <div className="glass-panel p-8">
-            <div className="w-14 h-14 bg-white text-black border-2 border-black flex items-center justify-center shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] mb-6">
-              <Microscope className="w-7 h-7" />
+          <div className="bg-white p-8 border-4 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[-4px] hover:translate-y-[-4px] hover:shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] transition-all">
+            <div className="w-16 h-16 bg-white text-black border-4 border-black flex items-center justify-center shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] mb-6">
+              <Microscope className="w-8 h-8" />
             </div>
-            <h3 className="text-2xl font-serif font-bold mb-3 text-foreground">Multi-Modal Vision</h3>
-            <p className="text-foreground/80 font-medium leading-relaxed">
+            <h3 className="text-2xl font-serif font-black mb-3 text-black tracking-tight">Multi-Modal Vision</h3>
+            <p className="text-black/80 font-bold leading-relaxed text-sm">
               Pathology agents process both unstructured medical texts and complex microscopic imagery to identify rare genomic mutations.
             </p>
           </div>
 
           {/* Feature 3 */}
-          <div className="glass-panel p-8">
-            <div className="w-14 h-14 bg-black text-white border-2 border-black flex items-center justify-center shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] mb-6">
-              <UserCog className="w-7 h-7" />
+          <div className="bg-white p-8 border-4 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[-4px] hover:translate-y-[-4px] hover:shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] transition-all">
+            <div className="w-16 h-16 bg-black text-white border-4 border-black flex items-center justify-center shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] mb-6">
+              <UserCog className="w-8 h-8" />
             </div>
-            <h3 className="text-2xl font-serif font-bold mb-3 text-foreground">Human-in-the-Loop</h3>
-            <p className="text-foreground/80 font-medium leading-relaxed">
+            <h3 className="text-2xl font-serif font-black mb-3 text-black tracking-tight">Human-in-the-Loop</h3>
+            <p className="text-black/80 font-bold leading-relaxed text-sm">
               Doctors retain ultimate control. Intervene mid-debate to steer the AI's clinical direction or request immediate literature revisions.
             </p>
           </div>
