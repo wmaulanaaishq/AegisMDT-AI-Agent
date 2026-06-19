@@ -28,7 +28,6 @@ const Marquee = () => (
 
 export default function LandingPage() {
   const { scrollYProgress } = useScroll();
-  const y = useTransform(scrollYProgress, [0, 1], [0, -50]);
 
   const [terminalLines, setTerminalLines] = useState<string[]>([]);
   
@@ -88,7 +87,7 @@ export default function LandingPage() {
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.6, ease: "easeOut" }
+      transition: { duration: 0.6, ease: "easeOut" as const }
     }
   };
 
@@ -213,7 +212,7 @@ export default function LandingPage() {
               </div>
               <h3 className="text-2xl font-serif font-black mb-3 text-black tracking-tight">Human-in-the-Loop</h3>
               <p className="text-black/80 font-bold leading-relaxed text-sm">
-                Doctors retain ultimate control. Intervene mid-debate to steer the AI's clinical direction or request immediate literature revisions.
+                Doctors retain ultimate control. Intervene mid-debate to steer the AI&apos;s clinical direction or request immediate literature revisions.
               </p>
             </div>
           </motion.div>
@@ -283,7 +282,7 @@ export default function LandingPage() {
               <div className="bg-black text-white font-bold font-mono text-xs uppercase tracking-widest px-3 py-1 border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] mb-4 inline-flex items-center"><Cpu className="w-4 h-4 mr-2"/> Agentic RAG</div>
               <h4 className="text-xl font-bold font-serif mb-2 text-black">Semantic Scholar APIs</h4>
               <p className="text-sm font-medium opacity-80 leading-relaxed text-black">
-                Agents don't hallucinate treatments. They fetch real-time clinical trials and oncology literature from PubMed/Semantic Scholar via ChromaDB vector retrieval to ground their debates.
+                Agents don&apos;t hallucinate treatments. They fetch real-time clinical trials and oncology literature from PubMed/Semantic Scholar via ChromaDB vector retrieval to ground their debates.
               </p>
             </motion.div>
             
@@ -299,7 +298,7 @@ export default function LandingPage() {
               <div className="bg-black text-white font-bold font-mono text-xs uppercase tracking-widest px-3 py-1 border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] mb-4 inline-flex items-center"><Printer className="w-4 h-4 mr-2"/> Enterprise Grade</div>
               <h4 className="text-xl font-bold font-serif mb-2 text-black">Print-Ready EMR</h4>
               <p className="text-sm font-medium opacity-80 leading-relaxed text-black">
-                The final consensus isn't just a UI component. It exports into a formal, print-ready Electronic Medical Record (PDF) with strict clinical formatting for hospital archives.
+                The final consensus isn&apos;t just a UI component. It exports into a formal, print-ready Electronic Medical Record (PDF) with strict clinical formatting for hospital archives.
               </p>
             </motion.div>
           </div>
