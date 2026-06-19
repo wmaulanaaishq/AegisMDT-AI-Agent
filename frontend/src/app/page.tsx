@@ -199,6 +199,47 @@ _`;
         </div>
       </div>
 
+      {/* Hackathon Winning Features Section */}
+      <div id="enterprise" className="w-full max-w-6xl px-6 z-10 relative pt-16 mt-16 text-left">
+        <motion.div 
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={containerVariants}
+        >
+          <div className="mb-12">
+            <h2 className="text-4xl md:text-5xl font-serif font-black mb-4">Built for Production.</h2>
+            <p className="text-lg font-medium text-foreground/80 max-w-2xl">Not just a prototype. We implemented rigorous data integrity and monetization channels.</p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <motion.div variants={itemVariants} className="bg-white p-6 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-1 transition-transform">
+              <div className="text-primary font-bold font-mono text-sm uppercase tracking-widest mb-4 flex items-center"><Database className="w-4 h-4 mr-2"/> Agentic RAG</div>
+              <h4 className="text-xl font-bold font-serif mb-2">Semantic Scholar APIs</h4>
+              <p className="text-sm font-medium opacity-80 leading-relaxed">
+                Agents don't hallucinate treatments. They fetch real-time clinical trials and oncology literature from PubMed/Semantic Scholar via ChromaDB vector retrieval to ground their debates.
+              </p>
+            </motion.div>
+            
+            <motion.div variants={itemVariants} className="bg-white p-6 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-1 transition-transform">
+              <div className="text-primary font-bold font-mono text-sm uppercase tracking-widest mb-4 flex items-center"><Lock className="w-4 h-4 mr-2"/> Monetization</div>
+              <h4 className="text-xl font-bold font-serif mb-2">DOKU Payment Gateway</h4>
+              <p className="text-sm font-medium opacity-80 leading-relaxed">
+                Integrated with DOKU for seamless hospital subscriptions. Guest doctors hit a paywall, while VIP VIP/Regulated accounts bypass it seamlessly. Real business viability.
+              </p>
+            </motion.div>
+            
+            <motion.div variants={itemVariants} className="bg-white p-6 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-1 transition-transform">
+              <div className="text-primary font-bold font-mono text-sm uppercase tracking-widest mb-4 flex items-center"><ShieldCheck className="w-4 h-4 mr-2"/> Enterprise Grade</div>
+              <h4 className="text-xl font-bold font-serif mb-2">Print-Ready EMR</h4>
+              <p className="text-sm font-medium opacity-80 leading-relaxed">
+                The final consensus isn't just a UI component. It exports into a formal, print-ready Electronic Medical Record (PDF) with strict clinical formatting for hospital archives.
+              </p>
+            </motion.div>
+          </div>
+        </motion.div>
+      </div>
+
       {/* Tech Stack Banner */}
       <div id="protocol" className="mt-32 w-full max-w-5xl px-6 z-10 relative mb-32 pt-16">
         <div className="absolute left-1/2 top-10 -translate-x-1/2 bg-white border-2 border-black px-6 py-2 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] z-20">
