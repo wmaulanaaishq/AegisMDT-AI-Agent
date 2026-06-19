@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useRef } from 'react';
 import { useParams } from 'next/navigation';
-import { Activity, CheckCircle, AlertTriangle, Users, Stethoscope, Microscope, Search, ShieldCheck, FileText, ShieldAlert, Hash, Timer } from 'lucide-react';
+import { Activity, CheckCircle, AlertTriangle, Users, Stethoscope, Microscope, Search, ShieldCheck, FileText, ShieldAlert, Hash, Timer, BookOpen } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const CircularProgress = ({ value, label }: { value: number, label: string }) => {
@@ -353,6 +353,19 @@ export default function CaseDashboard() {
                   </div>
                   <div className="text-sm font-medium leading-relaxed whitespace-pre-wrap">{msg.content}</div>
                   
+                  {msg.references && msg.references.length > 0 && (
+                    <div className="mt-3 pt-2 border-t border-current/20">
+                      <div className="text-[10px] font-mono font-bold uppercase tracking-widest opacity-70 mb-1 flex items-center">
+                        <BookOpen size={10} className="mr-1" /> Citations & References
+                      </div>
+                      <ul className="list-disc list-outside ml-3 text-[11px] opacity-90 space-y-1">
+                        {msg.references.map((ref: string, idx: number) => (
+                          <li key={idx} className="font-serif italic leading-tight">{ref}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+
                   {msg.confidence !== null && (
                     <div className="mt-3 flex items-center pt-2 border-t border-current/10">
                       <div className="h-1.5 flex-1 bg-current/20 rounded-none overflow-hidden border border-black/20">
