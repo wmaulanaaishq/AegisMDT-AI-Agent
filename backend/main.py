@@ -61,6 +61,11 @@ async def create_case(case_input: PatientCaseInput, background_tasks: Background
     
     return case
 
+@app.get("/api/cases", response_model=list[PatientCase])
+async def list_cases():
+    """Retrieve all patient cases."""
+    return get_all_cases()
+
 async def process_case_bg(case_id: str):
     """Background task to run the orchestrator and broadcast WebSocket updates."""
     case = get_case(case_id)

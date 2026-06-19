@@ -26,12 +26,22 @@ Return a JSON object with the following schema:
 }
 """
     
+    from vector_store import search_similar_cases
+    rag_context = ""
+    try:
+        similar_cases = search_similar_cases(anonymized_case, n_results=2)
+        if similar_cases:
+            rag_context = "\n\nRelevant Historical Cases from ChromaDB (RAG):\n" + "\n".join(similar_cases)
+    except Exception as e:
+        logger.error(f"Failed to query RAG: {e}")
+
     user_message = f"""
 Case Description:
 {anonymized_case}
 
 Pathology Findings:
 {json.dumps(pathology_result, indent=2)}
+{rag_context}
 """
     
     try:

@@ -166,7 +166,26 @@ export default function CaseDashboard() {
 
   return (
     <div className="container mx-auto max-w-[1400px] px-4 py-6">
-      <div className="mb-6 flex items-center justify-between">
+      
+      {/* Print-Only Hospital Letterhead */}
+      <div className="hidden print:block mb-8 border-b-4 border-black pb-4">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center">
+            <ShieldCheck className="h-12 w-12 text-black mr-4" />
+            <div>
+              <h1 className="text-3xl font-serif font-bold text-black uppercase tracking-widest">AegisMDT</h1>
+              <p className="text-sm font-mono text-gray-600">Virtual Medical Board Orchestration Protocol</p>
+            </div>
+          </div>
+          <div className="text-right text-sm font-mono text-gray-500">
+            <p className="font-bold">CONFIDENTIAL EMR EXPORT</p>
+            <p>Generated: {new Date().toLocaleDateString()}</p>
+            <p>Case ID: {caseId.split('-')[0].toUpperCase()}</p>
+          </div>
+        </div>
+      </div>
+
+      <div className="mb-6 flex items-center justify-between print:hidden">
         <div>
           <h1 className="text-2xl font-bold flex items-center">
             Case Dashboard <span className="text-muted-foreground font-normal ml-2 text-sm font-mono">{caseId.split('-')[0]}</span>

@@ -14,6 +14,7 @@ export default function Home() {
   const [sex, setSex] = useState('');
   const [imageUrl, setImageUrl] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [cases, setCases] = useState<any[]>([]);
 
   useEffect(() => {
     if (!authLoading) {
@@ -21,6 +22,12 @@ export default function Home() {
         router.push("/login");
       } else if (!user.subscription_active) {
         router.push("/pricing");
+      } else {
+        // Fetch historical cases
+        fetch('http://localhost:8000/api/cases')
+          .then(res => res.json())
+          .then(data => setCases(data))
+          .catch(err => console.error("Failed to fetch cases:", err));
       }
     }
   }, [user, authLoading, router]);
@@ -249,6 +256,64 @@ export default function Home() {
           </div>
         </motion.div>
       </div>
+
+      {/* Historical Cases Table */}
+      <motion.div 
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.6 }}
+        className="mt-8 mb-16"
+      >
+        <h2 className="text-2xl font-bold flex items-center mb-4">
+          <Activity className="mr-2 h-5 w-5 text-primary" />
+          Historical Case Registry
+        </h2>
+        
+        {cases.length === 0 ? (
+          <div className="glass-panel p-8 text-center text-muted-foreground border-dashed">
+            <p>No historical cases found in the database. Submit a new case to populate the registry.</p>
+          </div>
+        ) : (
+          <div className="overflow-x-auto glass-panel p-0 border-2 border-black rounded-none shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+            <table className="w-full text-left text-sm">
+              <thead className="bg-black text-white font-mono uppercase">
+                <tr>
+                  <th className="px-4 py-3 font-semibold">Case Hash</th>
+                  <th className="px-4 py-3 font-semibold">Date</th>
+                  <th className="px-4 py-3 font-semibold">Age/Sex</th>
+                  <th className="px-4 py-3 font-semibold">Status</th>
+                  <th className="px-4 py-3 font-semibold text-right">Action</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-black/20 bg-white">
+                {cases.map((c) => (
+                  <tr key={c.id} className="hover:bg-orange-50 transition-colors">
+                    <td className="px-4 py-3 font-mono text-xs text-primary">0x{c.id.substring(0, 8)}...</td>
+                    <td className="px-4 py-3 text-muted-foreground">{new Date(c.created_at).toLocaleDateString()}</td>
+                    <td className="px-4 py-3">{c.input_data.age || '?'} / {c.input_data.sex || '?'}</td>
+                    <td className="px-4 py-3">
+                      <span className={`inline-flex items-center px-2 py-0.5 text-[10px] font-bold uppercase rounded-none border ${
+                        c.status === 'approved' ? 'bg-green-100 text-green-800 border-green-800' : 
+                        c.status === 'awaiting_approval' ? 'bg-blue-100 text-blue-800 border-blue-800' :
+                        'bg-yellow-100 text-yellow-800 border-yellow-800'
+                      }`}>
+                        {c.status.replace('_', ' ')}
+                      </span>
+                    </td>
+                    <td className="px-4 py-3 text-right">
+                      <button 
+                        onClick={() => router.push(`/cases/${c.id}`)}
+                        className="text-xs bg-black text-white px-3 py-1 font-bold hover:bg-primary transition-colors">
+                        VIEW
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
+      </motion.div>
     </div>
   );
 }
