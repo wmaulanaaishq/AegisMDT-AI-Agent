@@ -61,81 +61,12 @@ export function Scene3D() {
     const coreGroup = new THREE.Group();
     scene.add(coreGroup);
 
-    // 1. Base Pedestal
-    const baseGeo = new THREE.CylinderGeometry(1.4, 1.5, 0.6, 32);
-    const baseMat = new THREE.MeshStandardMaterial({ color: INK, roughness: 0.2, metalness: 0.8 });
-    const base = new THREE.Mesh(baseGeo, baseMat);
-    base.position.y = -0.3;
-    coreGroup.add(base);
-
-    // Medical Cross Logo on Base
-    const crossGroup = new THREE.Group();
-    const crossMat = new THREE.MeshStandardMaterial({ color: 0xffffff, emissive: 0xffffff, emissiveIntensity: 0.8 });
-    const hBar = new THREE.Mesh(new THREE.BoxGeometry(0.4, 0.12, 0.05), crossMat);
-    const vBar = new THREE.Mesh(new THREE.BoxGeometry(0.12, 0.4, 0.05), crossMat);
-    crossGroup.add(hBar);
-    crossGroup.add(vBar);
-    
-    for(let i=0; i<4; i++) {
-        const c = crossGroup.clone();
-        c.position.set(Math.sin(i * Math.PI/2) * 1.45, -0.3, Math.cos(i * Math.PI/2) * 1.45);
-        c.rotation.y = i * Math.PI/2;
-        coreGroup.add(c);
-    }
-
-    // 2. Glass Dome
-    const domeGeo = new THREE.SphereGeometry(1.35, 32, 32, 0, Math.PI * 2, 0, Math.PI / 2);
-    const domeMat = new THREE.MeshPhysicalMaterial({ 
-      color: 0xffffff, 
-      transparent: true, 
-      opacity: 0.15,
-      roughness: 0.1,
-      metalness: 0.2,
-    });
-    const dome = new THREE.Mesh(domeGeo, domeMat);
-    coreGroup.add(dome);
-
-    // 3. Inner AI Brain Core
-    const brainGeo = new THREE.IcosahedronGeometry(0.6, 2);
-    const tealCol = readVar('--brand-teal', '#00e0c7');
-    const brainMat = new THREE.MeshStandardMaterial({ 
-      color: tealCol, 
-      emissive: tealCol, 
-      emissiveIntensity: 0.5,
-      wireframe: true 
-    });
-    const coreMesh = new THREE.Mesh(brainGeo, brainMat);
-    coreMesh.position.y = 0.5;
+    // Core removed per user request (was blocking text)
+    const coreMesh = new THREE.Group();
     coreGroup.add(coreMesh);
-
-    // Inner glowing sphere
-    const innerGlow = new THREE.Mesh(
-      new THREE.SphereGeometry(0.4, 32, 32),
-      new THREE.MeshStandardMaterial({ color: 0xffffff, emissive: tealCol, emissiveIntensity: 1 })
-    );
-    innerGlow.position.y = 0.5;
-    coreGroup.add(innerGlow);
-
-    // 4. Floating data rings (replacing electrons)
+    
     const electronGroup = new THREE.Group();
     coreGroup.add(electronGroup);
-    
-    const ring1 = new THREE.Mesh(
-      new THREE.TorusGeometry(0.9, 0.02, 16, 64),
-      new THREE.MeshStandardMaterial({ color: tealCol, emissive: tealCol, emissiveIntensity: 0.8 })
-    );
-    ring1.rotation.x = Math.PI / 2;
-    ring1.position.y = 0.5;
-    electronGroup.add(ring1);
-
-    const ring2 = new THREE.Mesh(
-      new THREE.TorusGeometry(1.1, 0.01, 16, 64),
-      new THREE.MeshStandardMaterial({ color: 0xffffff, emissive: 0xffffff, emissiveIntensity: 0.5 })
-    );
-    ring2.rotation.x = Math.PI / 3;
-    ring2.rotation.y = Math.PI / 4;
-    ring2.position.y = 0.5;
-    electronGroup.add(ring2);
 
     // ─── Agent robots ───────────────────────────────────────────
     const agents = AGENT_DEFS.map((def) => {
