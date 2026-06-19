@@ -78,7 +78,7 @@ export default function Home() {
         
         {/* Platform Metrics (Mock Data for Hackathon "WOW" factor) */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <div className="glass-panel p-4 flex items-center">
+          <div className="bg-white border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] rounded-none p-4 flex items-center">
             <div className="h-10 w-10 bg-primary/20 text-primary border-2 border-black rounded-none flex items-center justify-center mr-4">
               <Users className="h-5 w-5" />
             </div>
@@ -88,7 +88,7 @@ export default function Home() {
             </div>
           </div>
           
-          <div className="glass-panel p-4 flex items-center">
+          <div className="bg-white border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] rounded-none p-4 flex items-center">
             <div className="h-10 w-10 bg-green-500/20 text-green-700 border-2 border-black rounded-none flex items-center justify-center mr-4">
               <Shield className="h-5 w-5" />
             </div>
@@ -98,7 +98,7 @@ export default function Home() {
             </div>
           </div>
           
-          <div className="glass-panel p-4 flex items-center">
+          <div className="bg-white border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] rounded-none p-4 flex items-center">
             <div className="h-10 w-10 bg-primary/20 text-primary border-2 border-black rounded-none flex items-center justify-center mr-4">
               <Activity className="h-5 w-5" />
             </div>
@@ -116,7 +116,7 @@ export default function Home() {
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5, delay: 0.3 }}
-          className="md:col-span-7 glass-panel rounded-xl p-6"
+          className="md:col-span-7 bg-white border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] rounded-none p-6"
         >
           <div className="mb-6 flex justify-between items-start">
             <div>
@@ -216,7 +216,7 @@ export default function Home() {
           transition={{ duration: 0.5, delay: 0.4 }}
           className="md:col-span-5 space-y-4"
         >
-          <div className="glass-panel p-5 border-l-4 border-l-primary rounded-none">
+          <div className="bg-white p-5 border-2 border-black border-l-8 border-l-primary shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] rounded-none">
             <h3 className="font-bold font-serif text-xl mb-4">Agent Workflow</h3>
             <ul className="space-y-4 text-sm font-mono">
               <li className="flex items-start">
@@ -228,29 +228,29 @@ export default function Home() {
                 <span><strong>Pathology & Prognostication Agents</strong> analyze the case in parallel via Band rooms.</span>
               </li>
               <li className="flex items-start">
-                <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-primary/20 text-primary text-xs font-medium mr-3">3</span>
+                <span className="flex h-6 w-6 shrink-0 items-center justify-center border-2 border-black bg-primary text-white text-xs font-bold mr-3 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">3</span>
                 <span><strong>Moderator Agent</strong> enforces the ICE Protocol (Iterative Consensus Ensemble) if conflict arises.</span>
               </li>
             </ul>
           </div>
           
-          <div className="glass-panel rounded-xl p-5">
-            <h3 className="font-semibold flex items-center mb-4">
-              <Activity className="mr-2 h-4 w-4 text-green-400" /> 
+          <div className="bg-white border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] rounded-none p-5">
+            <h3 className="font-bold font-serif text-xl mb-4 flex items-center">
+              <Activity className="mr-2 h-5 w-5 text-green-500" /> 
               System Status
             </h3>
-            <div className="space-y-2 text-sm">
-              <div className="flex justify-between">
-                <span className="text-muted-foreground">Band Platform</span>
-                <span className="text-green-400 font-medium">Connected</span>
+            <div className="space-y-3 text-sm font-mono font-bold">
+              <div className="flex justify-between border-b-2 border-gray-100 pb-2">
+                <span className="text-gray-500 uppercase tracking-widest text-xs">Band Platform</span>
+                <span className="text-green-500 uppercase">Connected</span>
               </div>
-              <div className="flex justify-between">
-                <span className="text-muted-foreground">Active Agents</span>
-                <span className="font-medium text-foreground">5 / 5</span>
+              <div className="flex justify-between border-b-2 border-gray-100 pb-2">
+                <span className="text-gray-500 uppercase tracking-widest text-xs">Active Agents</span>
+                <span className="text-black uppercase">5 / 5</span>
               </div>
-              <div className="flex justify-between">
-                <span className="text-muted-foreground">Privacy Protocol</span>
-                <span className="font-medium text-foreground">HIPAA Enforced</span>
+              <div className="flex justify-between pb-1">
+                <span className="text-gray-500 uppercase tracking-widest text-xs">Privacy Protocol</span>
+                <span className="text-black uppercase">HIPAA Enforced</span>
               </div>
             </div>
           </div>
@@ -270,7 +270,7 @@ export default function Home() {
         </h2>
         
         {cases.length === 0 ? (
-          <div className="glass-panel p-8 text-center text-muted-foreground border-dashed">
+          <div className="bg-white p-8 text-center text-black font-bold font-mono border-2 border-dashed border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
             <p>No historical cases found in the database. Submit a new case to populate the registry.</p>
           </div>
         ) : (
