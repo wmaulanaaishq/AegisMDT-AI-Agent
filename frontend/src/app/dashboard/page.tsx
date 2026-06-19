@@ -196,7 +196,8 @@ export default function Home() {
 
           <form onSubmit={handleSubmit} className="space-y-4">
             {activeTab === 'upload' && (
-              <div className="border-4 border-dashed border-black p-8 text-center bg-zinc-50 flex flex-col items-center justify-center cursor-pointer hover:bg-zinc-100 transition-colors" onClick={handleUpload}>
+              <label className="border-4 border-dashed border-black p-8 text-center bg-zinc-50 flex flex-col items-center justify-center cursor-pointer hover:bg-zinc-100 transition-colors">
+                <input type="file" className="hidden" accept=".pdf,.png,.jpg" onChange={handleUpload} />
                 {isUploading ? (
                    <div className="animate-spin mb-4"><Upload className="w-8 h-8 text-primary" /></div>
                 ) : (
@@ -204,7 +205,7 @@ export default function Home() {
                 )}
                 <p className="font-mono text-sm font-bold text-black">{isUploading ? "Parsing PDF via OCR..." : "Drag & Drop Pathology PDF or Click to Upload"}</p>
                 <p className="text-xs text-muted-foreground mt-2">Auto-extracts clinical history securely</p>
-              </div>
+              </label>
             )}
 
             {activeTab === 'emr' && (
