@@ -213,10 +213,9 @@ export default function LandingPage() {
       {/* Meet The Agents Section */}
       <div id="agents" className="w-full bg-zinc-50 border-y-4 border-black py-24 relative z-10 pt-32 overflow-hidden">
         <div 
-          className="absolute inset-0 z-0 pointer-events-none opacity-60"
+          className="absolute inset-0 z-0 pointer-events-none opacity-[0.15]"
           style={{
-            backgroundImage: `linear-gradient(to right, rgba(0,0,0,0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(0,0,0,0.05) 1px, transparent 1px)`,
-            backgroundSize: '40px 40px',
+            backgroundImage: `url('https://www.transparenttextures.com/patterns/cubes.png')`,
             maskImage: 'linear-gradient(to bottom, black 50%, transparent 100%)',
             WebkitMaskImage: 'linear-gradient(to bottom, black 50%, transparent 100%)',
           }}
@@ -304,10 +303,9 @@ export default function LandingPage() {
         </div>
         <div className="border-2 border-black bg-zinc-900 p-12 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] mt-16 relative overflow-hidden">
           <div 
-            className="absolute inset-0 z-0 pointer-events-none opacity-10"
+            className="absolute inset-0 z-0 pointer-events-none opacity-30"
             style={{
-              backgroundImage: `linear-gradient(to right, rgba(255,255,255,1) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,1) 1px, transparent 1px)`,
-              backgroundSize: '32px 32px',
+              backgroundImage: `url('https://www.transparenttextures.com/patterns/carbon-fibre.png')`,
             }}
           />
           <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16 relative z-10">
