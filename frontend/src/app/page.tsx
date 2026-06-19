@@ -236,10 +236,10 @@ export default function LandingPage() {
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
           >
             {[
-              { role: "Privacy", icon: <Lock />, desc: "Strips PII & generates latent vector hashes.", color: "bg-[#ff5b1f] text-black" },
-              { role: "Pathology", icon: <Microscope />, desc: "Analyzes morphology & WHO classification.", color: "bg-[#00e0c7] text-black" },
-              { role: "Prognosis", icon: <Activity />, desc: "Calculates IPSS-R & risk stratification.", color: "bg-[#e0ff00] text-black" },
-              { role: "Moderator", icon: <Scale />, desc: "Enforces ICE debate protocol & consensus.", color: "bg-[#ffb800] text-black" }
+              { role: "Privacy", icon: <Lock />, desc: "Strips PII & generates latent vector hashes.", color: "bg-black text-white" },
+              { role: "Pathology", icon: <Microscope />, desc: "Analyzes morphology & WHO classification.", color: "bg-black text-white" },
+              { role: "Prognosis", icon: <Activity />, desc: "Calculates IPSS-R & risk stratification.", color: "bg-black text-white" },
+              { role: "Moderator", icon: <Scale />, desc: "Enforces ICE debate protocol & consensus.", color: "bg-black text-white" }
             ].map((agent, i) => (
               <motion.div key={i} variants={itemVariants} className="border-2 border-black bg-white p-6 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-2 hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] transition-all duration-300">
                 <div className={`w-12 h-12 ${agent.color} border-2 border-black flex items-center justify-center mb-6 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]`}>
@@ -270,7 +270,7 @@ export default function LandingPage() {
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <motion.div variants={itemVariants} className="bg-white p-6 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-1 transition-transform">
-              <div className="bg-[#00e0c7] text-black font-bold font-mono text-xs uppercase tracking-widest px-3 py-1 border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] mb-4 inline-flex items-center"><Cpu className="w-4 h-4 mr-2"/> Agentic RAG</div>
+              <div className="bg-black text-white font-bold font-mono text-xs uppercase tracking-widest px-3 py-1 border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] mb-4 inline-flex items-center"><Cpu className="w-4 h-4 mr-2"/> Agentic RAG</div>
               <h4 className="text-xl font-bold font-serif mb-2 text-black">Semantic Scholar APIs</h4>
               <p className="text-sm font-medium opacity-80 leading-relaxed text-black">
                 Agents don't hallucinate treatments. They fetch real-time clinical trials and oncology literature from PubMed/Semantic Scholar via ChromaDB vector retrieval to ground their debates.
@@ -278,7 +278,7 @@ export default function LandingPage() {
             </motion.div>
             
             <motion.div variants={itemVariants} className="bg-white p-6 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-1 transition-transform">
-              <div className="bg-[#ff5b1f] text-black font-bold font-mono text-xs uppercase tracking-widest px-3 py-1 border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] mb-4 inline-flex items-center"><Fingerprint className="w-4 h-4 mr-2"/> Monetization</div>
+              <div className="bg-black text-white font-bold font-mono text-xs uppercase tracking-widest px-3 py-1 border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] mb-4 inline-flex items-center"><Fingerprint className="w-4 h-4 mr-2"/> Monetization</div>
               <h4 className="text-xl font-bold font-serif mb-2 text-black">DOKU Payment Gateway</h4>
               <p className="text-sm font-medium opacity-80 leading-relaxed text-black">
                 Integrated with DOKU for seamless hospital subscriptions. Guest doctors hit a paywall, while VIP/Regulated accounts bypass it seamlessly. Real business viability.
@@ -286,7 +286,7 @@ export default function LandingPage() {
             </motion.div>
             
             <motion.div variants={itemVariants} className="bg-white p-6 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-1 transition-transform">
-              <div className="bg-[#e0ff00] text-black font-bold font-mono text-xs uppercase tracking-widest px-3 py-1 border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] mb-4 inline-flex items-center"><Printer className="w-4 h-4 mr-2"/> Enterprise Grade</div>
+              <div className="bg-black text-white font-bold font-mono text-xs uppercase tracking-widest px-3 py-1 border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] mb-4 inline-flex items-center"><Printer className="w-4 h-4 mr-2"/> Enterprise Grade</div>
               <h4 className="text-xl font-bold font-serif mb-2 text-black">Print-Ready EMR</h4>
               <p className="text-sm font-medium opacity-80 leading-relaxed text-black">
                 The final consensus isn't just a UI component. It exports into a formal, print-ready Electronic Medical Record (PDF) with strict clinical formatting for hospital archives.
