@@ -338,20 +338,20 @@ export default function CaseDashboard() {
                 transition={{ type: "spring", bounce: 0.4 }}
                 className={`flex flex-col ${msg.agent_role === 'moderator' ? 'items-center' : 'items-start'}`}
               >
-                <div className={`max-w-[90%] rounded-none p-4 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] ${
-                  msg.agent_role === 'moderator' ? 'bg-black text-white' :
-                  msg.agent_role === 'human' ? 'bg-blue-200 text-black' :
-                  msg.message_type === 'debate' ? 'bg-yellow-400 text-black' :
-                  'bg-white text-black'
-                }`}>
-                  <div className="flex items-center mb-2 border-b border-current/20 pb-2">
+                <div className={`max-w-[90%] rounded-2xl p-5 border-2 ${
+                  msg.agent_role === 'moderator' ? 'bg-zinc-900 text-white border-zinc-900' :
+                  msg.agent_role === 'human' ? 'bg-sky-50 text-black border-sky-200' :
+                  msg.message_type === 'debate' ? 'bg-amber-50 text-black border-amber-200' :
+                  'bg-white text-black border-gray-200'
+                } shadow-sm`}>
+                  <div className="flex items-center mb-3 border-b border-current/10 pb-3">
                     {getRoleIcon(msg.agent_role)}
-                    <span className="text-xs font-bold uppercase tracking-wider ml-2 opacity-90">{msg.agent_handle}</span>
-                    <span className="text-[10px] opacity-60 ml-auto font-mono pl-4">
+                    <span className="text-[13px] font-bold uppercase tracking-wider ml-2 opacity-90">{msg.agent_handle}</span>
+                    <span className="text-[11px] opacity-60 ml-auto font-mono pl-4">
                       {new Date(msg.timestamp).toLocaleTimeString()}
                     </span>
                   </div>
-                  <div className="text-sm font-medium leading-relaxed whitespace-pre-wrap">{msg.content}</div>
+                  <div className={`text-[14.5px] leading-[1.7] whitespace-pre-wrap ${msg.agent_role === 'moderator' ? 'text-zinc-200' : 'text-zinc-800 font-medium'}`}>{msg.content}</div>
                   
                   {msg.references && msg.references.length > 0 && (
                     <div className="mt-3 pt-2 border-t border-current/20">
