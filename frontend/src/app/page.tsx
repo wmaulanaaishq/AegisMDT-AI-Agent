@@ -167,47 +167,55 @@ export default function LandingPage() {
         </motion.div>
       </div> {/* End Hero Wrapper */}
 
-      <div id="platform" className="w-full max-w-6xl px-6 mb-32 z-10 pt-24">
-        <motion.div 
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-          variants={containerVariants}
-          className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full text-left"
-        >
-          {/* Feature 1 */}
-          <div className="bg-white p-8 border-4 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[-4px] hover:translate-y-[-4px] hover:shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] transition-all">
-            <div className="w-16 h-16 bg-primary text-black border-4 border-black flex items-center justify-center shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] mb-6">
-              <Scale className="w-8 h-8" />
+      <div id="platform" className="w-full bg-zinc-900 border-y-4 border-black py-24 mb-32 relative z-10 overflow-hidden">
+        <div 
+          className="absolute inset-0 z-0 pointer-events-none opacity-30"
+          style={{
+            backgroundImage: `url('https://www.transparenttextures.com/patterns/carbon-fibre.png')`,
+          }}
+        />
+        <div className="w-full max-w-6xl px-6 mx-auto relative z-10">
+          <motion.div 
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            variants={containerVariants}
+            className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full text-left"
+          >
+            {/* Feature 1 */}
+            <div className="bg-white p-8 border-4 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[-4px] hover:translate-y-[-4px] hover:shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] transition-all">
+              <div className="w-16 h-16 bg-primary text-black border-4 border-black flex items-center justify-center shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] mb-6">
+                <Scale className="w-8 h-8" />
+              </div>
+              <h3 className="text-2xl font-serif font-black mb-3 text-black tracking-tight">ICE Protocol</h3>
+              <p className="text-black/80 font-bold leading-relaxed text-sm">
+                Agents actively debate conflicting prognoses until a high-confidence consensus is reached, eliminating single-model hallucinations.
+              </p>
             </div>
-            <h3 className="text-2xl font-serif font-black mb-3 text-black tracking-tight">ICE Protocol</h3>
-            <p className="text-black/80 font-bold leading-relaxed text-sm">
-              Agents actively debate conflicting prognoses until a high-confidence consensus is reached, eliminating single-model hallucinations.
-            </p>
-          </div>
 
-          {/* Feature 2 */}
-          <div className="bg-white p-8 border-4 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[-4px] hover:translate-y-[-4px] hover:shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] transition-all">
-            <div className="w-16 h-16 bg-white text-black border-4 border-black flex items-center justify-center shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] mb-6">
-              <Microscope className="w-8 h-8" />
+            {/* Feature 2 */}
+            <div className="bg-white p-8 border-4 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[-4px] hover:translate-y-[-4px] hover:shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] transition-all">
+              <div className="w-16 h-16 bg-white text-black border-4 border-black flex items-center justify-center shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] mb-6">
+                <Microscope className="w-8 h-8" />
+              </div>
+              <h3 className="text-2xl font-serif font-black mb-3 text-black tracking-tight">Multi-Modal Vision</h3>
+              <p className="text-black/80 font-bold leading-relaxed text-sm">
+                Pathology agents process both unstructured medical texts and complex microscopic imagery to identify rare genomic mutations.
+              </p>
             </div>
-            <h3 className="text-2xl font-serif font-black mb-3 text-black tracking-tight">Multi-Modal Vision</h3>
-            <p className="text-black/80 font-bold leading-relaxed text-sm">
-              Pathology agents process both unstructured medical texts and complex microscopic imagery to identify rare genomic mutations.
-            </p>
-          </div>
 
-          {/* Feature 3 */}
-          <div className="bg-white p-8 border-4 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[-4px] hover:translate-y-[-4px] hover:shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] transition-all">
-            <div className="w-16 h-16 bg-black text-white border-4 border-black flex items-center justify-center shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] mb-6">
-              <UserCog className="w-8 h-8" />
+            {/* Feature 3 */}
+            <div className="bg-white p-8 border-4 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[-4px] hover:translate-y-[-4px] hover:shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] transition-all">
+              <div className="w-16 h-16 bg-black text-white border-4 border-black flex items-center justify-center shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] mb-6">
+                <UserCog className="w-8 h-8" />
+              </div>
+              <h3 className="text-2xl font-serif font-black mb-3 text-black tracking-tight">Human-in-the-Loop</h3>
+              <p className="text-black/80 font-bold leading-relaxed text-sm">
+                Doctors retain ultimate control. Intervene mid-debate to steer the AI's clinical direction or request immediate literature revisions.
+              </p>
             </div>
-            <h3 className="text-2xl font-serif font-black mb-3 text-black tracking-tight">Human-in-the-Loop</h3>
-            <p className="text-black/80 font-bold leading-relaxed text-sm">
-              Doctors retain ultimate control. Intervene mid-debate to steer the AI's clinical direction or request immediate literature revisions.
-            </p>
-          </div>
-        </motion.div>
+          </motion.div>
+        </div>
       </div>
 
       {/* Meet The Agents Section */}
