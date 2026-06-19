@@ -211,9 +211,16 @@ export default function LandingPage() {
       </div>
 
       {/* Meet The Agents Section */}
-      <div id="agents" className="w-full bg-white border-y-4 border-black py-24 relative z-10 pt-32">
-        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/lined-paper-2.png')] opacity-10 pointer-events-none"></div>
-        <div className="container max-w-6xl px-6 mx-auto">
+      <div id="agents" className="w-full bg-white border-y-4 border-black py-24 relative z-10 pt-32 overflow-hidden">
+        <div 
+          className="absolute inset-0 z-0 pointer-events-none opacity-40"
+          style={{
+            backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.1) 2px, transparent 2px)',
+            backgroundSize: '32px 32px',
+            backgroundPosition: '0 0',
+          }}
+        />
+        <div className="container max-w-6xl px-6 mx-auto relative z-10">
           <div className="mb-16 text-center">
             <h2 className="text-5xl md:text-7xl font-serif font-black mb-6">Meet The Ensemble</h2>
             <p className="text-xl font-medium text-foreground/80 max-w-2xl mx-auto">
@@ -294,11 +301,19 @@ export default function LandingPage() {
         <div className="absolute left-1/2 top-10 -translate-x-1/2 bg-white border-2 border-black px-6 py-2 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] z-20">
           <p className="text-xs font-bold font-mono text-black uppercase tracking-widest m-0">Powered By</p>
         </div>
-        <div className="border-2 border-black bg-background p-12 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] mt-16">
-          <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16">
-            <div className="flex items-center space-x-3"><Network className="w-8 h-8"/> <span className="text-2xl font-serif font-bold">Band SDK</span></div>
-            <div className="flex items-center space-x-3"><Layers className="w-8 h-8"/> <span className="text-2xl font-serif font-bold">Featherless AI</span></div>
-            <div className="flex items-center space-x-3"><Database className="w-8 h-8"/> <span className="text-2xl font-serif font-bold">ChromaDB</span></div>
+        <div className="border-2 border-black bg-white p-12 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] mt-16 relative overflow-hidden">
+          <div 
+            className="absolute inset-0 z-0 pointer-events-none opacity-30"
+            style={{
+              backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.1) 2px, transparent 2px)',
+              backgroundSize: '32px 32px',
+              backgroundPosition: '0 0',
+            }}
+          />
+          <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16 relative z-10">
+            <div className="flex items-center space-x-3 bg-white p-3 border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]"><Network className="w-8 h-8"/> <span className="text-2xl font-serif font-bold">Band SDK</span></div>
+            <div className="flex items-center space-x-3 bg-white p-3 border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]"><Layers className="w-8 h-8"/> <span className="text-2xl font-serif font-bold">Featherless AI</span></div>
+            <div className="flex items-center space-x-3 bg-white p-3 border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]"><Database className="w-8 h-8"/> <span className="text-2xl font-serif font-bold">ChromaDB</span></div>
           </div>
         </div>
       </div>
