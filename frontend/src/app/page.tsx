@@ -353,20 +353,17 @@ export default function LandingPage() {
             <div className="flex w-max animate-marquee space-x-8 md:space-x-16 items-center px-4 md:px-8">
               {[...Array(3)].map((_, i) => (
                 <div key={i} className="flex space-x-8 md:space-x-16 items-center">
-                  <div className="flex items-center space-x-4 bg-white px-8 py-5 border border-slate-200 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] min-w-max hover:-translate-y-1 hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] transition-all">
-                    <img src="/band.svg" alt="Band SDK" className="h-10 w-auto object-contain" />
-                    <span className="text-2xl font-serif font-bold text-black">Band SDK</span>
+                  <div className="flex items-center justify-center bg-white px-8 py-4 border border-slate-200 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] min-w-[250px] hover:-translate-y-1 hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] transition-all">
+                    <img src="/band.svg" alt="Band SDK" className="h-14 w-auto object-contain" />
                   </div>
-                  <div className="flex items-center space-x-4 bg-white px-8 py-5 border border-slate-200 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] min-w-max hover:-translate-y-1 hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] transition-all">
-                    <img src="/featherless.svg" alt="Featherless AI" className="h-10 w-auto object-contain" />
-                    <span className="text-2xl font-serif font-bold text-black">Featherless AI</span>
+                  <div className="flex items-center justify-center bg-white px-8 py-4 border border-slate-200 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] min-w-[250px] hover:-translate-y-1 hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] transition-all">
+                    <img src="/featherless.svg" alt="Featherless AI" className="h-14 w-auto object-contain" />
                   </div>
-                  <div className="flex items-center space-x-4 bg-white px-8 py-5 border border-slate-200 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] min-w-max hover:-translate-y-1 hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] transition-all">
-                    <img src="/chroma.svg" alt="ChromaDB" className="h-10 w-auto object-contain" />
-                    <span className="text-2xl font-serif font-bold text-black">ChromaDB</span>
+                  <div className="flex items-center justify-center bg-white px-8 py-4 border border-slate-200 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] min-w-[250px] hover:-translate-y-1 hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] transition-all">
+                    <img src="/chroma.svg" alt="ChromaDB" className="h-14 w-auto object-contain" />
                   </div>
-                  <div className="flex items-center space-x-4 bg-white px-8 py-5 border border-slate-200 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] min-w-max pr-12 md:pr-16 hover:-translate-y-1 hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] transition-all">
-                    <img src="/lablab.svg" alt="lablab.ai" className="h-10 w-auto object-contain" />
+                  <div className="flex items-center justify-center bg-white px-8 py-4 border border-slate-200 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] min-w-[200px] hover:-translate-y-1 hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] transition-all">
+                    <img src="/lablab.svg" alt="lablab.ai" className="h-14 w-auto object-contain" />
                   </div>
                 </div>
               ))}

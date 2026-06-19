@@ -1,3 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 50">
-  <text x="0" y="35" font-family="monospace, sans-serif" font-weight="bold" font-size="34" fill="#000000">lablab.ai</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <path d="M 15 0 L 85 0 A 15 15 0 0 1 100 15 L 100 85 L 85 100 L 15 100 A 15 15 0 0 1 0 85 L 0 15 Z" fill="#000000" />
+  <text x="50" y="44" font-family="sans-serif" font-weight="400" font-size="34" fill="#FFFFFF" text-anchor="middle" letter-spacing="1">LAB</text>
+  <text x="50" y="82" font-family="sans-serif" font-weight="400" font-size="34" fill="#FFFFFF" text-anchor="middle" letter-spacing="1">LAB</text>
 </svg>
