@@ -210,6 +210,7 @@ export function Scene3D() {
       { x: -3.5, y: -0.6, z: 2 },
       { x: 3.2, y: 0.4, z: 1.8 },
     ]) {
+      const tealCol = readVar('--brand-teal', '#00e0c7');
       const g = new THREE.Group();
       const glass = new THREE.Mesh(
         new THREE.CylinderGeometry(0.18, 0.18, 1.4, 16),
