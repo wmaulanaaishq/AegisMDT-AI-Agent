@@ -34,7 +34,7 @@ export default function Navbar() {
               <Link className="transition-colors hover:text-primary text-foreground" href="#protocol">
                 Protocol
               </Link>
-              <Link className="transition-colors hover:text-primary text-foreground" href="#pricing">
+              <Link className="transition-colors hover:text-primary text-foreground" href="/pricing">
                 Pricing
               </Link>
             </nav>
