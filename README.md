@@ -13,6 +13,10 @@
   *Track 3: Regulated & High-Stakes Workflows*
 </div>
 
+<div align="center">
+  <img src="frontend/public/landingpage.png" alt="AegisMDT Landing Page" width="800" style="border-radius: 8px; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);" />
+</div>
+
 ---
 
 ## 🔬 Overview
@@ -23,7 +27,7 @@ Instead of relying on a single AI model that can hallucinate, AegisMDT utilizes 
 
 ## ✨ Key Features & Technical Highlights
 
-- **Brutalist-Chic UI/UX**: Designed with a high-contrast, neobrutalist aesthetic featuring terminal-style live demo streams, infinite marquees, and a focus on raw, unpolished engineering power. 
+- **Premium Medical SaaS UI/UX**: Designed with a clean, high-trust enterprise aesthetic featuring soft shadows, rounded interfaces, terminal-style live demo streams, and a focus on clinical efficiency. 
 - **Iterative Consensus Ensemble (ICE)**: An AI Moderator forces agents to debate if their confidence scores are low or if their assessments conflict, drastically reducing AI hallucinations in high-stakes medical decisions.
 - **Multi-Modal Vision Agent**: Upload microscopy/Whole Slide Images (WSI). The Pathology Agent analyzes both text and visual morphology.
 - **Agentic Web Search (RAG)**: Agents autonomously query the Semantic Scholar / PubMed graph API to ground their arguments in real, peer-reviewed medical literature.
