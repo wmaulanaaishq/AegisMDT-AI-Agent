@@ -365,6 +365,10 @@ export default function LandingPage() {
                   <div className="flex items-center justify-center bg-white px-8 py-4 border border-slate-200 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] min-w-[200px] hover:-translate-y-1 hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] transition-all">
                     <img src="/lablab.svg" alt="lablab.ai" className="h-14 w-auto object-contain" />
                   </div>
+                  <div className="flex items-center justify-center bg-white px-8 py-4 border border-slate-200 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] min-w-[250px] hover:-translate-y-1 hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] transition-all gap-4 pr-12 md:pr-16">
+                    <img src="/aimlapi.png" alt="AI/ML API" className="h-10 w-10 object-contain rounded-md" />
+                    <span className="text-2xl font-serif font-bold text-black whitespace-nowrap">AI/ML API</span>
+                  </div>
                 </div>
               ))}
             </div>
