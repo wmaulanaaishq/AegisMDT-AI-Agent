@@ -26,6 +26,7 @@ class AgentRole(str, Enum):
     PROGNOSTICATION = "prognostication"
     CLINICAL_TRIAL = "clinical_trial"
     PRIVACY = "privacy"
+    SYSTEM = "system"
 
 
 class PatientCaseInput(BaseModel):

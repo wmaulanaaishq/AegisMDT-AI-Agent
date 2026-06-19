@@ -210,7 +210,7 @@ export default function CaseDashboard() {
         
         {/* Left Panel: Patient Data */}
         <div className="lg:col-span-3 flex flex-col space-y-4">
-          <div className="glass-panel rounded-xl p-5 flex-1 overflow-y-auto">
+          <div className="glass-panel p-5 flex-1 overflow-y-auto">
             <h3 className="font-semibold mb-4 border-b border-border/50 pb-2">Anonymized Profile</h3>
             <div className="space-y-4 text-sm">
               <div>
@@ -232,7 +232,7 @@ export default function CaseDashboard() {
         </div>
 
         {/* Center Panel: Agent Debate Room (WebSocket Stream) */}
-        <div className="lg:col-span-5 flex flex-col glass-panel rounded-xl overflow-hidden">
+        <div className="lg:col-span-5 flex flex-col glass-panel overflow-hidden">
           <div className="p-4 border-b border-border/50 bg-background/50 flex justify-between items-center">
             <h3 className="font-semibold flex items-center">
               <Activity className="mr-2 h-4 w-4 text-primary" />
@@ -254,10 +254,10 @@ export default function CaseDashboard() {
                 transition={{ type: "spring", bounce: 0.4 }}
                 className={`flex flex-col ${msg.agent_role === 'moderator' ? 'items-center' : 'items-start'}`}
               >
-                <div className={`max-w-[90%] rounded-lg p-3 shadow-md ${
-                  msg.agent_role === 'moderator' ? 'bg-blue-500/10 border border-blue-500/30' :
-                  msg.message_type === 'debate' ? 'bg-orange-500/10 border border-orange-500/30' :
-                  'bg-secondary/60 border border-border/50'
+                <div className={`max-w-[90%] rounded-none p-3 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] ${
+                  msg.agent_role === 'moderator' ? 'bg-primary text-white' :
+                  msg.message_type === 'debate' ? 'bg-yellow-400 text-black' :
+                  'bg-white text-black'
                 }`}>
                   <div className="flex items-center mb-1">
                     {getRoleIcon(msg.agent_role)}

@@ -77,5 +77,9 @@ class Settings:
     frontend_url: str = field(default_factory=lambda: os.getenv("FRONTEND_URL", "http://localhost:3000"))
     debug: bool = field(default_factory=lambda: os.getenv("DEBUG", "false").lower() == "true")
 
+    # DOKU Payment Gateway
+    doku_client_id: str = field(default_factory=lambda: os.getenv("DOKU_CLIENT_ID", ""))
+    doku_secret_key: str = field(default_factory=lambda: os.getenv("DOKU_SECRET_KEY", ""))
+
 
 settings = Settings()

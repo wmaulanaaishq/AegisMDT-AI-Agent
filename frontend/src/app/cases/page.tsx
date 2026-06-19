@@ -2,24 +2,35 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { Activity, CheckCircle, AlertTriangle, Clock, ArrowRight } from 'lucide-react';
+import { useAuth } from '@/components/AuthProvider';
 
 export default function ActiveCasesPage() {
+  const router = useRouter();
+  const { user, isLoading: authLoading } = useAuth();
   const [cases, setCases] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch('http://localhost:8000/api/cases')
-      .then(res => res.json())
-      .then(data => {
-        setCases(data);
-        setLoading(false);
-      })
-      .catch(err => {
-        console.error(err);
-        setLoading(false);
-      });
-  }, []);
+    if (!authLoading && !user) {
+      router.push('/login');
+      return;
+    }
+
+    if (user) {
+      fetch('http://localhost:8000/api/cases')
+        .then(res => res.json())
+        .then(data => {
+          setCases(data);
+          setLoading(false);
+        })
+        .catch(err => {
+          console.error(err);
+          setLoading(false);
+        });
+    }
+  }, [user, authLoading, router]);
 
   const getStatusColor = (status: string) => {
     if (status === 'approved') return 'text-green-500 bg-green-500/10';
@@ -80,10 +91,13 @@ export default function ActiveCasesPage() {
                     </span>
                   </div>
                   
-                  <p className="text-sm text-foreground/90 line-clamp-2">
-                    <span className="font-semibold mr-2">{c.input_data.age}yo {c.input_data.sex}</span> 
-                    - {c.input_data.description}
-                  </p>
+                  <div className="text-sm text-foreground/90">
+                    <span className="font-semibold mr-2">{c.input_data.age || 'Unknown'}yo {c.input_data.sex || 'Unknown'}</span> 
+                    <span className="font-mono text-[10px] text-green-500 bg-green-500/10 px-1 py-0.5 rounded mr-2">
+                      0x{c.id.replace(/-/g, '').substring(0, 12)}...
+                    </span>
+                    <p className="line-clamp-2 mt-1 text-muted-foreground">{c.input_data.description}</p>
+                  </div>
                 </div>
                 
                 <div className="flex flex-col md:items-end gap-2 shrink-0 text-sm">

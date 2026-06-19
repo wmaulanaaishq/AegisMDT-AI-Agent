@@ -3,7 +3,7 @@ import json
 import logging
 from typing import Dict
 
-from fastapi import FastAPI, WebSocket, WebSocketDisconnect, HTTPException, BackgroundTasks
+from fastapi import FastAPI, WebSocket, WebSocketDisconnect, HTTPException, BackgroundTasks, Request
 from fastapi.middleware.cors import CORSMiddleware
 
 from models import PatientCase, PatientCaseInput, CaseApproval, AgentMessage, CaseStatus
@@ -112,10 +112,31 @@ async def process_case_bg(case_id: str):
                     
     except Exception as e:
         logger.error(f"Pipeline failed for case {case_id}: {e}")
+        
+        # Broadcast error message to timeline
+        error_msg = AgentMessage(
+            agent_id="system",
+            agent_role=AgentRole.SYSTEM,
+            content=f"System Alert: Pipeline execution failed due to an error (e.g. LLM timeout or API error). Details: {str(e)}",
+            references=[]
+        )
+        await message_callback(error_msg)
+        
         error_case = get_case(case_id)
         if error_case:
             error_case.status = "error"
             save_case(error_case)
+            
+            # Broadcast error status update
+            if case_id in active_connections:
+                for ws in active_connections[case_id]:
+                    try:
+                        await ws.send_json({
+                            "type": "status_update",
+                            "data": {"status": "error"}
+                        })
+                    except Exception:
+                        pass
 
 @app.get("/api/cases", response_model=list[PatientCase])
 async def list_cases():
@@ -154,6 +175,49 @@ async def approve_case(case_id: str, approval: CaseApproval, background_tasks: B
         
     save_case(case)
     return case
+
+# Mock User DB
+mock_users_db = {} # username -> { "subscription_active": bool, "id": str }
+
+from pydantic import BaseModel
+class LoginRequest(BaseModel):
+    username: str
+    password: str
+
+@app.post("/api/auth/login")
+async def login(req: LoginRequest):
+    if req.username not in mock_users_db:
+        mock_users_db[req.username] = {"subscription_active": False, "id": req.username}
+    return {"token": f"mock_jwt_for_{req.username}", "user": mock_users_db[req.username]}
+
+@app.get("/api/auth/me")
+async def get_me(request: Request):
+    token = request.headers.get("Authorization", "").replace("Bearer ", "")
+    if not token.startswith("mock_jwt_for_"):
+        raise HTTPException(status_code=401, detail="Invalid token")
+    username = token.replace("mock_jwt_for_", "")
+    if username not in mock_users_db:
+        raise HTTPException(status_code=401, detail="User not found")
+    return {"user": mock_users_db[username]}
+
+@app.post("/api/payments/subscribe")
+async def process_subscription(request: Request):
+    data = await request.json()
+    username = data.get("username", "UNKNOWN")
+    
+    import uuid
+    from doku_client import create_checkout_payment
+    invoice_number = f"AEGIS-SUB-{uuid.uuid4().hex[:8].upper()}"
+    payment_url = await create_checkout_payment(invoice_number=invoice_number, username=username, amount=50000000)
+    return {"payment_url": payment_url, "invoice_number": invoice_number}
+
+@app.post("/api/payments/activate")
+async def activate_subscription(request: Request):
+    data = await request.json()
+    username = data.get("username", "")
+    if username in mock_users_db:
+        mock_users_db[username]["subscription_active"] = True
+    return {"success": True}
 
 async def process_revision_task_bg(case_id: str, feedback: str):
     case = get_case(case_id)

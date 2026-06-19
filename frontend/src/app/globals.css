@@ -3,34 +3,38 @@
 @tailwind utilities;
 
 @layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
   :root {
-    --background: 222 47% 11%;
-    --foreground: 210 40% 98%;
+    --background: 36 100% 97%; /* #FFF9F0 Mistral Beige */
+    --foreground: 0 0% 10%;    /* #1A1A1A Black */
 
-    --card: 222 47% 11%;
-    --card-foreground: 210 40% 98%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 10%;
 
-    --popover: 222 47% 11%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 10%;
 
-    --primary: 181 74% 45%;
-    --primary-foreground: 222 47% 11%;
+    --primary: 25 95% 53%; /* #F97316 Vibrant Orange */
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 217 32% 17%;
-    --secondary-foreground: 210 40% 98%;
+    --secondary: 36 30% 90%;
+    --secondary-foreground: 0 0% 10%;
 
-    --muted: 217 32% 17%;
-    --muted-foreground: 215 20.2% 65.1%;
+    --muted: 36 30% 90%;
+    --muted-foreground: 0 0% 40%;
 
-    --accent: 217 32% 17%;
-    --accent-foreground: 210 40% 98%;
+    --accent: 36 30% 90%;
+    --accent-foreground: 0 0% 10%;
 
-    --destructive: 0 62.8% 30.6%;
+    --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 217 32% 17%;
-    --input: 217 32% 17%;
-    --ring: 181 74% 45%;
+    --border: 0 0% 10%;
+    --input: 0 0% 10%;
+    --ring: 25 95% 53%;
   }
 }
 
@@ -41,16 +45,15 @@
 }
 
 .glass-panel {
-  background: rgba(15, 23, 42, 0.6);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.05);
-  transition: all 0.3s ease;
+  background: white;
+  border: 1px solid #1a1a1a;
+  border-radius: 4px;
+  box-shadow: 3px 3px 0px 0px #1a1a1a;
+  transition: all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 .glass-panel:hover {
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  box-shadow: 0 8px 32px rgba(45, 212, 191, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  transform: translate(-2px, -2px);
+  box-shadow: 5px 5px 0px 0px #1a1a1a;
 }
 
 /* Custom scrollbar for chat */
@@ -69,29 +72,41 @@
 }
 
 @media print {
+  @page {
+    margin: 1.5cm;
+    size: A4;
+  }
   body {
     background-color: white !important;
     color: black !important;
+    font-size: 11pt !important;
   }
-  .no-print {
+  header, nav, .no-print {
     display: none !important;
   }
   .glass-panel {
     background: white !important;
-    border: 1px solid #ccc !important;
+    border: 1px solid #ddd !important;
     box-shadow: none !important;
     color: black !important;
+    page-break-inside: avoid;
+    margin-bottom: 15px;
   }
   .text-muted-foreground {
-    color: #555 !important;
+    color: #444 !important;
   }
   .text-primary, .text-destructive, .text-green-500 {
     color: black !important;
-    font-weight: bold !important;
+    font-weight: 600 !important;
   }
   .bg-primary\/5, .bg-secondary\/60, .bg-secondary, .bg-background\/50 {
     background: #f9f9f9 !important;
-    border: 1px solid #eee !important;
+    border: 1px solid #eaeaea !important;
+    page-break-inside: avoid;
+  }
+  /* Ensure timeline messages don't break awkwardly */
+  .motion-div {
+    page-break-inside: avoid;
   }
   /* Hide scrollbar in print */
   ::-webkit-scrollbar {
