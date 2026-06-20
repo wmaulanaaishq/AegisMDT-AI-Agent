@@ -104,5 +104,3 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 4. Once in the dashboard, click **"Fill Demo Patient (BPDCN)"** to load a complex cancer case.
 5. Submit the case and click **"Start ICE Demo"** to watch the agents debate in real-time via WebSockets!
 
-## 🔒 Security & Privacy Notice
-This is a hackathon prototype. While it features PII stripping mechanisms, do **not** upload real patient data (PHI) to this public iteration. 
