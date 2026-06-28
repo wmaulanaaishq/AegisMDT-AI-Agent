@@ -20,8 +20,6 @@ Build enterprise multi-agent systems with Band and Codeband*
   <img src="frontend/public/landingpage.png" alt="AegisMDT Landing Page" width="800" style="border-radius: 8px; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);" />
 </div>
 
----
-
 ## 🔬 Overview & Vision
 
 **AegisMDT** is an advanced, military-grade Virtual Medical Board (MDT - Multi-Disciplinary Team) prototype built specifically for the AI Hackathon by lablab.ai. 
